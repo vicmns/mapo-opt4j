@@ -42,8 +42,8 @@ public class CrossOverComplex<G extends ListGenotype<?>> implements Crossover<G>
 		this.idxEp2=Integer.parseInt(p2Parse[2][1].toString());
 		this.alphaP2=Integer.parseInt(p2Parse[2][2].toString());
 		//New Instances for childs
-		ListGenotype<String> o1 = p1.newInstance();
-		ListGenotype<String> o2 = p2.newInstance();
+		ListGenotype<Object> o1 = p1.newInstance();
+		ListGenotype<Object> o2 = p2.newInstance();
 		//HERE
 		ArrayList<String> child1 = new ArrayList<String>();
 		ArrayList<String> child2 = new ArrayList<String>();

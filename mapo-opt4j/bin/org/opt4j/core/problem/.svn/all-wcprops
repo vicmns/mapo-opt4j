@@ -1,0 +1,41 @@
+K 25
+svn:wc:ra_dav:version-url
+V 66
+/svnroot/opt4j/!svn/ver/624/opt4j/trunk/src/org/opt4j/core/problem
+END
+Creator.java
+K 25
+svn:wc:ra_dav:version-url
+V 79
+/svnroot/opt4j/!svn/ver/624/opt4j/trunk/src/org/opt4j/core/problem/Creator.java
+END
+Evaluator.java
+K 25
+svn:wc:ra_dav:version-url
+V 81
+/svnroot/opt4j/!svn/ver/624/opt4j/trunk/src/org/opt4j/core/problem/Evaluator.java
+END
+package-info.java
+K 25
+svn:wc:ra_dav:version-url
+V 84
+/svnroot/opt4j/!svn/ver/624/opt4j/trunk/src/org/opt4j/core/problem/package-info.java
+END
+Decoder.java
+K 25
+svn:wc:ra_dav:version-url
+V 79
+/svnroot/opt4j/!svn/ver/624/opt4j/trunk/src/org/opt4j/core/problem/Decoder.java
+END
+ProblemModule.java
+K 25
+svn:wc:ra_dav:version-url
+V 85
+/svnroot/opt4j/!svn/ver/605/opt4j/trunk/src/org/opt4j/core/problem/ProblemModule.java
+END
+PhenotypeWrapper.java
+K 25
+svn:wc:ra_dav:version-url
+V 88
+/svnroot/opt4j/!svn/ver/624/opt4j/trunk/src/org/opt4j/core/problem/PhenotypeWrapper.java
+END

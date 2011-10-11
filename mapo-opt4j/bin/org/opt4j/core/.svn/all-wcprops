@@ -1,0 +1,95 @@
+K 25
+svn:wc:ra_dav:version-url
+V 58
+/svnroot/opt4j/!svn/ver/670/opt4j/trunk/src/org/opt4j/core
+END
+IndividualStateListener.java
+K 25
+svn:wc:ra_dav:version-url
+V 87
+/svnroot/opt4j/!svn/ver/625/opt4j/trunk/src/org/opt4j/core/IndividualStateListener.java
+END
+IndividualSet.java
+K 25
+svn:wc:ra_dav:version-url
+V 77
+/svnroot/opt4j/!svn/ver/623/opt4j/trunk/src/org/opt4j/core/IndividualSet.java
+END
+AbstractIndividualFactory.java
+K 25
+svn:wc:ra_dav:version-url
+V 89
+/svnroot/opt4j/!svn/ver/644/opt4j/trunk/src/org/opt4j/core/AbstractIndividualFactory.java
+END
+DoubleValue.java
+K 25
+svn:wc:ra_dav:version-url
+V 75
+/svnroot/opt4j/!svn/ver/656/opt4j/trunk/src/org/opt4j/core/DoubleValue.java
+END
+Objective.java
+K 25
+svn:wc:ra_dav:version-url
+V 73
+/svnroot/opt4j/!svn/ver/625/opt4j/trunk/src/org/opt4j/core/Objective.java
+END
+IndividualSetListener.java
+K 25
+svn:wc:ra_dav:version-url
+V 85
+/svnroot/opt4j/!svn/ver/595/opt4j/trunk/src/org/opt4j/core/IndividualSetListener.java
+END
+Phenotype.java
+K 25
+svn:wc:ra_dav:version-url
+V 73
+/svnroot/opt4j/!svn/ver/644/opt4j/trunk/src/org/opt4j/core/Phenotype.java
+END
+Value.java
+K 25
+svn:wc:ra_dav:version-url
+V 69
+/svnroot/opt4j/!svn/ver/580/opt4j/trunk/src/org/opt4j/core/Value.java
+END
+IndividualFactory.java
+K 25
+svn:wc:ra_dav:version-url
+V 81
+/svnroot/opt4j/!svn/ver/644/opt4j/trunk/src/org/opt4j/core/IndividualFactory.java
+END
+package-info.java
+K 25
+svn:wc:ra_dav:version-url
+V 76
+/svnroot/opt4j/!svn/ver/580/opt4j/trunk/src/org/opt4j/core/package-info.java
+END
+DefaultIndividualFactory.java
+K 25
+svn:wc:ra_dav:version-url
+V 88
+/svnroot/opt4j/!svn/ver/600/opt4j/trunk/src/org/opt4j/core/DefaultIndividualFactory.java
+END
+Individual.java
+K 25
+svn:wc:ra_dav:version-url
+V 74
+/svnroot/opt4j/!svn/ver/625/opt4j/trunk/src/org/opt4j/core/Individual.java
+END
+IntegerValue.java
+K 25
+svn:wc:ra_dav:version-url
+V 76
+/svnroot/opt4j/!svn/ver/580/opt4j/trunk/src/org/opt4j/core/IntegerValue.java
+END
+Genotype.java
+K 25
+svn:wc:ra_dav:version-url
+V 72
+/svnroot/opt4j/!svn/ver/644/opt4j/trunk/src/org/opt4j/core/Genotype.java
+END
+Objectives.java
+K 25
+svn:wc:ra_dav:version-url
+V 74
+/svnroot/opt4j/!svn/ver/651/opt4j/trunk/src/org/opt4j/core/Objectives.java
+END

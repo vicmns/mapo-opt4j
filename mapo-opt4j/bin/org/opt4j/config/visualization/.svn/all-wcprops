@@ -1,0 +1,161 @@
+K 25
+svn:wc:ra_dav:version-url
+V 74
+/svnroot/opt4j/!svn/ver/644/opt4j/trunk/src/org/opt4j/config/visualization
+END
+DefaultContentPanel.java
+K 25
+svn:wc:ra_dav:version-url
+V 99
+/svnroot/opt4j/!svn/ver/595/opt4j/trunk/src/org/opt4j/config/visualization/DefaultContentPanel.java
+END
+SetListener.java
+K 25
+svn:wc:ra_dav:version-url
+V 91
+/svnroot/opt4j/!svn/ver/595/opt4j/trunk/src/org/opt4j/config/visualization/SetListener.java
+END
+FileChooser.java
+K 25
+svn:wc:ra_dav:version-url
+V 91
+/svnroot/opt4j/!svn/ver/580/opt4j/trunk/src/org/opt4j/config/visualization/FileChooser.java
+END
+Configurator.java
+K 25
+svn:wc:ra_dav:version-url
+V 92
+/svnroot/opt4j/!svn/ver/595/opt4j/trunk/src/org/opt4j/config/visualization/Configurator.java
+END
+ToolBar.java
+K 25
+svn:wc:ra_dav:version-url
+V 87
+/svnroot/opt4j/!svn/ver/595/opt4j/trunk/src/org/opt4j/config/visualization/ToolBar.java
+END
+Menu.java
+K 25
+svn:wc:ra_dav:version-url
+V 84
+/svnroot/opt4j/!svn/ver/644/opt4j/trunk/src/org/opt4j/config/visualization/Menu.java
+END
+PropertyPanel.java
+K 25
+svn:wc:ra_dav:version-url
+V 93
+/svnroot/opt4j/!svn/ver/595/opt4j/trunk/src/org/opt4j/config/visualization/PropertyPanel.java
+END
+TasksPanel.java
+K 25
+svn:wc:ra_dav:version-url
+V 90
+/svnroot/opt4j/!svn/ver/580/opt4j/trunk/src/org/opt4j/config/visualization/TasksPanel.java
+END
+SelectedPanel.java
+K 25
+svn:wc:ra_dav:version-url
+V 93
+/svnroot/opt4j/!svn/ver/580/opt4j/trunk/src/org/opt4j/config/visualization/SelectedPanel.java
+END
+DefaultTasksPanel.java
+K 25
+svn:wc:ra_dav:version-url
+V 97
+/svnroot/opt4j/!svn/ver/644/opt4j/trunk/src/org/opt4j/config/visualization/DefaultTasksPanel.java
+END
+ClipboardFrame.java
+K 25
+svn:wc:ra_dav:version-url
+V 94
+/svnroot/opt4j/!svn/ver/595/opt4j/trunk/src/org/opt4j/config/visualization/ClipboardFrame.java
+END
+About.java
+K 25
+svn:wc:ra_dav:version-url
+V 85
+/svnroot/opt4j/!svn/ver/580/opt4j/trunk/src/org/opt4j/config/visualization/About.java
+END
+DefaultSelectedPanel.java
+K 25
+svn:wc:ra_dav:version-url
+V 100
+/svnroot/opt4j/!svn/ver/612/opt4j/trunk/src/org/opt4j/config/visualization/DefaultSelectedPanel.java
+END
+ApplicationFrame.java
+K 25
+svn:wc:ra_dav:version-url
+V 96
+/svnroot/opt4j/!svn/ver/595/opt4j/trunk/src/org/opt4j/config/visualization/ApplicationFrame.java
+END
+ModuleTransferable.java
+K 25
+svn:wc:ra_dav:version-url
+V 98
+/svnroot/opt4j/!svn/ver/595/opt4j/trunk/src/org/opt4j/config/visualization/ModuleTransferable.java
+END
+DefaultAbout.java
+K 25
+svn:wc:ra_dav:version-url
+V 92
+/svnroot/opt4j/!svn/ver/580/opt4j/trunk/src/org/opt4j/config/visualization/DefaultAbout.java
+END
+SelectedModules.java
+K 25
+svn:wc:ra_dav:version-url
+V 95
+/svnroot/opt4j/!svn/ver/580/opt4j/trunk/src/org/opt4j/config/visualization/SelectedModules.java
+END
+FileOperations.java
+K 25
+svn:wc:ra_dav:version-url
+V 94
+/svnroot/opt4j/!svn/ver/595/opt4j/trunk/src/org/opt4j/config/visualization/FileOperations.java
+END
+DefaultApplicationFrame.java
+K 25
+svn:wc:ra_dav:version-url
+V 103
+/svnroot/opt4j/!svn/ver/644/opt4j/trunk/src/org/opt4j/config/visualization/DefaultApplicationFrame.java
+END
+package-info.java
+K 25
+svn:wc:ra_dav:version-url
+V 92
+/svnroot/opt4j/!svn/ver/156/opt4j/trunk/src/org/opt4j/config/visualization/package-info.java
+END
+Startupable.java
+K 25
+svn:wc:ra_dav:version-url
+V 91
+/svnroot/opt4j/!svn/ver/580/opt4j/trunk/src/org/opt4j/config/visualization/Startupable.java
+END
+Format.java
+K 25
+svn:wc:ra_dav:version-url
+V 86
+/svnroot/opt4j/!svn/ver/595/opt4j/trunk/src/org/opt4j/config/visualization/Format.java
+END
+ModulesPanel.java
+K 25
+svn:wc:ra_dav:version-url
+V 92
+/svnroot/opt4j/!svn/ver/580/opt4j/trunk/src/org/opt4j/config/visualization/ModulesPanel.java
+END
+ContentPanel.java
+K 25
+svn:wc:ra_dav:version-url
+V 92
+/svnroot/opt4j/!svn/ver/580/opt4j/trunk/src/org/opt4j/config/visualization/ContentPanel.java
+END
+DialogLayout.java
+K 25
+svn:wc:ra_dav:version-url
+V 92
+/svnroot/opt4j/!svn/ver/595/opt4j/trunk/src/org/opt4j/config/visualization/DialogLayout.java
+END
+DefaultModulesPanel.java
+K 25
+svn:wc:ra_dav:version-url
+V 99
+/svnroot/opt4j/!svn/ver/595/opt4j/trunk/src/org/opt4j/config/visualization/DefaultModulesPanel.java
+END

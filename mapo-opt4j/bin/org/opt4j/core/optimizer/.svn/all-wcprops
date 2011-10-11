@@ -1,0 +1,113 @@
+K 25
+svn:wc:ra_dav:version-url
+V 68
+/svnroot/opt4j/!svn/ver/670/opt4j/trunk/src/org/opt4j/core/optimizer
+END
+IndividualCompleter.java
+K 25
+svn:wc:ra_dav:version-url
+V 93
+/svnroot/opt4j/!svn/ver/620/opt4j/trunk/src/org/opt4j/core/optimizer/IndividualCompleter.java
+END
+StopException.java
+K 25
+svn:wc:ra_dav:version-url
+V 87
+/svnroot/opt4j/!svn/ver/580/opt4j/trunk/src/org/opt4j/core/optimizer/StopException.java
+END
+AbstractOptimizer.java
+K 25
+svn:wc:ra_dav:version-url
+V 91
+/svnroot/opt4j/!svn/ver/670/opt4j/trunk/src/org/opt4j/core/optimizer/AbstractOptimizer.java
+END
+OptimizerIterationListener.java
+K 25
+svn:wc:ra_dav:version-url
+V 100
+/svnroot/opt4j/!svn/ver/580/opt4j/trunk/src/org/opt4j/core/optimizer/OptimizerIterationListener.java
+END
+TerminationException.java
+K 25
+svn:wc:ra_dav:version-url
+V 94
+/svnroot/opt4j/!svn/ver/580/opt4j/trunk/src/org/opt4j/core/optimizer/TerminationException.java
+END
+Bootstrap.java
+K 25
+svn:wc:ra_dav:version-url
+V 83
+/svnroot/opt4j/!svn/ver/580/opt4j/trunk/src/org/opt4j/core/optimizer/Bootstrap.java
+END
+IncompatibilityException.java
+K 25
+svn:wc:ra_dav:version-url
+V 98
+/svnroot/opt4j/!svn/ver/622/opt4j/trunk/src/org/opt4j/core/optimizer/IncompatibilityException.java
+END
+Control.java
+K 25
+svn:wc:ra_dav:version-url
+V 81
+/svnroot/opt4j/!svn/ver/644/opt4j/trunk/src/org/opt4j/core/optimizer/Control.java
+END
+Archive.java
+K 25
+svn:wc:ra_dav:version-url
+V 81
+/svnroot/opt4j/!svn/ver/644/opt4j/trunk/src/org/opt4j/core/optimizer/Archive.java
+END
+Optimizer.java
+K 25
+svn:wc:ra_dav:version-url
+V 83
+/svnroot/opt4j/!svn/ver/595/opt4j/trunk/src/org/opt4j/core/optimizer/Optimizer.java
+END
+package-info.java
+K 25
+svn:wc:ra_dav:version-url
+V 86
+/svnroot/opt4j/!svn/ver/618/opt4j/trunk/src/org/opt4j/core/optimizer/package-info.java
+END
+ControlListener.java
+K 25
+svn:wc:ra_dav:version-url
+V 89
+/svnroot/opt4j/!svn/ver/580/opt4j/trunk/src/org/opt4j/core/optimizer/ControlListener.java
+END
+MaxIterations.java
+K 25
+svn:wc:ra_dav:version-url
+V 87
+/svnroot/opt4j/!svn/ver/580/opt4j/trunk/src/org/opt4j/core/optimizer/MaxIterations.java
+END
+OptimizerModule.java
+K 25
+svn:wc:ra_dav:version-url
+V 89
+/svnroot/opt4j/!svn/ver/580/opt4j/trunk/src/org/opt4j/core/optimizer/OptimizerModule.java
+END
+OptimizerStateListener.java
+K 25
+svn:wc:ra_dav:version-url
+V 96
+/svnroot/opt4j/!svn/ver/580/opt4j/trunk/src/org/opt4j/core/optimizer/OptimizerStateListener.java
+END
+Population.java
+K 25
+svn:wc:ra_dav:version-url
+V 84
+/svnroot/opt4j/!svn/ver/623/opt4j/trunk/src/org/opt4j/core/optimizer/Population.java
+END
+Operator.java
+K 25
+svn:wc:ra_dav:version-url
+V 82
+/svnroot/opt4j/!svn/ver/624/opt4j/trunk/src/org/opt4j/core/optimizer/Operator.java
+END
+Iteration.java
+K 25
+svn:wc:ra_dav:version-url
+V 83
+/svnroot/opt4j/!svn/ver/642/opt4j/trunk/src/org/opt4j/core/optimizer/Iteration.java
+END

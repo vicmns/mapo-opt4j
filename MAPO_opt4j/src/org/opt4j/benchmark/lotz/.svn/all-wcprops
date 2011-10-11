@@ -1,0 +1,35 @@
+K 25
+svn:wc:ra_dav:version-url
+V 68
+/svnroot/opt4j/!svn/ver/650/opt4j/trunk/src/org/opt4j/benchmark/lotz
+END
+package-info.java
+K 25
+svn:wc:ra_dav:version-url
+V 86
+/svnroot/opt4j/!svn/ver/618/opt4j/trunk/src/org/opt4j/benchmark/lotz/package-info.java
+END
+LOTZCreator.java
+K 25
+svn:wc:ra_dav:version-url
+V 85
+/svnroot/opt4j/!svn/ver/595/opt4j/trunk/src/org/opt4j/benchmark/lotz/LOTZCreator.java
+END
+LOTZEvaluator.java
+K 25
+svn:wc:ra_dav:version-url
+V 87
+/svnroot/opt4j/!svn/ver/650/opt4j/trunk/src/org/opt4j/benchmark/lotz/LOTZEvaluator.java
+END
+LOTZDecoder.java
+K 25
+svn:wc:ra_dav:version-url
+V 85
+/svnroot/opt4j/!svn/ver/570/opt4j/trunk/src/org/opt4j/benchmark/lotz/LOTZDecoder.java
+END
+LOTZModule.java
+K 25
+svn:wc:ra_dav:version-url
+V 84
+/svnroot/opt4j/!svn/ver/570/opt4j/trunk/src/org/opt4j/benchmark/lotz/LOTZModule.java
+END

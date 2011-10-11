@@ -1,0 +1,77 @@
+K 25
+svn:wc:ra_dav:version-url
+V 72
+/svnroot/opt4j/!svn/ver/580/opt4j/trunk/src/org/opt4j/config/annotations
+END
+File.java
+K 25
+svn:wc:ra_dav:version-url
+V 82
+/svnroot/opt4j/!svn/ver/580/opt4j/trunk/src/org/opt4j/config/annotations/File.java
+END
+Panel.java
+K 25
+svn:wc:ra_dav:version-url
+V 83
+/svnroot/opt4j/!svn/ver/580/opt4j/trunk/src/org/opt4j/config/annotations/Panel.java
+END
+Name.java
+K 25
+svn:wc:ra_dav:version-url
+V 82
+/svnroot/opt4j/!svn/ver/580/opt4j/trunk/src/org/opt4j/config/annotations/Name.java
+END
+Required.java
+K 25
+svn:wc:ra_dav:version-url
+V 86
+/svnroot/opt4j/!svn/ver/580/opt4j/trunk/src/org/opt4j/config/annotations/Required.java
+END
+Ignore.java
+K 25
+svn:wc:ra_dav:version-url
+V 84
+/svnroot/opt4j/!svn/ver/580/opt4j/trunk/src/org/opt4j/config/annotations/Ignore.java
+END
+package-info.java
+K 25
+svn:wc:ra_dav:version-url
+V 90
+/svnroot/opt4j/!svn/ver/403/opt4j/trunk/src/org/opt4j/config/annotations/package-info.java
+END
+Icon.java
+K 25
+svn:wc:ra_dav:version-url
+V 82
+/svnroot/opt4j/!svn/ver/580/opt4j/trunk/src/org/opt4j/config/annotations/Icon.java
+END
+Parent.java
+K 25
+svn:wc:ra_dav:version-url
+V 84
+/svnroot/opt4j/!svn/ver/580/opt4j/trunk/src/org/opt4j/config/annotations/Parent.java
+END
+Multi.java
+K 25
+svn:wc:ra_dav:version-url
+V 83
+/svnroot/opt4j/!svn/ver/580/opt4j/trunk/src/org/opt4j/config/annotations/Multi.java
+END
+Info.java
+K 25
+svn:wc:ra_dav:version-url
+V 82
+/svnroot/opt4j/!svn/ver/580/opt4j/trunk/src/org/opt4j/config/annotations/Info.java
+END
+Order.java
+K 25
+svn:wc:ra_dav:version-url
+V 83
+/svnroot/opt4j/!svn/ver/580/opt4j/trunk/src/org/opt4j/config/annotations/Order.java
+END
+Category.java
+K 25
+svn:wc:ra_dav:version-url
+V 86
+/svnroot/opt4j/!svn/ver/580/opt4j/trunk/src/org/opt4j/config/annotations/Category.java
+END

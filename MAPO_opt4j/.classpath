@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<classpath>
+	<classpathentry kind="src" path="src"/>
+	<classpathentry kind="src" path="resources"/>
+	<classpathentry kind="src" path="test"/>
+	<classpathentry kind="src" path="tutorial"/>
+	<classpathentry kind="src" path="MAPO"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
+	<classpathentry kind="lib" path="lib/aopalliance.jar"/>
+	<classpathentry kind="lib" path="lib/collections-generic-4.01.jar"/>
+	<classpathentry kind="lib" path="lib/org.sat4j.core.jar" sourcepath="lib/org.sat4j.core-src.jar"/>
+	<classpathentry kind="lib" path="lib/org.sat4j.pb.jar" sourcepath="lib/org.sat4j.pb-src.jar"/>
+	<classpathentry kind="lib" path="lib/javax.inject.jar"/>
+	<classpathentry kind="lib" path="lib/ptolemyplot-5.7.1.jar"/>
+	<classpathentry kind="lib" path="lib/guice-3.0.jar"/>
+	<classpathentry kind="lib" path="lib/guice-multibindings-3.0.jar"/>
+	<classpathentry kind="lib" path="utils/junit-4.8.2.jar"/>
+	<classpathentry kind="output" path="bin"/>
+</classpath>

@@ -1,0 +1,131 @@
+K 25
+svn:wc:ra_dav:version-url
+V 69
+/svnroot/opt4j/!svn/ver/624/opt4j/trunk/src/org/opt4j/operator/mutate
+END
+MutateDoubleDefault.java
+K 25
+svn:wc:ra_dav:version-url
+V 94
+/svnroot/opt4j/!svn/ver/597/opt4j/trunk/src/org/opt4j/operator/mutate/MutateDoubleDefault.java
+END
+MutateBoolean.java
+K 25
+svn:wc:ra_dav:version-url
+V 88
+/svnroot/opt4j/!svn/ver/597/opt4j/trunk/src/org/opt4j/operator/mutate/MutateBoolean.java
+END
+Mutate.java
+K 25
+svn:wc:ra_dav:version-url
+V 81
+/svnroot/opt4j/!svn/ver/624/opt4j/trunk/src/org/opt4j/operator/mutate/Mutate.java
+END
+MutateGenericImplementation.java
+K 25
+svn:wc:ra_dav:version-url
+V 102
+/svnroot/opt4j/!svn/ver/624/opt4j/trunk/src/org/opt4j/operator/mutate/MutateGenericImplementation.java
+END
+MutateModule.java
+K 25
+svn:wc:ra_dav:version-url
+V 87
+/svnroot/opt4j/!svn/ver/575/opt4j/trunk/src/org/opt4j/operator/mutate/MutateModule.java
+END
+BasicMutateModule.java
+K 25
+svn:wc:ra_dav:version-url
+V 92
+/svnroot/opt4j/!svn/ver/595/opt4j/trunk/src/org/opt4j/operator/mutate/BasicMutateModule.java
+END
+MutatePermutationInsert.java
+K 25
+svn:wc:ra_dav:version-url
+V 98
+/svnroot/opt4j/!svn/ver/597/opt4j/trunk/src/org/opt4j/operator/mutate/MutatePermutationInsert.java
+END
+MutationRate.java
+K 25
+svn:wc:ra_dav:version-url
+V 87
+/svnroot/opt4j/!svn/ver/575/opt4j/trunk/src/org/opt4j/operator/mutate/MutationRate.java
+END
+MutateInteger.java
+K 25
+svn:wc:ra_dav:version-url
+V 88
+/svnroot/opt4j/!svn/ver/575/opt4j/trunk/src/org/opt4j/operator/mutate/MutateInteger.java
+END
+MutateIntegerRandom.java
+K 25
+svn:wc:ra_dav:version-url
+V 94
+/svnroot/opt4j/!svn/ver/597/opt4j/trunk/src/org/opt4j/operator/mutate/MutateIntegerRandom.java
+END
+MutatePermutationMixed.java
+K 25
+svn:wc:ra_dav:version-url
+V 97
+/svnroot/opt4j/!svn/ver/597/opt4j/trunk/src/org/opt4j/operator/mutate/MutatePermutationMixed.java
+END
+MutatePermutationRevert.java
+K 25
+svn:wc:ra_dav:version-url
+V 98
+/svnroot/opt4j/!svn/ver/597/opt4j/trunk/src/org/opt4j/operator/mutate/MutatePermutationRevert.java
+END
+MutatePermutationSwap.java
+K 25
+svn:wc:ra_dav:version-url
+V 96
+/svnroot/opt4j/!svn/ver/597/opt4j/trunk/src/org/opt4j/operator/mutate/MutatePermutationSwap.java
+END
+package-info.java
+K 25
+svn:wc:ra_dav:version-url
+V 87
+/svnroot/opt4j/!svn/ver/575/opt4j/trunk/src/org/opt4j/operator/mutate/package-info.java
+END
+ConstantMutationRate.java
+K 25
+svn:wc:ra_dav:version-url
+V 95
+/svnroot/opt4j/!svn/ver/595/opt4j/trunk/src/org/opt4j/operator/mutate/ConstantMutationRate.java
+END
+MutatePermutation.java
+K 25
+svn:wc:ra_dav:version-url
+V 92
+/svnroot/opt4j/!svn/ver/575/opt4j/trunk/src/org/opt4j/operator/mutate/MutatePermutation.java
+END
+MutateDouble.java
+K 25
+svn:wc:ra_dav:version-url
+V 87
+/svnroot/opt4j/!svn/ver/597/opt4j/trunk/src/org/opt4j/operator/mutate/MutateDouble.java
+END
+AdaptiveMutationRate.java
+K 25
+svn:wc:ra_dav:version-url
+V 95
+/svnroot/opt4j/!svn/ver/600/opt4j/trunk/src/org/opt4j/operator/mutate/AdaptiveMutationRate.java
+END
+MutateDoubleElementwise.java
+K 25
+svn:wc:ra_dav:version-url
+V 98
+/svnroot/opt4j/!svn/ver/597/opt4j/trunk/src/org/opt4j/operator/mutate/MutateDoubleElementwise.java
+END
+MutateDoubleGauss.java
+K 25
+svn:wc:ra_dav:version-url
+V 92
+/svnroot/opt4j/!svn/ver/597/opt4j/trunk/src/org/opt4j/operator/mutate/MutateDoubleGauss.java
+END
+MutateDoublePolynomial.java
+K 25
+svn:wc:ra_dav:version-url
+V 97
+/svnroot/opt4j/!svn/ver/597/opt4j/trunk/src/org/opt4j/operator/mutate/MutateDoublePolynomial.java
+END

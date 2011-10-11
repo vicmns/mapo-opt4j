@@ -1,0 +1,371 @@
+K 25
+svn:wc:ra_dav:version-url
+V 75
+/svnroot/opt4j/!svn/ver/629/opt4j/trunk/documentation/util/docbook-xsl/html
+END
+onechunk.xsl
+K 25
+svn:wc:ra_dav:version-url
+V 88
+/svnroot/opt4j/!svn/ver/627/opt4j/trunk/documentation/util/docbook-xsl/html/onechunk.xsl
+END
+titlepage.templates.xsl
+K 25
+svn:wc:ra_dav:version-url
+V 99
+/svnroot/opt4j/!svn/ver/629/opt4j/trunk/documentation/util/docbook-xsl/html/titlepage.templates.xsl
+END
+chunktoc.xsl
+K 25
+svn:wc:ra_dav:version-url
+V 88
+/svnroot/opt4j/!svn/ver/629/opt4j/trunk/documentation/util/docbook-xsl/html/chunktoc.xsl
+END
+autotoc.xsl
+K 25
+svn:wc:ra_dav:version-url
+V 87
+/svnroot/opt4j/!svn/ver/629/opt4j/trunk/documentation/util/docbook-xsl/html/autotoc.xsl
+END
+inline.xsl
+K 25
+svn:wc:ra_dav:version-url
+V 86
+/svnroot/opt4j/!svn/ver/629/opt4j/trunk/documentation/util/docbook-xsl/html/inline.xsl
+END
+profile-chunk-code.xsl
+K 25
+svn:wc:ra_dav:version-url
+V 98
+/svnroot/opt4j/!svn/ver/629/opt4j/trunk/documentation/util/docbook-xsl/html/profile-chunk-code.xsl
+END
+profile-docbook.xsl
+K 25
+svn:wc:ra_dav:version-url
+V 95
+/svnroot/opt4j/!svn/ver/629/opt4j/trunk/documentation/util/docbook-xsl/html/profile-docbook.xsl
+END
+formal.xsl
+K 25
+svn:wc:ra_dav:version-url
+V 86
+/svnroot/opt4j/!svn/ver/629/opt4j/trunk/documentation/util/docbook-xsl/html/formal.xsl
+END
+docbook.xsl
+K 25
+svn:wc:ra_dav:version-url
+V 87
+/svnroot/opt4j/!svn/ver/629/opt4j/trunk/documentation/util/docbook-xsl/html/docbook.xsl
+END
+chunk-code.xsl
+K 25
+svn:wc:ra_dav:version-url
+V 90
+/svnroot/opt4j/!svn/ver/629/opt4j/trunk/documentation/util/docbook-xsl/html/chunk-code.xsl
+END
+division.xsl
+K 25
+svn:wc:ra_dav:version-url
+V 88
+/svnroot/opt4j/!svn/ver/627/opt4j/trunk/documentation/util/docbook-xsl/html/division.xsl
+END
+toc.xsl
+K 25
+svn:wc:ra_dav:version-url
+V 83
+/svnroot/opt4j/!svn/ver/627/opt4j/trunk/documentation/util/docbook-xsl/html/toc.xsl
+END
+chunkfast.xsl
+K 25
+svn:wc:ra_dav:version-url
+V 89
+/svnroot/opt4j/!svn/ver/627/opt4j/trunk/documentation/util/docbook-xsl/html/chunkfast.xsl
+END
+autoidx-kosek.xsl
+K 25
+svn:wc:ra_dav:version-url
+V 93
+/svnroot/opt4j/!svn/ver/629/opt4j/trunk/documentation/util/docbook-xsl/html/autoidx-kosek.xsl
+END
+biblio-iso690.xsl
+K 25
+svn:wc:ra_dav:version-url
+V 93
+/svnroot/opt4j/!svn/ver/627/opt4j/trunk/documentation/util/docbook-xsl/html/biblio-iso690.xsl
+END
+table.xsl
+K 25
+svn:wc:ra_dav:version-url
+V 85
+/svnroot/opt4j/!svn/ver/629/opt4j/trunk/documentation/util/docbook-xsl/html/table.xsl
+END
+block.xsl
+K 25
+svn:wc:ra_dav:version-url
+V 85
+/svnroot/opt4j/!svn/ver/629/opt4j/trunk/documentation/util/docbook-xsl/html/block.xsl
+END
+html-rtf.xsl
+K 25
+svn:wc:ra_dav:version-url
+V 88
+/svnroot/opt4j/!svn/ver/627/opt4j/trunk/documentation/util/docbook-xsl/html/html-rtf.xsl
+END
+changebars.xsl
+K 25
+svn:wc:ra_dav:version-url
+V 90
+/svnroot/opt4j/!svn/ver/627/opt4j/trunk/documentation/util/docbook-xsl/html/changebars.xsl
+END
+admon.xsl
+K 25
+svn:wc:ra_dav:version-url
+V 85
+/svnroot/opt4j/!svn/ver/627/opt4j/trunk/documentation/util/docbook-xsl/html/admon.xsl
+END
+oldchunker.xsl
+K 25
+svn:wc:ra_dav:version-url
+V 90
+/svnroot/opt4j/!svn/ver/627/opt4j/trunk/documentation/util/docbook-xsl/html/oldchunker.xsl
+END
+refentry.xsl
+K 25
+svn:wc:ra_dav:version-url
+V 88
+/svnroot/opt4j/!svn/ver/627/opt4j/trunk/documentation/util/docbook-xsl/html/refentry.xsl
+END
+graphics.xsl
+K 25
+svn:wc:ra_dav:version-url
+V 88
+/svnroot/opt4j/!svn/ver/627/opt4j/trunk/documentation/util/docbook-xsl/html/graphics.xsl
+END
+qandaset.xsl
+K 25
+svn:wc:ra_dav:version-url
+V 88
+/svnroot/opt4j/!svn/ver/627/opt4j/trunk/documentation/util/docbook-xsl/html/qandaset.xsl
+END
+component.xsl
+K 25
+svn:wc:ra_dav:version-url
+V 89
+/svnroot/opt4j/!svn/ver/629/opt4j/trunk/documentation/util/docbook-xsl/html/component.xsl
+END
+callout.xsl
+K 25
+svn:wc:ra_dav:version-url
+V 87
+/svnroot/opt4j/!svn/ver/627/opt4j/trunk/documentation/util/docbook-xsl/html/callout.xsl
+END
+htmltbl.xsl
+K 25
+svn:wc:ra_dav:version-url
+V 87
+/svnroot/opt4j/!svn/ver/627/opt4j/trunk/documentation/util/docbook-xsl/html/htmltbl.xsl
+END
+index.xsl
+K 25
+svn:wc:ra_dav:version-url
+V 85
+/svnroot/opt4j/!svn/ver/627/opt4j/trunk/documentation/util/docbook-xsl/html/index.xsl
+END
+highlight.xsl
+K 25
+svn:wc:ra_dav:version-url
+V 89
+/svnroot/opt4j/!svn/ver/629/opt4j/trunk/documentation/util/docbook-xsl/html/highlight.xsl
+END
+synop.xsl
+K 25
+svn:wc:ra_dav:version-url
+V 85
+/svnroot/opt4j/!svn/ver/627/opt4j/trunk/documentation/util/docbook-xsl/html/synop.xsl
+END
+ebnf.xsl
+K 25
+svn:wc:ra_dav:version-url
+V 84
+/svnroot/opt4j/!svn/ver/627/opt4j/trunk/documentation/util/docbook-xsl/html/ebnf.xsl
+END
+autoidx.xsl
+K 25
+svn:wc:ra_dav:version-url
+V 87
+/svnroot/opt4j/!svn/ver/629/opt4j/trunk/documentation/util/docbook-xsl/html/autoidx.xsl
+END
+titlepage.xsl
+K 25
+svn:wc:ra_dav:version-url
+V 89
+/svnroot/opt4j/!svn/ver/629/opt4j/trunk/documentation/util/docbook-xsl/html/titlepage.xsl
+END
+autoidx-ng.xsl
+K 25
+svn:wc:ra_dav:version-url
+V 90
+/svnroot/opt4j/!svn/ver/627/opt4j/trunk/documentation/util/docbook-xsl/html/autoidx-ng.xsl
+END
+maketoc.xsl
+K 25
+svn:wc:ra_dav:version-url
+V 87
+/svnroot/opt4j/!svn/ver/627/opt4j/trunk/documentation/util/docbook-xsl/html/maketoc.xsl
+END
+autoidx-kimber.xsl
+K 25
+svn:wc:ra_dav:version-url
+V 94
+/svnroot/opt4j/!svn/ver/629/opt4j/trunk/documentation/util/docbook-xsl/html/autoidx-kimber.xsl
+END
+sections.xsl
+K 25
+svn:wc:ra_dav:version-url
+V 88
+/svnroot/opt4j/!svn/ver/627/opt4j/trunk/documentation/util/docbook-xsl/html/sections.xsl
+END
+math.xsl
+K 25
+svn:wc:ra_dav:version-url
+V 84
+/svnroot/opt4j/!svn/ver/627/opt4j/trunk/documentation/util/docbook-xsl/html/math.xsl
+END
+param.xml
+K 25
+svn:wc:ra_dav:version-url
+V 85
+/svnroot/opt4j/!svn/ver/629/opt4j/trunk/documentation/util/docbook-xsl/html/param.xml
+END
+info.xsl
+K 25
+svn:wc:ra_dav:version-url
+V 84
+/svnroot/opt4j/!svn/ver/627/opt4j/trunk/documentation/util/docbook-xsl/html/info.xsl
+END
+footnote.xsl
+K 25
+svn:wc:ra_dav:version-url
+V 88
+/svnroot/opt4j/!svn/ver/629/opt4j/trunk/documentation/util/docbook-xsl/html/footnote.xsl
+END
+annotations.xsl
+K 25
+svn:wc:ra_dav:version-url
+V 91
+/svnroot/opt4j/!svn/ver/627/opt4j/trunk/documentation/util/docbook-xsl/html/annotations.xsl
+END
+chunk-common.xsl
+K 25
+svn:wc:ra_dav:version-url
+V 92
+/svnroot/opt4j/!svn/ver/629/opt4j/trunk/documentation/util/docbook-xsl/html/chunk-common.xsl
+END
+lists.xsl
+K 25
+svn:wc:ra_dav:version-url
+V 85
+/svnroot/opt4j/!svn/ver/629/opt4j/trunk/documentation/util/docbook-xsl/html/lists.xsl
+END
+chunker.xsl
+K 25
+svn:wc:ra_dav:version-url
+V 87
+/svnroot/opt4j/!svn/ver/629/opt4j/trunk/documentation/util/docbook-xsl/html/chunker.xsl
+END
+biblio.xsl
+K 25
+svn:wc:ra_dav:version-url
+V 86
+/svnroot/opt4j/!svn/ver/627/opt4j/trunk/documentation/util/docbook-xsl/html/biblio.xsl
+END
+param.xsl
+K 25
+svn:wc:ra_dav:version-url
+V 85
+/svnroot/opt4j/!svn/ver/629/opt4j/trunk/documentation/util/docbook-xsl/html/param.xsl
+END
+pi.xml
+K 25
+svn:wc:ra_dav:version-url
+V 82
+/svnroot/opt4j/!svn/ver/627/opt4j/trunk/documentation/util/docbook-xsl/html/pi.xml
+END
+task.xsl
+K 25
+svn:wc:ra_dav:version-url
+V 84
+/svnroot/opt4j/!svn/ver/627/opt4j/trunk/documentation/util/docbook-xsl/html/task.xsl
+END
+glossary.xsl
+K 25
+svn:wc:ra_dav:version-url
+V 88
+/svnroot/opt4j/!svn/ver/627/opt4j/trunk/documentation/util/docbook-xsl/html/glossary.xsl
+END
+chunk-changebars.xsl
+K 25
+svn:wc:ra_dav:version-url
+V 96
+/svnroot/opt4j/!svn/ver/627/opt4j/trunk/documentation/util/docbook-xsl/html/chunk-changebars.xsl
+END
+html.xsl
+K 25
+svn:wc:ra_dav:version-url
+V 84
+/svnroot/opt4j/!svn/ver/629/opt4j/trunk/documentation/util/docbook-xsl/html/html.xsl
+END
+xref.xsl
+K 25
+svn:wc:ra_dav:version-url
+V 84
+/svnroot/opt4j/!svn/ver/627/opt4j/trunk/documentation/util/docbook-xsl/html/xref.xsl
+END
+titlepage.templates.xml
+K 25
+svn:wc:ra_dav:version-url
+V 99
+/svnroot/opt4j/!svn/ver/629/opt4j/trunk/documentation/util/docbook-xsl/html/titlepage.templates.xml
+END
+manifest.xsl
+K 25
+svn:wc:ra_dav:version-url
+V 88
+/svnroot/opt4j/!svn/ver/627/opt4j/trunk/documentation/util/docbook-xsl/html/manifest.xsl
+END
+profile-chunk.xsl
+K 25
+svn:wc:ra_dav:version-url
+V 93
+/svnroot/opt4j/!svn/ver/627/opt4j/trunk/documentation/util/docbook-xsl/html/profile-chunk.xsl
+END
+keywords.xsl
+K 25
+svn:wc:ra_dav:version-url
+V 88
+/svnroot/opt4j/!svn/ver/627/opt4j/trunk/documentation/util/docbook-xsl/html/keywords.xsl
+END
+chunk.xsl
+K 25
+svn:wc:ra_dav:version-url
+V 85
+/svnroot/opt4j/!svn/ver/627/opt4j/trunk/documentation/util/docbook-xsl/html/chunk.xsl
+END
+pi.xsl
+K 25
+svn:wc:ra_dav:version-url
+V 82
+/svnroot/opt4j/!svn/ver/627/opt4j/trunk/documentation/util/docbook-xsl/html/pi.xsl
+END
+profile-onechunk.xsl
+K 25
+svn:wc:ra_dav:version-url
+V 96
+/svnroot/opt4j/!svn/ver/627/opt4j/trunk/documentation/util/docbook-xsl/html/profile-onechunk.xsl
+END
+verbatim.xsl
+K 25
+svn:wc:ra_dav:version-url
+V 88
+/svnroot/opt4j/!svn/ver/629/opt4j/trunk/documentation/util/docbook-xsl/html/verbatim.xsl
+END

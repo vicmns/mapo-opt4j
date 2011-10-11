@@ -1,0 +1,83 @@
+K 25
+svn:wc:ra_dav:version-url
+V 72
+/svnroot/opt4j/!svn/ver/624/opt4j/trunk/src/org/opt4j/operator/diversity
+END
+DiversityInteger.java
+K 25
+svn:wc:ra_dav:version-url
+V 94
+/svnroot/opt4j/!svn/ver/575/opt4j/trunk/src/org/opt4j/operator/diversity/DiversityInteger.java
+END
+Diversity.java
+K 25
+svn:wc:ra_dav:version-url
+V 87
+/svnroot/opt4j/!svn/ver/624/opt4j/trunk/src/org/opt4j/operator/diversity/Diversity.java
+END
+DiversityBoolean.java
+K 25
+svn:wc:ra_dav:version-url
+V 94
+/svnroot/opt4j/!svn/ver/575/opt4j/trunk/src/org/opt4j/operator/diversity/DiversityBoolean.java
+END
+package-info.java
+K 25
+svn:wc:ra_dav:version-url
+V 90
+/svnroot/opt4j/!svn/ver/575/opt4j/trunk/src/org/opt4j/operator/diversity/package-info.java
+END
+DiversityGenericImplementation.java
+K 25
+svn:wc:ra_dav:version-url
+V 108
+/svnroot/opt4j/!svn/ver/624/opt4j/trunk/src/org/opt4j/operator/diversity/DiversityGenericImplementation.java
+END
+DiversityDoubleEuclidean.java
+K 25
+svn:wc:ra_dav:version-url
+V 102
+/svnroot/opt4j/!svn/ver/624/opt4j/trunk/src/org/opt4j/operator/diversity/DiversityDoubleEuclidean.java
+END
+DiversityBooleanFraction.java
+K 25
+svn:wc:ra_dav:version-url
+V 102
+/svnroot/opt4j/!svn/ver/575/opt4j/trunk/src/org/opt4j/operator/diversity/DiversityBooleanFraction.java
+END
+DiversityModule.java
+K 25
+svn:wc:ra_dav:version-url
+V 93
+/svnroot/opt4j/!svn/ver/575/opt4j/trunk/src/org/opt4j/operator/diversity/DiversityModule.java
+END
+BasicDiversityModule.java
+K 25
+svn:wc:ra_dav:version-url
+V 98
+/svnroot/opt4j/!svn/ver/595/opt4j/trunk/src/org/opt4j/operator/diversity/BasicDiversityModule.java
+END
+DiversityIntegerEuclidean.java
+K 25
+svn:wc:ra_dav:version-url
+V 103
+/svnroot/opt4j/!svn/ver/575/opt4j/trunk/src/org/opt4j/operator/diversity/DiversityIntegerEuclidean.java
+END
+DiversityPermutation.java
+K 25
+svn:wc:ra_dav:version-url
+V 98
+/svnroot/opt4j/!svn/ver/575/opt4j/trunk/src/org/opt4j/operator/diversity/DiversityPermutation.java
+END
+DiversityDoubleAbsolute.java
+K 25
+svn:wc:ra_dav:version-url
+V 101
+/svnroot/opt4j/!svn/ver/575/opt4j/trunk/src/org/opt4j/operator/diversity/DiversityDoubleAbsolute.java
+END
+DiversityDouble.java
+K 25
+svn:wc:ra_dav:version-url
+V 93
+/svnroot/opt4j/!svn/ver/575/opt4j/trunk/src/org/opt4j/operator/diversity/DiversityDouble.java
+END

@@ -1,0 +1,23 @@
+K 25
+svn:wc:ra_dav:version-url
+V 66
+/svnroot/opt4j/!svn/ver/658/opt4j/trunk/src/org/opt4j/optimizer/rs
+END
+package-info.java
+K 25
+svn:wc:ra_dav:version-url
+V 84
+/svnroot/opt4j/!svn/ver/203/opt4j/trunk/src/org/opt4j/optimizer/rs/package-info.java
+END
+RandomSearch.java
+K 25
+svn:wc:ra_dav:version-url
+V 84
+/svnroot/opt4j/!svn/ver/658/opt4j/trunk/src/org/opt4j/optimizer/rs/RandomSearch.java
+END
+RandomSearchModule.java
+K 25
+svn:wc:ra_dav:version-url
+V 90
+/svnroot/opt4j/!svn/ver/581/opt4j/trunk/src/org/opt4j/optimizer/rs/RandomSearchModule.java
+END

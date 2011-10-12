@@ -5,8 +5,7 @@ import java.util.Random;
 
 import org.opt4j.common.random.Rand;
 import org.opt4j.genotype.ListGenotype;
-import org.opt4j.genotype.PermutationGenotype;
-import org.opt4j.genotype.SelectGenotype;
+import org.opt4j.genotype.StringGenotype;
 import org.opt4j.operator.mutate.MutationRate;
 
 import com.google.inject.Inject;
@@ -31,7 +30,7 @@ public class MutateInversionComplex implements MutateComplex {
 
 	@Override
 	@SuppressWarnings("unchecked")
-	public void mutate(ListGenotype<?> genotype, double p) {
+	public void mutate(StringGenotype<?> genotype, double p) {
 		ListGenotype<Object> mutation = (ListGenotype<Object>) genotype;
 		Object[][] pParse=complexParse(toString(genotype.toArray()));
 		this.pSizeParse=pParse[0];
@@ -106,6 +105,7 @@ public class MutateInversionComplex implements MutateComplex {
 			}
 			c.add(0,idxSC+","+idxEC+","+(alphaC));
 		}
+		mutation.clear();
 		mutation.addAll(c);
 		//return toString(c.toArray());
 	}

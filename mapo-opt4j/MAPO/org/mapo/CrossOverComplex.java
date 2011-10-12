@@ -5,11 +5,11 @@ import java.util.Random;
 
 import org.opt4j.common.random.Rand;
 import org.opt4j.genotype.ListGenotype;
-import org.opt4j.genotype.SelectGenotype;
+import org.opt4j.genotype.StringGenotype;
 import org.opt4j.operator.crossover.Crossover;
 import org.opt4j.optimizer.ea.Pair;
 
-public class CrossOverComplex<G extends ListGenotype<?>> implements Crossover<G> {
+public class CrossOverComplex<G extends StringGenotype<?>> implements Crossover<G> {
 	private Random random;
 	private Object[] p1SizeParse;
 	private Object[] p1SignParse;
@@ -47,7 +47,7 @@ public class CrossOverComplex<G extends ListGenotype<?>> implements Crossover<G>
 		//HERE
 		ArrayList<String> child1 = new ArrayList<String>();
 		ArrayList<String> child2 = new ArrayList<String>();
-		String[] childs = new String[2];
+		//String[] childs = new String[2];
 		int fAlphaP1=this.idxSp1;
 		int fAlphaP2=this.idxSp2;
 		int idxMP1=0; //Mutation index on parent 1
@@ -153,6 +153,7 @@ public class CrossOverComplex<G extends ListGenotype<?>> implements Crossover<G>
 		o1.addAll(child1);
 		o2.addAll(child2);
 		//HERE
+		@SuppressWarnings("unchecked")
 		Pair<G> offspring = new Pair<G>((G) o1, (G) o2);
 		return offspring;
 	}
@@ -228,6 +229,7 @@ public class CrossOverComplex<G extends ListGenotype<?>> implements Crossover<G>
 		return complexParse;
 	}
 	
+	@SuppressWarnings("unused")
 	private String toString(Object[] arrayObject){
 		String str="";
 		for(int i=0; i<arrayObject.length; i++){

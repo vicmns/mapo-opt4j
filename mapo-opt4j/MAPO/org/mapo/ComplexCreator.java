@@ -4,17 +4,17 @@ import java.util.List;
 import java.util.Random;
 
 import org.opt4j.core.problem.Creator;
-import org.opt4j.genotype.SelectGenotype;
+import org.opt4j.genotype.StringGenotype;
 
 
-public class complexCreator implements Creator<SelectGenotype<String>>{
+public class ComplexCreator implements Creator<StringGenotype<String>>{
 	private int idxSs;
 	private int idxEe;
 	private int alpha;
 	private int idxMS;
 	private int idxME;
 	Random rand = new Random();
-	private String Gene; //Correct cDNA/DNA Sequence
+	//private String Gene; //Correct cDNA/DNA Sequence
 	private String AB; //Mutated cDNA/RNA
 	
 	public  int[] findMutation(String a, String b){
@@ -78,7 +78,7 @@ public class complexCreator implements Creator<SelectGenotype<String>>{
 		return aligment;
 	}
 	
-	public SelectGenotype<String> create(){
+	public StringGenotype<String> create(){
 		//StringBuffer complex = new StringBuffer();
 		List<String> complex = new ArrayList<String>();
 		ArrayList<Integer> lSideNuc = new ArrayList<Integer>();
@@ -94,8 +94,8 @@ public class complexCreator implements Creator<SelectGenotype<String>>{
 		int nNucAvLeft=0;
 		int nNucAvRigth=0;
 		int length=AB.length();
-		boolean iniFlag=true;
-		String struct = "";
+		//boolean iniFlag=true;
+		//String struct = "";
 		//First tuple {i,j,alpha} of individual representing the substring
 		do{
 			idxS = rand.nextInt(idxMS);
@@ -324,7 +324,8 @@ public class complexCreator implements Creator<SelectGenotype<String>>{
 			buffer+=rSideStruct.get(i)+rSideNuc.get(i)+getCloseChar(rSideStruct.get(i));
 			complex.add(buffer);
 		}
-		SelectGenotype<String> genotype = new SelectGenotype<String>(complex);
+		StringGenotype<String> genotype = new StringGenotype<String>();
+		genotype.addAll(complex);
 		return genotype;
 		//return complex.toString();
 	}

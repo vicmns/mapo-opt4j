@@ -8,16 +8,18 @@ import org.opt4j.core.Objective.Sign;
 import org.opt4j.core.problem.Evaluator;
 import org.opt4j.core.problem.PhenotypeWrapper;
 
-public class complexEvaluator implements Evaluator<PhenotypeWrapper<String>> {
+public class ComplexEvaluator implements Evaluator<PhenotypeWrapper<String>> {
 	Objective objective = new Objective("freeEnergy", Sign.MIN);
 	
 	private double R=1.9872; //Gas Constant in cal/K-mol
 	private double Ct=1; //Molar Strand concentration, defualt 1M
+	@SuppressWarnings("unused")
 	private String gene;
 	private String mGene;
 	private String complex;
 	private Object[] sizeParse;
 	private Object[] signParse;
+	@SuppressWarnings("unused")
 	private double dG=0.0, dH=0.0, dS=0.0;
 	
 	public Objectives evaluate(PhenotypeWrapper<String> phenotype) {

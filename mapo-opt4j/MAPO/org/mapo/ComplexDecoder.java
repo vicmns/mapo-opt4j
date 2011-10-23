@@ -1,14 +1,17 @@
 package org.mapo;
 
-import org.opt4j.core.problem.Decoder;
-import org.opt4j.core.problem.PhenotypeWrapper;
-import org.opt4j.genotype.StringGenotype;
+import java.util.ArrayList;
 
-public class ComplexDecoder implements Decoder<StringGenotype<String>, PhenotypeWrapper<String>> {
+import org.opt4j.core.Phenotype;
+import org.opt4j.core.problem.Decoder;
+import org.opt4j.genotype.DynamicListGenotype;
+
+public class ComplexDecoder implements Decoder<DynamicListGenotype<Object>, ComplexPhenotype> {
+	
 	@Override
-	public PhenotypeWrapper<String> decode(StringGenotype<String> genotype) {
-		String s="";
-		s=genotype.toString();
-		return new PhenotypeWrapper<String>(s);
+	public ComplexPhenotype decode(DynamicListGenotype<Object> genotype) {
+		ComplexPhenotype complex = new ComplexPhenotype();
+		complex.addAll(genotype);
+		return complex;
 	}
 }

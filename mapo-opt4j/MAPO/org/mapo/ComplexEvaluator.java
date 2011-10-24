@@ -1,34 +1,41 @@
 package org.mapo;
 
+import static org.opt4j.core.Objective.Sign.MIN;
+
 import java.util.ArrayList;
 
 import org.opt4j.core.Objective;
 import org.opt4j.core.Objectives;
 import org.opt4j.core.Objective.Sign;
 import org.opt4j.core.problem.Evaluator;
-import org.opt4j.core.problem.PhenotypeWrapper;
 
-public class ComplexEvaluator implements Evaluator<PhenotypeWrapper<String>> {
+import com.google.inject.Inject;
+
+public class ComplexEvaluator implements Evaluator<ComplexPhenotype> {
 	Objective objective = new Objective("freeEnergy", Sign.MIN);
 	
 	private double R=1.9872; //Gas Constant in cal/K-mol
 	private double Ct=1; //Molar Strand concentration, defualt 1M
-	@SuppressWarnings("unused")
-	private String gene;
 	private String mGene;
-	private String complex;
-	private Object[] sizeParse;
-	private Object[] signParse;
-	@SuppressWarnings("unused")
-	private double dG=0.0, dH=0.0, dS=0.0;
+	private ArrayList<Object> complex;
+	//private double dG=0.0, dH=0.0, dS=0.0;
+	Objective freeEnergy = new Objective("FreeEnergy", MIN);
+	Objective length = new Objective("Length", MIN);
 	
-	public Objectives evaluate(PhenotypeWrapper<String> phenotype) {
-		this.complex=phenotype.get();
-		complexParse();
-		double[] thermoPar=calculateEnergy();
-		Objectives objectives = new Objectives();
-		objectives.add(objective, thermoPar[2]);
-		return objectives;
+	@Inject
+	public ComplexEvaluator(ComplexProblem problem){
+		this.mGene=problem.getAB();
+	}
+	
+	public Objectives evaluate(ComplexPhenotype phenotype) {
+		this.complex=phenotype;
+		double[] thermoPar=calculateEnergy(mGene.substring(Integer.parseInt(complex.get(0).toString()),
+				Integer.parseInt(complex.get(1).toString())));
+		final int len= Integer.parseInt(complex.get(1).toString())-Integer.parseInt(complex.get(0).toString());
+		Objectives obj = new Objectives();
+		obj.add(freeEnergy, thermoPar[2]);
+		obj.add(length, len);
+		return obj;
 	}
 	
 	private double[] cDuplexEnergy(String complex, boolean isInitial, boolean isTerminal){
@@ -292,117 +299,43 @@ public class ComplexEvaluator implements Evaluator<PhenotypeWrapper<String>> {
 		return dG;
 	}
 	
-	//TODO modificar para aceptar la estructura completa (indices inicio y fin)
-	public void complexParse(){
-		ArrayList<String> parse = new ArrayList<String>();
-		ArrayList<String> sParse = new ArrayList<String>();
-		ArrayList<String> idxSE=new ArrayList<String>();
-		String temp="";
-		String signTemp="";
-		String idxTemp="";
-		boolean next=false;
-		boolean nextColon=false;
-		boolean nextSemicolon=false;
-		boolean nextIsComplex=false;
-		for(int i=0; i<complex.length(); i++){
-			if(!nextIsComplex){
-				if(Character.isDigit(complex.charAt(i))){
-					idxTemp+=complex.charAt(i);
-				}
-				if(complex.charAt(i)==','){
-					idxSE.add(idxTemp);
-					idxTemp="";
-				}
-				if(complex.charAt(i+1)==':' || complex.charAt(i+1)=='['){				
-					idxSE.add(idxTemp);
-					nextIsComplex=true;
-				}
-			}
-			else{
-				if(complex.charAt(i)==':'){
-					if(nextColon){
-						next=true;
-						nextColon=false;
-						signTemp+=complex.charAt(i);
-					}
-					else
-						nextColon=true;
-				}
-				if(Character.isDigit(complex.charAt(i))){
-					temp+=complex.charAt(i);
-				}
-				
-				if(complex.charAt(i)==']' || complex.charAt(i)==')' 
-					|| complex.charAt(i)=='>' || complex.charAt(i)=='}'){
-					next=true;
-					signTemp+=complex.charAt(i);
-				}
-				if(complex.charAt(i)==';'){
-					if(nextSemicolon){
-						next=true;
-						nextSemicolon=false;
-						signTemp+=complex.charAt(i);
-					}
-					else
-						nextSemicolon=true;
-				}
-				if(next){
-					parse.add(temp);
-					sParse.add(signTemp);
-					temp="";
-					signTemp="";
-					next=false;
-				}
-			}
-		}
-		System.out.println("The Nucleotides ArrayList contains: "+parse);
-		System.out.println("The Sign ArrayList contains: "+sParse);
-		this.sizeParse=parse.toArray();
-		this.signParse=sParse.toArray();
-	}
-	
-	/**
-	 * Calculate the thermodynamics parameters of DNA/DNA complexes
-	 * @return
-	 * Thermodynamics parameters dH, dG, dS.
-	 */
-	public double[] calculateEnergy(){
+	public double[] calculateEnergy(String mGene){
 		double dH=0,dS=0,dG=0;
 		int idx=0;
 		boolean isInitial=true;
 		boolean isTerminal=false;
-		for(int i=0; i<sizeParse.length; i++){
+		for(int i=3; i<complex.size(); i+=3){
 			//Overhang
-			if(signParse[i].equals(":")){
-				idx+=Integer.parseInt(sizeParse[i].toString());
+			if(complex.get(i).equals(":")){
+				idx+=Integer.parseInt(complex.get(i+1).toString());
 				double[] energy = fiveOverhangEnergy(mGene.charAt(0), mGene.charAt(idx-1));
 				dH+=energy[0]; dG+=energy[1];
 				isInitial=false;
 			}
-			if(signParse[i].equals("]")){
-				if(i>=sizeParse.length-1){
+			if(complex.get(i).equals("[")){
+				if(i>=complex.size()-1){
 					isTerminal=true;
 				}
-				double[] energy = cDuplexEnergy(mGene.substring(idx, idx+Integer.parseInt(sizeParse[i].toString()) ), isInitial, isTerminal);
-				idx+=Integer.parseInt(sizeParse[i].toString());
+				double[] energy = cDuplexEnergy(mGene.substring(idx, idx+Integer.parseInt(complex.get(i+1).toString()) ), isInitial, isTerminal);
+				idx+=Integer.parseInt(complex.get(i+1).toString());
 				dH+=energy[0]; dS+=energy[1]; dG+=energy[2];
 				isInitial=false;
 			}
-			if(signParse[i].equals(")")){
-				double energy=internalLoopGEnergy(Integer.parseInt(sizeParse[i].toString()));
+			if(complex.get(i).equals("(")){
+				double energy=internalLoopGEnergy(Integer.parseInt(complex.get(i+1).toString()));
 				dG+=energy;
-				idx+=Integer.parseInt(sizeParse[i].toString());
+				idx+=Integer.parseInt(complex.get(i+1).toString());
 				isInitial=false;
 			}
-			if(signParse[i].equals("}") || signParse[i].equals(">")){
-				double energy=bulgesEnergy(Integer.parseInt(sizeParse[i].toString()));
+			if(complex.get(i).equals("{") || complex.get(i).equals("<")){
+				double energy=bulgesEnergy(Integer.parseInt(complex.get(i+1).toString()));
 				dG+=energy;
-				idx+=Integer.parseInt(sizeParse[i].toString());
+				idx+=Integer.parseInt(complex.get(i+1).toString());
 				isInitial=false;
 			}
-			if(signParse[i].equals(";")){
+			if(complex.get(i).equals(";")){
 				double[] energy = threeOverhangEnergy(mGene.charAt(idx-2), mGene.charAt(idx-1));
-				idx+=Integer.parseInt(sizeParse[i].toString());
+				idx+=Integer.parseInt(complex.get(i+1).toString());
 				dH+=energy[0]; dG+=energy[1];
 			}
 		}
@@ -410,6 +343,7 @@ public class ComplexEvaluator implements Evaluator<PhenotypeWrapper<String>> {
 		double[] pEnergy= {dH,dS,dG,Tm};//predicted Energy
 		return pEnergy;
 	}
+	
 	/**
 	 * Calculate the thermodynamics parameters of RNA/DNA complexes
 	 * @param complex

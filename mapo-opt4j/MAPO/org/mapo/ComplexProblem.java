@@ -37,4 +37,12 @@ public class ComplexProblem {
 	public int getABLength(){
 		return AB.length();
 	}
+	
+	public String getGene(){
+		return Gene;
+	}
+	
+	public String getAB(){
+		return AB;
+	}
 }

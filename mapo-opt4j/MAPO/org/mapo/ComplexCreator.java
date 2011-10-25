@@ -54,7 +54,6 @@ public class ComplexCreator implements Creator<DynamicListGenotype<Object>>{
 			idxE = rand.nextInt(length);
 			len=idxE-idxS;
 		}while(idxS>=idxMS  || idxME>=idxE);
-		System.out.println("Start Index: "+idxS+" End Index: "+idxE+" Length: "+len);
 		complex.add(idxS);
 		complex.add(idxE);
 		/*Next tuple representing the configuration
@@ -82,9 +81,9 @@ public class ComplexCreator implements Creator<DynamicListGenotype<Object>>{
 			do{
 				nNucleo=rand.nextInt(nNucAvLeft+1);
 			}while(nNucleo<1);
-			tempList.add("[");
-			tempList.add(nNucleo);
-			tempList.add("]");
+			tempList.add(0,"]");
+			tempList.add(0,nNucleo);
+			tempList.add(0,"[");
 			nNucAvLeft-=nNucleo;
 			//Random non-complementary configuration selection
 			if(nNucAvLeft>0){
@@ -103,8 +102,8 @@ public class ComplexCreator implements Creator<DynamicListGenotype<Object>>{
 					 * if so, add the rest nucloe avaible to the last configuration 
 					 */
 					if((nNucAvLeft-nNucleo) > 0){
-						int lastNuc=Integer.parseInt(tempList.get(tempList.size()-2).toString());
-						tempList.set(tempList.size()-2, lastNuc+(nNucAvLeft-nNucleo));
+						int lastNuc=Integer.parseInt(tempList.get(1).toString());
+						tempList.set(1, lastNuc+(nNucAvLeft-nNucleo));
 						nNucAvLeft-=(nNucAvLeft-nNucleo);
 					}
 					break;
@@ -125,9 +124,9 @@ public class ComplexCreator implements Creator<DynamicListGenotype<Object>>{
 					}while(nNucleo<1);
 					break;
 				}
-				tempList.add(""+op);
-				tempList.add(nNucleo);
-				tempList.add(getCloseChar(op));
+				tempList.add(0,getCloseChar(op));
+				tempList.add(0,nNucleo);
+				tempList.add(0,""+op);
 				nNucAvLeft-=nNucleo;
 			}
 		}
@@ -135,30 +134,30 @@ public class ComplexCreator implements Creator<DynamicListGenotype<Object>>{
 		 * Check if last configuration is valid (":#:" or "[#]")
 		 */
 		if(!tempList.isEmpty()){
-			int lastElement=tempList.size()-1;
-			if(!tempList.get(lastElement).equals(":") || !tempList.get(lastElement).equals("]")){
-				int lastNuc=Integer.parseInt(tempList.get(lastElement-1).toString());
+			int lastElement=0;
+			if(!tempList.get(lastElement).equals(":") && !tempList.get(lastElement).equals("[")){
+				int lastNuc=Integer.parseInt(tempList.get(lastElement+1).toString());
 				tempList.remove(lastElement);
-				tempList.remove(lastElement-1);
-				tempList.remove(lastElement-2);
+				tempList.remove(lastElement);
+				tempList.remove(lastElement);
 				//Select randomly the next correct configuration
 				if(rand.nextBoolean()){
 					//Left Overhang
-					tempList.add(":");
-					tempList.add(lastNuc);
-					tempList.add(":");
+					tempList.add(0,":");
+					tempList.add(0,lastNuc);
+					tempList.add(0,":");
 				}
 				else{
 					//Complementary Section
 					if(tempList.size()>1){
-						int newNuc=Integer.parseInt(tempList.get(tempList.size()-2).toString());
+						int newNuc=Integer.parseInt(tempList.get(1).toString());
 						newNuc+=lastNuc;
-						tempList.set(tempList.size()-2, newNuc);
+						tempList.set(1, newNuc);
 					}
 					else{
-						tempList.add("[");
-						tempList.add(lastNuc);
-						tempList.add("]");
+						tempList.add(0,"]");
+						tempList.add(0,lastNuc);
+						tempList.add(0,"[");
 					}
 				}
 			}

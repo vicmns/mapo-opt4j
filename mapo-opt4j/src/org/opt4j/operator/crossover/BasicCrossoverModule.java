@@ -15,6 +15,7 @@
 
 package org.opt4j.operator.crossover;
 
+import org.mapo.CrossOverComplex;
 import org.opt4j.config.annotations.Info;
 import org.opt4j.config.annotations.Required;
 import org.opt4j.core.optimizer.Operator;
@@ -76,6 +77,14 @@ public class BasicCrossoverModule extends CrossoverModule {
 	@Info("The number of crossover points.")
 	@Constant(value = "x", namespace = CrossoverIntegerXPoint.class)
 	protected int integerXPoints = 1;
+	
+	@Info("The type of the crossover operator for the Boolean genotype.")
+	protected DynamicListType dynamicListType = DynamicListType.CROSSCOMPLEX1;
+		
+	
+	public enum DynamicListType{
+		CROSSCOMPLEX1;
+	}
 
 	/**
 	 * Type of {@link Crossover} operator for the {@link BooleanGenotype}.
@@ -151,6 +160,15 @@ public class BasicCrossoverModule extends CrossoverModule {
 	 */
 	public BasicCrossoverModule() {
 		super();
+	}
+	
+	
+	public DynamicListType getDynamicListType(){
+		return dynamicListType;
+	}
+	
+	public void setDynamicListType(DynamicListType dynamicListType){
+		this.dynamicListType = dynamicListType;
 	}
 
 	/**
@@ -414,6 +432,12 @@ public class BasicCrossoverModule extends CrossoverModule {
 			break;
 		default: // ONEPOINT
 			bind(CrossoverPermutation.class).to(CrossoverPermutationOnePoint.class).in(SINGLETON);
+			break;
+		}
+		
+		switch(dynamicListType){
+		case CROSSCOMPLEX1:
+			bind(CrossoverComplex.class).to(CrossoverComplexOnMutation.class).in(SINGLETON);
 			break;
 		}
 

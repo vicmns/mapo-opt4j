@@ -51,7 +51,14 @@ public class BasicMutateModule extends MutateModule {
 	@Required(property = "mutationRateType", elements = { "CONSTANT" })
 	@Constant(value = "rate", namespace = ConstantMutationRate.class)
 	protected double mutationRate = 0.01;
-
+	
+	@Info("The type of mutation operator for the Complex genotype")
+	protected ComplexMutation complexMutation = ComplexMutation.INVERSION;
+	
+	public enum ComplexMutation{
+		INVERSION;
+	}
+	
 	/**
 	 * The type of the used mutation rate.
 	 * 
@@ -120,6 +127,14 @@ public class BasicMutateModule extends MutateModule {
 	 */
 	public BasicMutateModule() {
 		super();
+	}
+	
+	public ComplexMutation getComplexMutation(){
+		return complexMutation;
+	}
+	
+	public void setComplexMutation(ComplexMutation complexMutation){
+		this.complexMutation=complexMutation;
 	}
 
 	/**

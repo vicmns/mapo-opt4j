@@ -15,7 +15,6 @@
 
 package org.opt4j.operator.crossover;
 
-import org.mapo.CrossOverComplex;
 import org.opt4j.config.annotations.Info;
 import org.opt4j.config.annotations.Required;
 import org.opt4j.core.optimizer.Operator;

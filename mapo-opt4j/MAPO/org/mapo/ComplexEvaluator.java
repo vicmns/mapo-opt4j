@@ -18,6 +18,7 @@ public class ComplexEvaluator implements Evaluator<ComplexPhenotype> {
 	private double Ct=1; //Molar Strand concentration, defualt 1M
 	private String mGene;
 	private ArrayList<Object> complex;
+	private int mGeneLen;
 	//private double dG=0.0, dH=0.0, dS=0.0;
 	Objective freeEnergy = new Objective("FreeEnergy", MIN);
 	Objective length = new Objective("Length", MIN);
@@ -25,15 +26,22 @@ public class ComplexEvaluator implements Evaluator<ComplexPhenotype> {
 	@Inject
 	public ComplexEvaluator(ComplexProblem problem){
 		this.mGene=problem.getAB();
+		this.mGeneLen=problem.getMGeneLen();
 	}
 	
 	public Objectives evaluate(ComplexPhenotype phenotype) {
 		this.complex=phenotype;
-		double[] thermoPar=calculateEnergy(mGene.substring(Integer.parseInt(complex.get(0).toString()),
-				Integer.parseInt(complex.get(1).toString())));
-		final int len= Integer.parseInt(complex.get(1).toString())-Integer.parseInt(complex.get(0).toString());
 		Objectives obj = new Objectives();
-		obj.add(freeEnergy, thermoPar[2]);
+		if(Integer.parseInt(complex.get(1).toString())>mGeneLen){
+			obj.add(freeEnergy, 99999999);
+			obj.setFeasible(false);
+		}
+		else{
+			double[] thermoPar=calculateEnergy(mGene.substring(Integer.parseInt(complex.get(0).toString()),
+					Integer.parseInt(complex.get(1).toString())));
+			obj.add(freeEnergy, thermoPar[2]);
+		}
+		final int len= Integer.parseInt(complex.get(1).toString())-Integer.parseInt(complex.get(0).toString());
 		obj.add(length, len);
 		return obj;
 	}

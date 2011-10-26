@@ -9,6 +9,7 @@ public class ComplexProblem {
 	protected int idxE;
 	protected String Gene; //Correct cDNA/DNA Sequence
 	protected String AB; //Mutated cDNA/RNA
+	protected int mGeneLen;
 	
 	@Inject
 	public ComplexProblem(){
@@ -21,9 +22,14 @@ public class ComplexProblem {
 			return;
 		this.Gene=gene;
 		this.AB=ab;
+		this.mGeneLen=ab.length();
 		int[] idx=findMutation(this.Gene, this.AB);
 		this.idxS=idx[0];
 		this.idxE=idx[1];
+	}
+	
+	public int getMGeneLen(){
+		return this.mGeneLen;
 	}
 	
 	public int getIdxS(){

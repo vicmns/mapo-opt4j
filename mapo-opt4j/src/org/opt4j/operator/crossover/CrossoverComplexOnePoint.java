@@ -21,7 +21,7 @@ public class CrossoverComplexOnePoint<G extends DynamicListGenotype<?>> implemen
 	public  Pair<G> crossover(G parent1, G parent2) {
 		DynamicListGenotype<Object> o1 = parent1.newInstance();
 		DynamicListGenotype<Object> o2 = parent2.newInstance();
-		
+		int endIdx=0;
 		int idxMparent1=0; //Mutation index on parent 1
 		int idxMparent2=0; //Mutation index on parent 2
 		int i=4;
@@ -47,7 +47,6 @@ public class CrossoverComplexOnePoint<G extends DynamicListGenotype<?>> implemen
 			o2.addAll(parent2.subList(0, idxMparent2+1));
 			o2.addAll(parent1.subList(idxMparent1+1, parent1.size()));
 			//Recalculate end Index
-			int endIdx=0;
 			for(i=5; i<o1.size();i+=3){
 				endIdx+=Integer.parseInt(o1.get(i-1).toString());
 			}
@@ -68,9 +67,8 @@ public class CrossoverComplexOnePoint<G extends DynamicListGenotype<?>> implemen
 			o2.addAll(parent1.subList(0, idxMparent1+1));
 			o2.addAll(parent2.subList(idxMparent2+1, parent2.size()));
 			//Recalculate Ending indexes
-			int endIdx=0;
 			for(i=5;i<o1.size();i+=3){
-				endIdx+=Integer.parseInt(o1.get(0).toString());
+				endIdx+=Integer.parseInt(o1.get(i-1).toString());
 			}
 			endIdx+=Integer.parseInt(o1.get(0).toString());
 			o1.set(1, endIdx);

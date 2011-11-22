@@ -10,6 +10,7 @@ public class ComplexProblem {
 	protected String Gene; //Correct cDNA/DNA Sequence
 	protected String AB; //Mutated cDNA/RNA
 	protected int mGeneLen;
+	protected String mRNA;
 	
 	@Inject
 	public ComplexProblem(){
@@ -23,6 +24,7 @@ public class ComplexProblem {
 		this.Gene=gene;
 		this.AB=ab;
 		this.mGeneLen=ab.length();
+		this.mRNA=cDNAToRNA(AB);
 		int[] idx=findMutation(this.Gene, this.AB);
 		this.idxS=idx[0];
 		this.idxE=idx[1];
@@ -56,6 +58,10 @@ public class ComplexProblem {
 		return AB;
 	}
 	
+	public String getMRNA(){
+		return mRNA;
+	}
+	
 	private String readFromFile(){
 		FileManager fileMan= new FileManager();
 		return fileMan.readStringFromFile();
@@ -84,5 +90,26 @@ public class ComplexProblem {
 		}
 		idx[1]=idx[0]+firstPos-1;
 		return idx;
+	}
+	
+	private String cDNAToRNA(String sequence){
+		String RNAString="";
+		for(int i=0; i<sequence.length(); i++){
+			switch(sequence.charAt(i)){
+				case 'A':
+					RNAString+="U";
+					break;
+				case 'T':
+					RNAString+="A";
+					break;
+				case 'C':
+					RNAString+="G";
+					break;
+				case 'G':
+					RNAString+="C";
+					break;
+			}
+		}
+		return RNAString;
 	}
 }

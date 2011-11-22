@@ -8,6 +8,7 @@ import java.io.InputStreamReader;
 import javax.swing.JFileChooser;
 import javax.swing.UIManager;
 import javax.swing.UnsupportedLookAndFeelException;
+import org.opt4j.config.visualization.*;
 
 
 public class FileManager {
@@ -29,7 +30,7 @@ public class FileManager {
 		try{
 			
 			JFileChooser fileChooser = new JFileChooser();
-			int returnOption = fileChooser.showOpenDialog(null);
+			int returnOption = fileChooser.showDialog(null, "Load");
 			if(returnOption==JFileChooser.APPROVE_OPTION){
 				File stringFile = fileChooser.getSelectedFile();
 				FileInputStream fStream = new FileInputStream(stringFile);

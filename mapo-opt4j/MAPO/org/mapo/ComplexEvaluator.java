@@ -28,6 +28,7 @@ public class ComplexEvaluator implements Evaluator<ComplexPhenotype> {
 	Objective DNAKf = new Objective("DNAKf", MAX);
 	Objective DNAKr = new Objective("DNAKr", MIN);
 	Objective RNAKr = new Objective("RNAKr", MIN);
+	Objective RNAKf = new Objective("RNAKf", MAX);
 	Objective length = new Objective("Length", MIN);
 	
 	@Inject
@@ -47,6 +48,7 @@ public class ComplexEvaluator implements Evaluator<ComplexPhenotype> {
 			obj.add(DNAKf,INFEASIBLE);
 			obj.add(DNAKr,INFEASIBLE);
 			obj.add(RNAKr,INFEASIBLE);
+			obj.add(RNAKf,INFEASIBLE);
 			obj.add(RNAFreeEnergy,INFEASIBLE);
 			obj.add(length, INFEASIBLE);
 		}
@@ -60,6 +62,7 @@ public class ComplexEvaluator implements Evaluator<ComplexPhenotype> {
 				obj.add(DNAKf,INFEASIBLE);
 				obj.add(DNAKr,INFEASIBLE);
 				obj.add(RNAKr,INFEASIBLE);
+				obj.add(RNAKf,INFEASIBLE);
 				obj.add(RNAFreeEnergy, INFEASIBLE);
 				obj.add(length, INFEASIBLE);
 				obj.setFeasible(false);
@@ -68,6 +71,7 @@ public class ComplexEvaluator implements Evaluator<ComplexPhenotype> {
 				obj.add(DNAFreeEnergy, dnaEnergy[2]);
 				obj.add(DNAKf,dnaEnergy[4]);
 				obj.add(DNAKr,dnaEnergy[5]);
+				obj.add(RNAKf,rnaEnergy[4]);
 				obj.add(RNAKr,rnaEnergy[5]);
 				obj.add(RNAFreeEnergy, rnaEnergy[2]);
 				obj.add(length, len);

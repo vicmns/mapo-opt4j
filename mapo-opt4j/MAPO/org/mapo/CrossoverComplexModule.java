@@ -8,6 +8,6 @@ public class CrossoverComplexModule extends CrossoverModule{
 	
 	@Override
 	protected void config(){
-		addOperator(CrossoverComplexOnMutation.class);
+		addOperator(CrossoverComplexUniform.class);
 	}
 }

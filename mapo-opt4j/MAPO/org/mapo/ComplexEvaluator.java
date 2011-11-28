@@ -377,6 +377,7 @@ public class ComplexEvaluator implements Evaluator<ComplexPhenotype> {
 			if(complex.get(i).equals("{") || complex.get(i).equals("<")){
 				double energy=bulgesEnergy(Integer.parseInt(complex.get(i+1).toString()));
 				dG+=energy;
+				dH+=energy*1000/310.15;
 				idx+=Integer.parseInt(complex.get(i+1).toString());
 				totalOverhang+=Integer.parseInt(complex.get(i+1).toString());
 				isInitial=false;

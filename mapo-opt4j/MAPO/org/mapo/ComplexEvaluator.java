@@ -370,6 +370,7 @@ public class ComplexEvaluator implements Evaluator<ComplexPhenotype> {
 			if(complex.get(i).equals("(")){
 				double energy=internalLoopGEnergy(Integer.parseInt(complex.get(i+1).toString()));
 				dG+=energy;
+				dH+=energy*1000/310.15;
 				idx+=Integer.parseInt(complex.get(i+1).toString());
 				isInitial=false;
 			}
@@ -465,7 +466,7 @@ public class ComplexEvaluator implements Evaluator<ComplexPhenotype> {
 	}
 	
 	private double[] calculateKinetics(int shortestLen, int numPairBases, double dG, double Tm){
-		double incTemp=(Tm+273.15)-298.15;
+		double incTemp=(Tm)-298.15; //Tm+273.15
 		double kF=(this.nRatio*Math.sqrt(shortestLen))/numPairBases;
 		double kR=kF*Math.exp(dG/(this.R*incTemp));
 		double[] kinectics = {kF, kR};

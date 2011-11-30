@@ -41,7 +41,7 @@ public class ComplexEvaluator implements Evaluator<ComplexPhenotype> {
 	public Objectives evaluate(ComplexPhenotype phenotype) {
 		this.complex=phenotype;
 		Objectives obj = new Objectives();
-		final int len= Integer.parseInt(complex.get(1).toString())-Integer.parseInt(complex.get(0).toString())+1;
+		final int len= Integer.parseInt(complex.get(1).toString())-Integer.parseInt(complex.get(0).toString());
 		if(Integer.parseInt(complex.get(1).toString())>mGeneLen){
 			obj.add(DNAFreeEnergy, INFEASIBLE);
 			obj.setFeasible(false);

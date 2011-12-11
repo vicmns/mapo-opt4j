@@ -254,11 +254,9 @@ public class ComplexCreator implements Creator<DynamicListGenotype<Object>>{
 		 */
 		if(!tempList.isEmpty()){
 			int lastElement=tempList.size()-1;
-			if(!tempList.get(lastElement).equals(";") || !tempList.get(lastElement).equals("]")){
+			if(!tempList.get(lastElement).equals(";") && !tempList.get(lastElement).equals("]")){
 				int lastNuc=Integer.parseInt(tempList.get(lastElement-1).toString());
-				tempList.remove(lastElement);
-				tempList.remove(lastElement-1);
-				tempList.remove(lastElement-2);
+				tempList.subList(lastElement-2,lastElement+1).clear();
 				//Select randomly the next correct configuration
 				if(rand.nextBoolean()){
 					//Left Overhang
@@ -346,7 +344,6 @@ public class ComplexCreator implements Creator<DynamicListGenotype<Object>>{
 					}
 					break;
 				case '(':
-					if(nNucleo>3)
 						do{
 							nNucleo = rand.nextInt(nNucAvRigth+1);
 						}while(nNucleo<3);
@@ -375,9 +372,7 @@ public class ComplexCreator implements Creator<DynamicListGenotype<Object>>{
 			int lastElement=tempList.size()-1;
 			if(!tempList.get(lastElement).equals(";") && !tempList.get(lastElement).equals("]")){
 				int lastNuc=Integer.parseInt(tempList.get(lastElement-1).toString());
-				tempList.remove(lastElement);
-				tempList.remove(lastElement-1);
-				tempList.remove(lastElement-2);
+				tempList.subList(lastElement-2, lastElement+1).clear();
 				//Select randomly the next correct configuration
 				if(rand.nextBoolean()){
 					//Left Overhang
@@ -486,9 +481,7 @@ public class ComplexCreator implements Creator<DynamicListGenotype<Object>>{
 			int lastElement=0;
 			if(!tempList.get(lastElement).equals(":") && !tempList.get(lastElement).equals("[")){
 				int lastNuc=Integer.parseInt(tempList.get(lastElement+1).toString());
-				tempList.remove(lastElement);
-				tempList.remove(lastElement);
-				tempList.remove(lastElement);
+				tempList.subList(lastElement, lastElement+3).clear();
 				//Select randomly the next correct configuration
 				if(rand.nextBoolean()){
 					//Left Overhang

@@ -4,10 +4,11 @@ import org.opt4j.config.annotations.Info;
 import org.opt4j.config.annotations.Required;
 import org.opt4j.operator.mutate.AdaptiveMutationRate;
 import org.opt4j.operator.mutate.ConstantMutationRate;
+import org.opt4j.operator.mutate.MutateComplexComplement;
+import org.opt4j.operator.mutate.MutateComplexDeletion;
 import org.opt4j.operator.mutate.MutateComplexInversion;
 import org.opt4j.operator.mutate.MutateModule;
 import org.opt4j.operator.mutate.MutationRate;
-import org.opt4j.operator.mutate.BasicMutateModule.MutationRateType;
 import org.opt4j.start.Constant;
 
 @Info("Setting for the complex mutate classOperators for genotype variation.")
@@ -124,10 +125,10 @@ public class MutationComplexModule extends MutateModule{
 			addOperator(MutateComplexInversion.class);
 			break;
 		case CLOSECOMPLEMENT:
-			
+			addOperator(MutateComplexComplement.class);
 			break;
 		case DELETION:
-			
+			addOperator(MutateComplexDeletion.class);
 			break;
 		default:
 			addOperator(MutateComplexInversion.class);

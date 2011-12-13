@@ -57,7 +57,7 @@ public class ComplexEvaluator implements Evaluator<ComplexPhenotype> {
 					Integer.parseInt(complex.get(1).toString())));
 			double[] rnaEnergy=calculateRNADNAEnergy(this.mRNA.substring(Integer.parseInt(complex.get(0).toString()),
 					Integer.parseInt(complex.get(1).toString())),true);
-			if(dnaEnergy[3]<37.0){
+			if(dnaEnergy[3]<37.0 || dnaEnergy[4]/dnaEnergy[5]<1.5){
 				obj.add(DNAFreeEnergy, INFEASIBLE);
 				obj.add(DNAKf,INFEASIBLE);
 				obj.add(DNAKr,INFEASIBLE);
@@ -355,6 +355,14 @@ public class ComplexEvaluator implements Evaluator<ComplexPhenotype> {
 				totalOverhang+=Integer.parseInt(complex.get(i+1).toString());
 				double[] energy = fiveOverhangEnergy(mGene.charAt(idx-1), mGene.charAt(idx));
 				dH+=energy[0]; dG+=energy[1];
+				if(Integer.parseInt(complex.get(i+1).toString())>10){
+					/*
+					 * If Overhang is greater than 10, penalize it 
+					 */
+					dH+=Math.abs(-30.00*(Integer.parseInt(complex.get(i+1).toString())/10));
+					dG+=Math.abs(-4.69*(Integer.parseInt(complex.get(i+1).toString())/10));
+					dS+=Math.abs(-81.69*(Integer.parseInt(complex.get(i+1).toString())/10));
+				}
 				isInitial=false;
 			}
 			if(complex.get(i).equals("[")){
@@ -386,6 +394,14 @@ public class ComplexEvaluator implements Evaluator<ComplexPhenotype> {
 				double[] energy = threeOverhangEnergy(mGene.charAt(idx-1), mGene.charAt(idx));
 				idx+=Integer.parseInt(complex.get(i+1).toString());
 				dH+=energy[0]; dG+=energy[1];
+				if(Integer.parseInt(complex.get(i+1).toString())>10){
+					/*
+					 * If Overhang is greater than 10, penalize it 
+					 */
+					dH+=Math.abs(-30.00*(Integer.parseInt(complex.get(i+1).toString())/10));
+					dG+=Math.abs(-4.69*(Integer.parseInt(complex.get(i+1).toString())/10));
+					dS+=Math.abs(-81.69*(Integer.parseInt(complex.get(i+1).toString())/10));
+				}
 			}
 		}
 		double Tm=dH*1000/(dS+R*Math.log(Ct/4))-273.15;
@@ -467,7 +483,7 @@ public class ComplexEvaluator implements Evaluator<ComplexPhenotype> {
 	}
 	
 	private double[] calculateKinetics(int shortestLen, int numPairBases, double dG, double Tm){
-		double incTemp=(Tm)-298.15; //Tm+273.15
+		double incTemp=(Tm+273.15)-298.15; //Tm+273.15
 		double kF=(this.nRatio*Math.sqrt(shortestLen))/numPairBases;
 		double kR=kF*Math.exp(dG/(this.R*incTemp));
 		double[] kinectics = {kF, kR};

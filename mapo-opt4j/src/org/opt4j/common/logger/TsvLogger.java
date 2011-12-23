@@ -25,6 +25,7 @@ import java.util.Collection;
 import org.opt4j.core.Individual;
 import org.opt4j.core.Objective;
 import org.opt4j.core.Objectives;
+import org.opt4j.core.Phenotype;
 import org.opt4j.core.Value;
 import org.opt4j.core.optimizer.Archive;
 import org.opt4j.start.Constant;
@@ -117,8 +118,10 @@ public class TsvLogger extends AbstractLogger implements Logger {
 		assert startTime != -1 : "not initialized";
 		double time = ((double) System.currentTimeMillis() - startTime) / 1000.0;
 		for (Individual individual : archive) {
+			Phenotype a= individual.getPhenotype();
 			String output = getStatistics(iteration, evaluation, time);
 			output += getIndividual(individual);
+			output += getColumnDelimiter() + a;
 			out.println(output);
 		}
 		out.flush();
@@ -147,6 +150,7 @@ public class TsvLogger extends AbstractLogger implements Logger {
 		for (Objective objective : objectives) {
 			header += getColumnDelimiter() + objective.getName() + "[" + objective.getSign() + "]";
 		}
+		header += getColumnDelimiter() + "Complex Configuration";
 		out.println(header);
 	}
 

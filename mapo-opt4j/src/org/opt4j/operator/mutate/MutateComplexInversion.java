@@ -22,7 +22,7 @@ public class MutateComplexInversion implements MutateComplex{
 		//System.out.println(inversion.toString());
 		if(random.nextDouble() < p){
 			DynamicListGenotype<Object> inversion = (DynamicListGenotype<Object>) genotype;
-			System.out.println(genotype);
+			//System.out.println(genotype);
 			int alpha=Integer.parseInt(inversion.get(2).toString());
 			int idxMutationParent=0; //Mutation index on parent
 			int i=4;

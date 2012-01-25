@@ -22,11 +22,15 @@ public class ComplexEvaluator implements Evaluator<ComplexPhenotype> {
 	private String mRNA;
 	private ArrayList<Object> complex;
 	private int mGeneLen;
+	private int numPairBases;
+	private int len;
 	//private double dG=0.0, dH=0.0, dS=0.0;
 	Objective DNAFreeEnergy = new Objective("DNAFreeEnergy", MIN);
 	Objective RNAFreeEnergy = new Objective("RNAFreeEnergy", MIN);
 	Objective DNAKf = new Objective("DNAKf", MAX);
 	Objective DNAKr = new Objective("DNAKr", MIN);
+	Objective DNA_RNAKf = new Objective("DNA_RNAKf", MAX);
+	Objective DNA_RNAKr = new Objective("DNA_RNAKr", MIN);
 	Objective RNAKr = new Objective("RNAKr", MIN);
 	Objective RNAKf = new Objective("RNAKf", MAX);
 	Objective length = new Objective("Length", MIN);
@@ -41,26 +45,32 @@ public class ComplexEvaluator implements Evaluator<ComplexPhenotype> {
 	public Objectives evaluate(ComplexPhenotype phenotype) {
 		this.complex=phenotype;
 		Objectives obj = new Objectives();
-		final int len= Integer.parseInt(complex.get(1).toString())-Integer.parseInt(complex.get(0).toString());
+		len = Integer.parseInt(complex.get(1).toString())-Integer.parseInt(complex.get(0).toString());
 		if(Integer.parseInt(complex.get(1).toString())>mGeneLen){
 			obj.add(DNAFreeEnergy, INFEASIBLE);
 			obj.setFeasible(false);
 			obj.add(DNAKf,INFEASIBLE);
 			obj.add(DNAKr,INFEASIBLE);
+			obj.add(DNA_RNAKf,INFEASIBLE);
+			obj.add(DNA_RNAKr,INFEASIBLE);
 			obj.add(RNAKr,INFEASIBLE);
 			obj.add(RNAKf,INFEASIBLE);
 			obj.add(RNAFreeEnergy,INFEASIBLE);
 			obj.add(length, INFEASIBLE);
 		}
 		else{
-			double[] dnaEnergy=calculateEnergy(mGene.substring(Integer.parseInt(complex.get(0).toString()),
+			double[] dnaEnergy=calculateDNAEnergy(mGene.substring(Integer.parseInt(complex.get(0).toString()),
 					Integer.parseInt(complex.get(1).toString())));
+			double[] rna_dnaEnergy= calculateRNADNAKinectics(this.mRNA.substring(Integer.parseInt(complex.get(0).toString()),
+					Integer.parseInt(complex.get(1).toString())),true);
 			double[] rnaEnergy=calculateRNADNAEnergy(this.mRNA.substring(Integer.parseInt(complex.get(0).toString()),
 					Integer.parseInt(complex.get(1).toString())),true);
-			if(dnaEnergy[3]<37.0 || dnaEnergy[4]/dnaEnergy[5]<1.5){
+			if(dnaEnergy[3]<37.0 || dnaEnergy[4] / dnaEnergy[5] < 1.5){
 				obj.add(DNAFreeEnergy, INFEASIBLE);
 				obj.add(DNAKf,INFEASIBLE);
 				obj.add(DNAKr,INFEASIBLE);
+				obj.add(DNA_RNAKf,INFEASIBLE);
+				obj.add(DNA_RNAKr,INFEASIBLE);
 				obj.add(RNAKr,INFEASIBLE);
 				obj.add(RNAKf,INFEASIBLE);
 				obj.add(RNAFreeEnergy, INFEASIBLE);
@@ -71,6 +81,8 @@ public class ComplexEvaluator implements Evaluator<ComplexPhenotype> {
 				obj.add(DNAFreeEnergy, dnaEnergy[2]);
 				obj.add(DNAKf,dnaEnergy[4]);
 				obj.add(DNAKr,dnaEnergy[5]);
+				obj.add(DNA_RNAKf,rna_dnaEnergy[4]);
+				obj.add(DNA_RNAKr,rna_dnaEnergy[5]);
 				obj.add(RNAKf,rnaEnergy[4]);
 				obj.add(RNAKr,rnaEnergy[5]);
 				obj.add(RNAFreeEnergy, rnaEnergy[2]);
@@ -124,14 +136,72 @@ public class ComplexEvaluator implements Evaluator<ComplexPhenotype> {
 			}
 		}
 		if(isTerminal && complex.charAt(complex.length()-1)=='A'){
-			dG+=0.05;
+			dH+=2.2; dS+=6.9; dG+=0.05;
 		}
-		//TODO: Add Symmetry correction?
 		double[] pEnergy= {dH,dS,dG};//predicted Energy
 		return pEnergy;
 	}
 	
-	private double internalLoopGEnergy(int loopSize){
+	private double[] cDuplexRNAEnergy(String complex, boolean isInitial, boolean isTerminal){
+		double dH=0,dS=0,dG=0;
+		if(isInitial){
+			dH+=1.9; dS+=-3.9; dG+=3.1; 
+		}
+		for(int i=0; i<mRNA.length()-1;i++){
+			if((mRNA.charAt(i)=='A' && mRNA.charAt(i+1)=='A')){
+				dH+=-7.8; dS+=-21.9; dG+=-1.0; 
+			}
+			if((mRNA.charAt(i)=='A' && mRNA.charAt(i+1)=='C')){
+				dH+=-5.9; dS+=-12.3; dG+=-2.1; 
+			}
+			if((mRNA.charAt(i)=='A' && mRNA.charAt(i+1)=='G')){
+				dH+=-9.1; dS+=-23.5; dG+=-1.8; 
+			}
+			if((mRNA.charAt(i)=='A' && mRNA.charAt(i+1)=='U')){
+				dH+=-8.3; dS+=-23.9; dG+=-0.9;
+			}
+			if((mRNA.charAt(i)=='C' && mRNA.charAt(i+1)=='A')){
+				dH+=-9.0; dS+=-26.1; dG+=-0.9;
+			}
+			if((mRNA.charAt(i)=='C' && mRNA.charAt(i+1)=='C')){
+				dH+=-9.3; dS+=-23.2; dG+=-2.1; 
+			}
+			if((mRNA.charAt(i)=='C' && mRNA.charAt(i+1)=='G')){
+				dH+=-16.3; dS+=-47.1; dG+=-1.7; 
+			}
+			if((mRNA.charAt(i)=='C' && mRNA.charAt(i+1)=='U')){
+				dH+=-7.0; dS+=-19.7; dG+=-0.9; 
+			}
+			if((mRNA.charAt(i)=='G' && mRNA.charAt(i+1)=='A')){
+				dH+=-5.5; dS+=-13.5; dG+=-1.3; 
+			}
+			if((mRNA.charAt(i)=='G' && mRNA.charAt(i+1)=='C')){
+				dH+=-8.0; dS+=-17.1; dG+=-2.7; 
+			}
+			if((mRNA.charAt(i)=='G' && mRNA.charAt(i+1)=='G')){
+				dH+=-12.8; dS+=-31.9; dG+=-2.9; 
+			}
+			if((mRNA.charAt(i)=='G' && mRNA.charAt(i+1)=='U')){
+				dH+=-7.8; dS+=-21.6; dG+=-1.1; 
+			}
+			if((mRNA.charAt(i)=='U' && mRNA.charAt(i+1)=='A')){
+				dH+=-7.8; dS+=-23.2; dG+=-0.6; 
+			}
+			if((mRNA.charAt(i)=='U' && mRNA.charAt(i+1)=='C')){
+				dH+=-8.6; dS+=-22.9; dG+=-1.5; 
+			}
+			if((mRNA.charAt(i)=='U' && mRNA.charAt(i+1)=='G')){
+				dH+=-10.4; dS+=-28.4; dG+=-1.6; 
+			}
+			if((mRNA.charAt(i)=='U' && mRNA.charAt(i+1)=='U')){
+				dH+=-11.5; dS+=-36.4; dG+=-0.2; 
+			}
+		}
+		double energy[] = {dH,dS,dG};
+		return energy;
+	}
+	
+	private double internalLoopGEnergy(int loopSize, String seq){
 		double dG=0;
 		if(loopSize==1)
 			//Loop length not allowed
@@ -173,6 +243,7 @@ public class ComplexEvaluator implements Evaluator<ComplexPhenotype> {
 		}
 		return dG;
 	}
+	
 	
 	private double[] fiveOverhangEnergy(char fiveEnd, char fiveFirstHang){
 		double dH=0, dG=0;
@@ -341,7 +412,7 @@ public class ComplexEvaluator implements Evaluator<ComplexPhenotype> {
 		return dG;
 	}
 	
-	public double[] calculateEnergy(String mGene){
+	private double[] calculateDNAEnergy(String mGene){
 		double dH=0,dS=0,dG=0;
 		int idx=0;
 		boolean isInitial=true;
@@ -376,7 +447,8 @@ public class ComplexEvaluator implements Evaluator<ComplexPhenotype> {
 				isInitial=false;
 			}
 			if(complex.get(i).equals("(")){
-				double energy=internalLoopGEnergy(Integer.parseInt(complex.get(i+1).toString()));
+				double energy=internalLoopGEnergy(Integer.parseInt(complex.get(i+1).toString()), 
+						mGene.substring(idx, idx+Integer.parseInt(complex.get(i+1).toString())) );
 				dG+=energy;
 				dH+=energy*1000/310.15;
 				idx+=Integer.parseInt(complex.get(i+1).toString());
@@ -408,8 +480,18 @@ public class ComplexEvaluator implements Evaluator<ComplexPhenotype> {
 		//Calculate Kinetics
 		int shortestLen = Integer.parseInt(complex.get(1).toString())-Integer.parseInt(
 				complex.get(0).toString())-totalOverhang+1;
+		this.numPairBases=numPairBases;
 		double[] kinetics = calculateKinetics(shortestLen, numPairBases, dG, Tm);
 		double[] pEnergy= {dH,dS,dG,Tm,kinetics[0],kinetics[1]};//predicted Energy
+		return pEnergy;
+	}
+	
+	private double[] calculateRNADNAKinectics(String mRNA, boolean isInitial){
+		boolean isTerminal = true;
+		double[] energy = cDuplexRNAEnergy(mRNA, isInitial, isTerminal);
+		double Tm = energy[0] * 1000 / (energy[1] + R * Math.log(Ct / 4)) - 273.15;
+		double[] kinetics = calculateKinetics(this.len, this.numPairBases, energy[2], Tm);
+		double[] pEnergy= {energy[0],energy[1],energy[2],Tm,kinetics[0],kinetics[1]};//predicted Energy
 		return pEnergy;
 	}
 	
@@ -421,64 +503,12 @@ public class ComplexEvaluator implements Evaluator<ComplexPhenotype> {
 	 * @param isInitial
 	 * 			Boolean variable that defines if the complex to calculate is initial or not.
 	 */
-	public double[] calculateRNADNAEnergy(String mRNA, boolean isInitial){
-		double dH=0,dS=0,dG=0;
-		if(isInitial){
-			dH+=1.9; dS+=-3.9; dG+=3.1; 
-		}
-		for(int i=0; i<mRNA.length()-1;i++){
-			if((mRNA.charAt(i)=='A' && mRNA.charAt(i+1)=='A')){
-				dH+=-7.8; dS+=-21.9; dG+=-1.0; 
-			}
-			if((mRNA.charAt(i)=='A' && mRNA.charAt(i+1)=='C')){
-				dH+=-5.9; dS+=-12.3; dG+=-2.1; 
-			}
-			if((mRNA.charAt(i)=='A' && mRNA.charAt(i+1)=='G')){
-				dH+=-9.1; dS+=-23.5; dG+=-1.8; 
-			}
-			if((mRNA.charAt(i)=='A' && mRNA.charAt(i+1)=='U')){
-				dH+=-8.3; dS+=-23.9; dG+=-0.9;
-			}
-			if((mRNA.charAt(i)=='C' && mRNA.charAt(i+1)=='A')){
-				dH+=-9.0; dS+=-26.1; dG+=-0.9;
-			}
-			if((mRNA.charAt(i)=='C' && mRNA.charAt(i+1)=='C')){
-				dH+=-9.3; dS+=-23.2; dG+=-2.1; 
-			}
-			if((mRNA.charAt(i)=='C' && mRNA.charAt(i+1)=='G')){
-				dH+=-16.3; dS+=-47.1; dG+=-1.7; 
-			}
-			if((mRNA.charAt(i)=='C' && mRNA.charAt(i+1)=='U')){
-				dH+=-7.0; dS+=-19.7; dG+=-0.9; 
-			}
-			if((mRNA.charAt(i)=='G' && mRNA.charAt(i+1)=='A')){
-				dH+=-5.5; dS+=-13.5; dG+=-1.3; 
-			}
-			if((mRNA.charAt(i)=='G' && mRNA.charAt(i+1)=='C')){
-				dH+=-8.0; dS+=-17.1; dG+=-2.7; 
-			}
-			if((mRNA.charAt(i)=='G' && mRNA.charAt(i+1)=='G')){
-				dH+=-12.8; dS+=-31.9; dG+=-2.9; 
-			}
-			if((mRNA.charAt(i)=='G' && mRNA.charAt(i+1)=='U')){
-				dH+=-7.8; dS+=-21.6; dG+=-1.1; 
-			}
-			if((mRNA.charAt(i)=='U' && mRNA.charAt(i+1)=='A')){
-				dH+=-7.8; dS+=-23.2; dG+=-0.6; 
-			}
-			if((mRNA.charAt(i)=='U' && mRNA.charAt(i+1)=='C')){
-				dH+=-8.6; dS+=-22.9; dG+=-1.5; 
-			}
-			if((mRNA.charAt(i)=='U' && mRNA.charAt(i+1)=='G')){
-				dH+=-10.4; dS+=-28.4; dG+=-1.6; 
-			}
-			if((mRNA.charAt(i)=='U' && mRNA.charAt(i+1)=='U')){
-				dH+=-11.5; dS+=-36.4; dG+=-0.2; 
-			}
-		}
-		double Tm=dH*1000/(dS+R*Math.log(Ct/4))-273.15;
-		double[] kinetics = calculateKinetics(mRNA.length(), mRNA.length(), dG, Tm);
-		double[] pEnergy= {dH,dS,dG,Tm,kinetics[0],kinetics[1]};//predicted Energy
+	private double[] calculateRNADNAEnergy(String mRNA, boolean isInitial){
+		boolean isTerminal = true;
+		double[] energy = cDuplexRNAEnergy(mRNA, isInitial, isTerminal);
+		double Tm = energy[0] * 1000 / (energy[1] + R * Math.log(Ct / 4)) - 273.15;
+		double[] kinetics = calculateKinetics(this.len, this.len, energy[2], Tm);
+		double[] pEnergy= {energy[0],energy[1],energy[2],Tm,kinetics[0],kinetics[1]};//predicted Energy
 		return pEnergy;
 	}
 	

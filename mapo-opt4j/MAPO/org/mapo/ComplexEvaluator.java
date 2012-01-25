@@ -477,7 +477,7 @@ public class ComplexEvaluator implements Evaluator<ComplexPhenotype> {
 			}
 		}
 		double Tm=dH*1000/(dS+R*Math.log(Ct/4))-273.15;
-		double[] kinetics = calculateKinetics(mRNA.length()-1, mRNA.length()-1, dG, Tm);
+		double[] kinetics = calculateKinetics(mRNA.length(), mRNA.length(), dG, Tm);
 		double[] pEnergy= {dH,dS,dG,Tm,kinetics[0],kinetics[1]};//predicted Energy
 		return pEnergy;
 	}

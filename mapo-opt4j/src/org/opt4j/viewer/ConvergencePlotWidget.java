@@ -121,10 +121,12 @@ public class ConvergencePlotWidget implements Widget, OptimizerIterationListener
 	 * @author lukasiewycz
 	 * 
 	 */
+	@SuppressWarnings("rawtypes")
 	static class ObjectiveDropDown extends JComboBox {
 
 		private static final long serialVersionUID = 1L;
 
+		@SuppressWarnings("unchecked")
 		public ObjectiveDropDown() {
 			super();
 

@@ -135,8 +135,8 @@ public class CrossoverComplexNPoint<G extends DynamicListGenotype<?>> implements
 						idxEC1+=Integer.parseInt(parent1.get(j).toString());	
 				}
 			}
-			idxEC1+=Integer.parseInt(o1.get(1).toString());
-			idxEC2+=Integer.parseInt(o2.get(1).toString());
+			idxEC1+=Integer.parseInt(o1.get(1).toString()) - 1;
+			idxEC2+=Integer.parseInt(o2.get(1).toString()) - 1;
 			//Add indexes
 			o1.add(0,0);
 			o1.add(0,idxEC1+this.idxMS);
@@ -200,7 +200,7 @@ public class CrossoverComplexNPoint<G extends DynamicListGenotype<?>> implements
 			}
 			//idxEC2+=Integer.parseInt(o2.get(o2.size()-2).toString());
 			//Check if the genotype of child 2 is correct
-			idxSC2=this.idxME-aC2-Integer.parseInt(o2.get(o2.size()-2).toString());
+			idxSC2=this.idxME-aC2-Integer.parseInt(o2.get(o2.size()-2).toString()) + 1;
 			if(idxSC2<0){
 				int restToDelete=Math.abs(idxSC2);
 				int newNucleo=0;
@@ -220,7 +220,7 @@ public class CrossoverComplexNPoint<G extends DynamicListGenotype<?>> implements
 					restToDelete-=lastNucleo;
 				}
 			}
-			idxEC1+=Integer.parseInt(o1.get(1).toString());
+			idxEC1+=Integer.parseInt(o1.get(1).toString()) -1;
 			//aC2=this.idxME-Integer.parseInt(o2.get(o2.size()-2).toString());
 			o1.add(0,0);
 			o1.add(0,idxEC1+this.idxMS);
@@ -286,7 +286,7 @@ public class CrossoverComplexNPoint<G extends DynamicListGenotype<?>> implements
 			}
 			//idxEC1+=Integer.parseInt(o1.get(o1.size()-2).toString());
 			//Check if the genotype of child 1 is correct
-			idxSC1=this.idxME-aC1-Integer.parseInt(o1.get(o1.size()-2).toString());
+			idxSC1=this.idxME-aC1-Integer.parseInt(o1.get(o1.size()-2).toString()) + 1;
 			if(idxSC1<0){
 				int restToDelete=Math.abs(idxSC1);
 				int newNucleo=0;
@@ -307,7 +307,7 @@ public class CrossoverComplexNPoint<G extends DynamicListGenotype<?>> implements
 					restToDelete-=lastNucleo;
 				}
 			}
-			idxEC2+=Integer.parseInt(o2.get(1).toString());
+			idxEC2+=Integer.parseInt(o2.get(1).toString()) - 1;
 			o1.add(0,aC1);
 			o1.add(0,this.idxME);
 			o1.add(0,idxSC1);
@@ -379,7 +379,7 @@ public class CrossoverComplexNPoint<G extends DynamicListGenotype<?>> implements
 			//idxEC1+=aC1+Integer.parseInt(o1.get(o1.size()-2).toString());
 			//idxEC2+=aC2+Integer.parseInt(o2.get(o2.size()-2).toString());
 			//Check if the genotype of child 1 is correct
-			idxSC1=this.idxME-aC1-Integer.parseInt(o1.get(o1.size()-2).toString());
+			idxSC1=this.idxME-aC1-Integer.parseInt(o1.get(o1.size()-2).toString()) + 1;
 			if(idxSC1<0){
 				int restToDelete=Math.abs(idxSC1);
 				int newNucleo=0;
@@ -401,7 +401,7 @@ public class CrossoverComplexNPoint<G extends DynamicListGenotype<?>> implements
 				}
 			}
 			//Check if the genotype of child 2 is correct
-			idxSC2=this.idxME-aC2-Integer.parseInt(o2.get(o2.size()-2).toString());
+			idxSC2=this.idxME-aC2-Integer.parseInt(o2.get(o2.size()-2).toString()) + 1;
 			if(idxSC2<0){
 				int restToDelete=Math.abs(idxSC2);
 				int newNucleo=0;
@@ -501,8 +501,8 @@ public class CrossoverComplexNPoint<G extends DynamicListGenotype<?>> implements
 				idxEC2+=Integer.parseInt(parent2.get(j+1).toString());
 				aC2+=Integer.parseInt(parent2.get(j+1).toString());
 			}
-			idxEC1+=Integer.parseInt(o1.get(1).toString());
-			idxEC2+=Integer.parseInt(parent2.get(idxMp2-1).toString());
+			idxEC1+=Integer.parseInt(o1.get(1).toString()) - 1;
+			idxEC2+=Integer.parseInt(parent2.get(idxMp2-1).toString()) - 1;
 			//Add indexes
 			o1.add(0,0);
 			o1.add(0,idxEC1+this.idxMS);
@@ -584,8 +584,8 @@ public class CrossoverComplexNPoint<G extends DynamicListGenotype<?>> implements
 				idxEC1+=Integer.parseInt(parent1.get(j+1).toString());
 				aC1+=Integer.parseInt(parent1.get(j+1).toString());
 			}
-			idxEC2+=Integer.parseInt(o2.get(1).toString());
-			idxEC1+=Integer.parseInt(parent1.get(idxMp1-1).toString());
+			idxEC2+=Integer.parseInt(o2.get(1).toString()) - 1;
+			idxEC1+=Integer.parseInt(parent1.get(idxMp1-1).toString()) - 1;
 			//Add indexes
 			o1.add(0,Integer.parseInt(parent1.get(2).toString()));
 			o1.add(0,(idxEC1+Integer.parseInt(parent1.get(0).toString())));
@@ -650,9 +650,9 @@ public class CrossoverComplexNPoint<G extends DynamicListGenotype<?>> implements
 				idxEC2+=Integer.parseInt(parent2.get(j+1).toString());
 			}
 			idxEC1+=aC1+Integer.parseInt(o1.get(o1.size()-2).toString());
-			idxEC2+=aC2+Integer.parseInt(parent2.get(idxMp2-1).toString());
+			idxEC2+=aC2+Integer.parseInt(parent2.get(idxMp2-1).toString()) - 1;
 			//Check if the genotype of child 1 is correct
-			idxSC1=this.idxME-aC1-Integer.parseInt(o1.get(o1.size()-2).toString());
+			idxSC1=this.idxME-aC1-Integer.parseInt(o1.get(o1.size()-2).toString()) + 1;
 			if(idxSC1<0){
 				int restToDelete=Math.abs(idxSC1);
 				int newNucleo=0;
@@ -760,7 +760,7 @@ public class CrossoverComplexNPoint<G extends DynamicListGenotype<?>> implements
 				o1.addAll(parent1.subList(j, j+3));
 				idxEC1+=Integer.parseInt(parent1.get(j+1).toString());
 			}
-			idxEC1+=aC1+Integer.parseInt(parent1.get(idxMp1-1).toString());
+			idxEC1+=aC1+Integer.parseInt(parent1.get(idxMp1-1).toString()) - 1;
 			//idxEC2+=aC2+Integer.parseInt(o2.get(o2.size()-2).toString());
 			//Check if the genotype of child 1 is correct
 			idxSC1=this.idxMS-aC1;
@@ -785,7 +785,7 @@ public class CrossoverComplexNPoint<G extends DynamicListGenotype<?>> implements
 				}
 			}
 			//Check if the genotype of child 2 is correct
-			idxSC2=this.idxME-aC2-Integer.parseInt(o2.get(o2.size()-2).toString());
+			idxSC2=this.idxME-aC2-Integer.parseInt(o2.get(o2.size()-2).toString()) + 1;
 			if(idxSC2<0){
 				int restToDelete=Math.abs(idxSC2);
 				int newNucleo=0;
@@ -834,8 +834,8 @@ public class CrossoverComplexNPoint<G extends DynamicListGenotype<?>> implements
 				idxMp1-=3;
 				idxMp2-=3;
 			}
-			idxEC1+=Integer.parseInt(o1.get(1).toString());
-			idxEC2+=Integer.parseInt(o2.get(1).toString());
+			idxEC1+=Integer.parseInt(o1.get(1).toString()) - 1;
+			idxEC2+=Integer.parseInt(o2.get(1).toString()) - 1;
 			idxMc1+=1;
 			idxMc2+=1;
 			//Next crossover on the left side of complexes

@@ -75,8 +75,8 @@ public class ComplexCreator implements Creator<DynamicListGenotype<Object>>{
 		do{
 			idxS = rand.nextInt(idxMS);
 			idxE = rand.nextInt(length);
-			len=idxE-idxS;
-		}while(idxS>=idxMS+3  || idxME+3>=idxE);
+			len = idxE - idxS + 1;
+		}while(idxS >= idxMS + 3  || idxME + 3 >= idxE);
 		complex.add(idxS);
 		complex.add(idxE);
 		/*Next tuple representing the configuration
@@ -84,18 +84,18 @@ public class ComplexCreator implements Creator<DynamicListGenotype<Object>>{
 		if(rand.nextBoolean()){
 			nNucleo=0;
 			do{
-				nNucleo=rand.nextInt((len))-(idxME-idxMS+1);
+				nNucleo=rand.nextInt((len))-(idxME-idxMS + 1);
 			}while(nNucleo < (idxME-idxMS+1) || nNucleo > (len-(idxME-idxMS+1)));
 			do{
-				nNucAvLeft=Math.abs(idxMS-idxS-rand.nextInt(nNucleo-1))+1;
+				nNucAvLeft=Math.abs(idxMS-idxS-rand.nextInt(nNucleo-1)) + 1;
 				nNucAvRigth=len-(nNucAvLeft+nNucleo);
 			}while(nNucAvLeft<1 || nNucAvRigth<1);
 			centerNuc=nNucleo;
 		}
 		else{
 			nNucleo = idxME - idxMS + 1;
-			nNucAvLeft=idxMS-idxS;
-			nNucAvRigth=idxE-idxME-1;
+			nNucAvLeft = idxMS - idxS;
+			nNucAvRigth = idxE - idxME;
 			centerNuc=nNucleo;
 		}
 		int lastNNucAvL=nNucAvLeft;
@@ -292,35 +292,35 @@ public class ComplexCreator implements Creator<DynamicListGenotype<Object>>{
 		ArrayList<Object> tempList = new ArrayList<Object>();
 		int nNucleo=0;
 		int len=0;
-		int idxS= idxMS; //Start nucleotide in DNA/cDNA
+		int idxS = idxMS; //Start nucleotide in DNA/cDNA
 		int idxE=0; //End nucleotide in DNA/cDNA
 		int nNucAvRigth=0;
 		int length=problem.getABLength();
 		//First tuple {i,j,alpha} of individual representing the substring
 		do{
 			idxE = rand.nextInt(length);
-			len=idxE-idxS;
-		}while(idxME+3>=idxE);
+			len = idxE - idxS + 1;
+		}while(idxME + 3 >= idxE);
 		complex.add(idxS);
 		complex.add(idxE);
 		complex.add(0); //Alpha position
 		int leftOverhang=0;
 		do{
-			leftOverhang=rand.nextInt(8)+1;
-		}while(leftOverhang<idxME-idxMS+1 || leftOverhang>=len);
+			leftOverhang= rand.nextInt(8) + 1;
+		}while(leftOverhang < idxME-idxMS + 1 || leftOverhang>=len);
 		complex.add(":"); complex.add(leftOverhang); complex.add(":");
-		nNucAvRigth=len-leftOverhang;
+		nNucAvRigth = len - leftOverhang;
 		while(nNucAvRigth>0){
 			//Add complementary section after a random non complementary configuration
 			do{
-				nNucleo=rand.nextInt(nNucAvRigth+1);
-			}while(nNucleo<1);
+				nNucleo=rand.nextInt(nNucAvRigth + 1);
+			}while(nNucleo < 1);
 			tempList.add("[");
 			tempList.add(nNucleo);
 			tempList.add("]");
-			nNucAvRigth-=nNucleo;
+			nNucAvRigth -= nNucleo;
 			//Random non-complementary configuration selection
-			if(nNucAvRigth>0){
+			if(nNucAvRigth > 0){
 				char[] opLenguage = {';','(','<','{'};
 				char op;
 				do{
@@ -411,7 +411,7 @@ public class ComplexCreator implements Creator<DynamicListGenotype<Object>>{
 		//First tuple {i,j,alpha} of individual representing the substring
 		do{
 			idxS = rand.nextInt(idxMS);
-			len=idxE-idxS;
+			len=idxE-idxS+1;
 		}while(idxS>=idxMS-3);
 		//Generate right overhang
 		int rightOverhang=0;

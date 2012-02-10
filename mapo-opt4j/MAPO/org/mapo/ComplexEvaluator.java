@@ -15,7 +15,7 @@ import com.google.inject.Inject;
 public class ComplexEvaluator implements Evaluator<ComplexPhenotype> {
 	
 	private double R=1.9872; //Gas Constant in cal/K-mol
-	private double Ct=0.0001; //Molar Strand concentration, defualt 1M
+	private double Ct=0.000001; //Molar Strand concentration, defualt 1uM
 	private double naClConct = 4.0; //Salt concentration
 	private double nRatio = (4.35*Math.log10(naClConct)+3.5)*Math.pow(10, 5);
 	private String mGene;
@@ -23,14 +23,15 @@ public class ComplexEvaluator implements Evaluator<ComplexPhenotype> {
 	private ArrayList<Object> complex;
 	private int mGeneLen;
 	private int numPairBases;
+	private int totalOverHang;
 	private int len;
 	//private double dG=0.0, dH=0.0, dS=0.0;
 	Objective DNAFreeEnergy = new Objective("DNAFreeEnergy", MIN);
 	Objective RNAFreeEnergy = new Objective("RNAFreeEnergy", MIN);
 	Objective DNAKf = new Objective("DNAKf", MAX);
 	Objective DNAKr = new Objective("DNAKr", MIN);
-	Objective DNA_RNAKf = new Objective("DNA_RNAKf", MAX);
-	Objective DNA_RNAKr = new Objective("DNA_RNAKr", MIN);
+	//Objective DNA_RNAKf = new Objective("DNA_RNAKf", MAX);
+	//Objective DNA_RNAKr = new Objective("DNA_RNAKr", MIN);
 	Objective RNAKr = new Objective("RNAKr", MIN);
 	Objective RNAKf = new Objective("RNAKf", MAX);
 	Objective length = new Objective("Length", MIN);
@@ -45,14 +46,14 @@ public class ComplexEvaluator implements Evaluator<ComplexPhenotype> {
 	public Objectives evaluate(ComplexPhenotype phenotype) {
 		this.complex=phenotype;
 		Objectives obj = new Objectives();
-		len = Integer.parseInt(complex.get(1).toString())-Integer.parseInt(complex.get(0).toString());
-		if(Integer.parseInt(complex.get(1).toString())>mGeneLen){
+		this.len = Integer.parseInt(complex.get(1).toString()) - Integer.parseInt(complex.get(0).toString()) + 1;
+		if(Integer.parseInt(complex.get(1).toString()) + 1 > mGeneLen){
 			obj.add(DNAFreeEnergy, INFEASIBLE);
 			obj.setFeasible(false);
 			obj.add(DNAKf,INFEASIBLE);
 			obj.add(DNAKr,INFEASIBLE);
-			obj.add(DNA_RNAKf,INFEASIBLE);
-			obj.add(DNA_RNAKr,INFEASIBLE);
+			//obj.add(DNA_RNAKf,INFEASIBLE);
+			//obj.add(DNA_RNAKr,INFEASIBLE);
 			obj.add(RNAKr,INFEASIBLE);
 			obj.add(RNAKf,INFEASIBLE);
 			obj.add(RNAFreeEnergy,INFEASIBLE);
@@ -60,17 +61,17 @@ public class ComplexEvaluator implements Evaluator<ComplexPhenotype> {
 		}
 		else{
 			double[] dnaEnergy=calculateDNAEnergy(mGene.substring(Integer.parseInt(complex.get(0).toString()),
-					Integer.parseInt(complex.get(1).toString())));
-			double[] rna_dnaEnergy= calculateRNADNAKinectics(this.mRNA.substring(Integer.parseInt(complex.get(0).toString()),
-					Integer.parseInt(complex.get(1).toString())),true);
+					Integer.parseInt(complex.get(1).toString()) +1));
+			/*double[] rna_dnaEnergy= calculateRNADNAKinectics(this.mRNA.substring(Integer.parseInt(complex.get(0).toString()),
+					Integer.parseInt(complex.get(1).toString())),true);*/
 			double[] rnaEnergy=calculateRNADNAEnergy(this.mRNA.substring(Integer.parseInt(complex.get(0).toString()),
 					Integer.parseInt(complex.get(1).toString())),true);
-			if(dnaEnergy[3]<37.0 || dnaEnergy[4] / dnaEnergy[5] < 1.5){
+			if(dnaEnergy[3]<37.0 || dnaEnergy[4] / dnaEnergy[5] < 2.0){
 				obj.add(DNAFreeEnergy, INFEASIBLE);
 				obj.add(DNAKf,INFEASIBLE);
 				obj.add(DNAKr,INFEASIBLE);
-				obj.add(DNA_RNAKf,INFEASIBLE);
-				obj.add(DNA_RNAKr,INFEASIBLE);
+				//obj.add(DNA_RNAKf,INFEASIBLE);
+				//obj.add(DNA_RNAKr,INFEASIBLE);
 				obj.add(RNAKr,INFEASIBLE);
 				obj.add(RNAKf,INFEASIBLE);
 				obj.add(RNAFreeEnergy, INFEASIBLE);
@@ -81,8 +82,8 @@ public class ComplexEvaluator implements Evaluator<ComplexPhenotype> {
 				obj.add(DNAFreeEnergy, dnaEnergy[2]);
 				obj.add(DNAKf,dnaEnergy[4]);
 				obj.add(DNAKr,dnaEnergy[5]);
-				obj.add(DNA_RNAKf,rna_dnaEnergy[4]);
-				obj.add(DNA_RNAKr,rna_dnaEnergy[5]);
+				//obj.add(DNA_RNAKf,rna_dnaEnergy[4]);
+				//obj.add(DNA_RNAKr,rna_dnaEnergy[5]);
 				obj.add(RNAKf,rnaEnergy[4]);
 				obj.add(RNAKr,rnaEnergy[5]);
 				obj.add(RNAFreeEnergy, rnaEnergy[2]);
@@ -147,7 +148,7 @@ public class ComplexEvaluator implements Evaluator<ComplexPhenotype> {
 		if(isInitial){
 			dH+=1.9; dS+=-3.9; dG+=3.1; 
 		}
-		for(int i=0; i<mRNA.length()-1;i++){
+		for(int i=0; i<complex.length()-1;i++){
 			if((mRNA.charAt(i)=='A' && mRNA.charAt(i+1)=='A')){
 				dH+=-7.8; dS+=-21.9; dG+=-1.0; 
 			}
@@ -440,7 +441,7 @@ public class ComplexEvaluator implements Evaluator<ComplexPhenotype> {
 				if(i>=complex.size()-1){
 					isTerminal=true;
 				}
-				double[] energy = cDuplexEnergy(mGene.substring(idx, idx+Integer.parseInt(complex.get(i+1).toString()) ), isInitial, isTerminal);
+				double[] energy = cDuplexEnergy(mGene.substring(idx, idx+Integer.parseInt(complex.get(i+1).toString())), isInitial, isTerminal);
 				idx+=Integer.parseInt(complex.get(i+1).toString());
 				numPairBases+=Integer.parseInt(complex.get(i+1).toString());
 				dH+=energy[0]; dS+=energy[1]; dG+=energy[2];
@@ -448,7 +449,7 @@ public class ComplexEvaluator implements Evaluator<ComplexPhenotype> {
 			}
 			if(complex.get(i).equals("(")){
 				double energy=internalLoopGEnergy(Integer.parseInt(complex.get(i+1).toString()), 
-						mGene.substring(idx, idx+Integer.parseInt(complex.get(i+1).toString())) );
+						mGene.substring(idx, idx + Integer.parseInt(complex.get(i+1).toString())) +1 );
 				dG+=energy;
 				dH+=energy*1000/310.15;
 				idx+=Integer.parseInt(complex.get(i+1).toString());
@@ -459,12 +460,14 @@ public class ComplexEvaluator implements Evaluator<ComplexPhenotype> {
 				dG+=energy;
 				dH+=energy*1000/310.15;
 				idx+=Integer.parseInt(complex.get(i+1).toString());
-				totalOverhang+=Integer.parseInt(complex.get(i+1).toString());
+				if(complex.get(i).equals("<"))
+					totalOverhang+=Integer.parseInt(complex.get(i+1).toString());
 				isInitial=false;
 			}
 			if(complex.get(i).equals(";")){
 				double[] energy = threeOverhangEnergy(mGene.charAt(idx-1), mGene.charAt(idx));
 				idx+=Integer.parseInt(complex.get(i+1).toString());
+				totalOverhang+=Integer.parseInt(complex.get(i+1).toString());
 				dH+=energy[0]; dG+=energy[1];
 				if(Integer.parseInt(complex.get(i+1).toString())>10){
 					/*
@@ -481,7 +484,8 @@ public class ComplexEvaluator implements Evaluator<ComplexPhenotype> {
 		int shortestLen = Integer.parseInt(complex.get(1).toString())-Integer.parseInt(
 				complex.get(0).toString())-totalOverhang+1;
 		this.numPairBases=numPairBases;
-		double[] kinetics = calculateKinetics(shortestLen, numPairBases, dG, Tm);
+		this.totalOverHang=this.len - numPairBases;
+		double[] kinetics = calculateKinetics(shortestLen, this.len, dG, Tm);
 		double[] pEnergy= {dH,dS,dG,Tm,kinetics[0],kinetics[1]};//predicted Energy
 		return pEnergy;
 	}
@@ -508,6 +512,7 @@ public class ComplexEvaluator implements Evaluator<ComplexPhenotype> {
 		double[] energy = cDuplexRNAEnergy(mRNA, isInitial, isTerminal);
 		double Tm = energy[0] * 1000 / (energy[1] + R * Math.log(Ct / 4)) - 273.15;
 		double[] kinetics = calculateKinetics(this.len, this.len, energy[2], Tm);
+		//double[] kinetics = calculateKinetics(this.len, this.totalOverHang, energy[2], Tm);
 		double[] pEnergy= {energy[0],energy[1],energy[2],Tm,kinetics[0],kinetics[1]};//predicted Energy
 		return pEnergy;
 	}

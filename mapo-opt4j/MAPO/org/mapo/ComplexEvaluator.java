@@ -66,7 +66,7 @@ public class ComplexEvaluator implements Evaluator<ComplexPhenotype> {
 					Integer.parseInt(complex.get(1).toString())),true);*/
 			double[] rnaEnergy=calculateRNADNAEnergy(this.mRNA.substring(Integer.parseInt(complex.get(0).toString()),
 					Integer.parseInt(complex.get(1).toString())),true);
-			if(dnaEnergy[3]<37.0 || dnaEnergy[4] / dnaEnergy[5] < 2.0){
+			if(dnaEnergy[3]<37.0 || dnaEnergy[4] / dnaEnergy[5] < 1.5){
 				obj.add(DNAFreeEnergy, INFEASIBLE);
 				obj.add(DNAKf,INFEASIBLE);
 				obj.add(DNAKr,INFEASIBLE);

@@ -51,4 +51,25 @@ public class FileManager {
 		}
 		return stringFromFile;
 	}
+	
+	public String readStringFromFile(String srcFile) {
+	    String stringFromFile = "";
+	    try
+	    {
+	      FileInputStream fStream = new FileInputStream(srcFile);
+	      DataInputStream inStream = new DataInputStream(fStream);
+	      BufferedReader bReader = new BufferedReader(new InputStreamReader(inStream));
+	      String strLine;
+	      while ((strLine = bReader.readLine()) != null) {
+	        strLine = strLine.replaceAll("\\s", "");
+	        strLine = strLine.replaceAll("-", "");
+	        stringFromFile = stringFromFile + strLine;
+	      }
+	      return stringFromFile;
+	    }
+	    catch (Exception e) {
+	      System.err.println("Error: " + e.getMessage());
+	    }
+	    return stringFromFile;
+	}
 }

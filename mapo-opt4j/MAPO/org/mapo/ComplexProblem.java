@@ -15,6 +15,7 @@ public class ComplexProblem {
 	  @Inject
 	  public ComplexProblem()
 	  {
+		//TODO: Delete path from readFromFile to let it choose
 	    String gene = readFromFile("/home/vicmns/Sequence/CFTR-cDNA-1399-2004");
 	    if (gene == "")
 	      return;

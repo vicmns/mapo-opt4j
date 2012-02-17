@@ -61,11 +61,11 @@ public class ComplexEvaluator implements Evaluator<ComplexPhenotype> {
 		}
 		else{
 			double[] dnaEnergy=calculateDNAEnergy(mGene.substring(Integer.parseInt(complex.get(0).toString()),
-					Integer.parseInt(complex.get(1).toString()) +1));
+					Integer.parseInt(complex.get(1).toString()) + 1));
 			/*double[] rna_dnaEnergy= calculateRNADNAKinectics(this.mRNA.substring(Integer.parseInt(complex.get(0).toString()),
 					Integer.parseInt(complex.get(1).toString())),true);*/
 			double[] rnaEnergy=calculateRNADNAEnergy(this.mRNA.substring(Integer.parseInt(complex.get(0).toString()),
-					Integer.parseInt(complex.get(1).toString())),true);
+					Integer.parseInt(complex.get(1).toString()) + 1),true);
 			if(dnaEnergy[3]<37.0 || dnaEnergy[4] / dnaEnergy[5] < 1.5){
 				obj.add(DNAFreeEnergy, INFEASIBLE);
 				obj.add(DNAKf,INFEASIBLE);

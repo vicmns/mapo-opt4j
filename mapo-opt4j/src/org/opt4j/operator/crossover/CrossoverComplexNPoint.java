@@ -24,7 +24,6 @@ public class CrossoverComplexNPoint<G extends DynamicListGenotype<?>> implements
 	public  Pair<G> crossover(G parent1, G parent2) {
 		DynamicListGenotype<Object> o1 = parent1.newInstance();
 		DynamicListGenotype<Object> o2 = parent2.newInstance();
-		
 		int aC1=0;
 		int aC2=0;
 		int idxMp1=0; //Mutation index on parent 1
@@ -41,7 +40,8 @@ public class CrossoverComplexNPoint<G extends DynamicListGenotype<?>> implements
 		int sumNuc=0;
 		//Find the index where mutations start on parents
 		while(Integer.parseInt(parent1.get(2).toString())!=sumNuc){
-			sumNuc+=Integer.parseInt(parent1.get(i).toString());
+			if(!parent1.get(i-1).equals("{"))
+				sumNuc+=Integer.parseInt(parent1.get(i).toString());
 			i+=3;
 		}
 		idxMp1=i+1;
@@ -59,7 +59,8 @@ public class CrossoverComplexNPoint<G extends DynamicListGenotype<?>> implements
 		i=4;
 		sumNuc=0;
 		while(Integer.parseInt(parent2.get(2).toString())!=sumNuc){
-			sumNuc+=Integer.parseInt(parent2.get(i).toString());
+			if(!parent2.get(i-1).equals("{"))
+				sumNuc+=Integer.parseInt(parent2.get(i).toString());
 			i+=3;
 		}
 		idxMp2=i+1;
@@ -83,15 +84,19 @@ public class CrossoverComplexNPoint<G extends DynamicListGenotype<?>> implements
 				if(random.nextBoolean()){
 					o1.addAll(parent2.subList(idxMpT2-2, idxMpT2+1));
 					o2.addAll(parent1.subList(idxMpT1-2, idxMpT1+1));
-					idxEC1+=Integer.parseInt(parent2.get(idxMpT2-1).toString());
-					idxEC2+=Integer.parseInt(parent1.get(idxMpT1-1).toString());
+					if(!parent2.get(idxMpT2-2).equals("{"))
+						idxEC1+=Integer.parseInt(parent2.get(idxMpT2-1).toString());
+					if(!parent1.get(idxMpT1-2).equals("{"))
+						idxEC2+=Integer.parseInt(parent1.get(idxMpT1-1).toString());
 					
 				}
 				else{
 					o1.addAll(parent1.subList(idxMpT1-2, idxMpT1+1));
 					o2.addAll(parent2.subList(idxMpT2-2, idxMpT2+1));
-					idxEC1+=Integer.parseInt(parent1.get(idxMpT1-1).toString());
-					idxEC2+=Integer.parseInt(parent2.get(idxMpT2-1).toString());
+					if(!parent1.get(idxMpT1-2).equals("{"))
+						idxEC1+=Integer.parseInt(parent1.get(idxMpT1-1).toString());
+					if(!parent2.get(idxMpT2-2).equals("{"))
+						idxEC2+=Integer.parseInt(parent2.get(idxMpT2-1).toString());
 				}
 				idxMpT1+=3;
 				idxMpT2+=3;
@@ -114,12 +119,14 @@ public class CrossoverComplexNPoint<G extends DynamicListGenotype<?>> implements
 				if(random.nextBoolean()){
 					o1.addAll(o1.size()-3,parent2.subList(idxMpT2-2, parent2.size()-3));
 					for(int j=parent2.size()-5; j>idxMpT2-3; j-=3)
-						idxEC1+=Integer.parseInt(parent2.get(j).toString());					
+						if(!parent2.get(j-1).equals("{"))
+							idxEC1+=Integer.parseInt(parent2.get(j).toString());					
 				}
 				else{
 					o2.addAll(o2.size()-3,parent2.subList(idxMpT2-2,parent2.size()-3));
 					for(int j=parent2.size()-5; j>idxMpT2-3; j-=3)
-						idxEC2+=Integer.parseInt(parent2.get(j).toString());		
+						if(!parent2.get(j-1).equals("{"))
+							idxEC2+=Integer.parseInt(parent2.get(j).toString());		
 				}
 			}
 			if((idxMpT1-parent1.size())<(idxMpT2-parent2.size())){
@@ -127,12 +134,14 @@ public class CrossoverComplexNPoint<G extends DynamicListGenotype<?>> implements
 				if(random.nextBoolean()){
 					o2.addAll(o2.size()-3,parent1.subList(idxMpT1-2, parent1.size()-3));
 					for(int j=parent1.size()-5; j>idxMpT1-3; j-=3)
-						idxEC2+=Integer.parseInt(parent1.get(j).toString());	
+						if(!parent1.get(j-1).equals("{"))
+							idxEC2+=Integer.parseInt(parent1.get(j).toString());	
 				}
 				else{
 					o1.addAll(o1.size()-3,parent1.subList(idxMpT1-2, parent1.size()-3));
 					for(int j=parent1.size()-5; j>idxMpT1-3; j-=3)
-						idxEC1+=Integer.parseInt(parent1.get(j).toString());	
+						if(!parent1.get(j-1).equals("{"))
+							idxEC1+=Integer.parseInt(parent1.get(j).toString());	
 				}
 			}
 			idxEC1+=Integer.parseInt(o1.get(1).toString()) - 1;
@@ -164,15 +173,19 @@ public class CrossoverComplexNPoint<G extends DynamicListGenotype<?>> implements
 				if(random.nextBoolean()){
 					o1.addAll(parent2.subList(idxMpT2-2, idxMpT2+1));
 					o2.addAll(0,parent1.subList(idxMpT1-2, idxMpT1+1));
-					idxEC1+=Integer.parseInt(parent2.get(idxMpT2-1).toString());
-					aC2+=Integer.parseInt(parent1.get(idxMpT1-1).toString());
+					if(!parent2.get(idxMpT2-2).equals("{"))
+						idxEC1+=Integer.parseInt(parent2.get(idxMpT2-1).toString());
+					if(!parent1.get(idxMpT1-2).equals("{"))
+						aC2+=Integer.parseInt(parent1.get(idxMpT1-1).toString());
 					
 				}
 				else{
 					o1.addAll(parent1.subList(idxMpT1-2, idxMpT1+1));
 					o2.addAll(0,parent2.subList(idxMpT2-2, idxMpT2+1));
-					idxEC1+=Integer.parseInt(parent1.get(idxMpT1-1).toString());
-					aC2+=Integer.parseInt(parent2.get(idxMpT2-1).toString());
+					if(!parent1.get(idxMpT1-2).equals("{"))
+						idxEC1+=Integer.parseInt(parent1.get(idxMpT1-1).toString());
+					if(!parent2.get(idxMpT2-2).equals("{"))
+						aC2+=Integer.parseInt(parent2.get(idxMpT2-1).toString());
 				}
 				idxMpT1+=3;
 				idxMpT2-=3;
@@ -181,21 +194,25 @@ public class CrossoverComplexNPoint<G extends DynamicListGenotype<?>> implements
 				//CrossOver terminals blocks
 				for(int j=idxMpT1-2; j<parent1.size(); j+=3){
 					o2.addAll(0,parent1.subList(j, j+3));
-					aC2+=Integer.parseInt(parent1.get(j+1).toString());
+					if(!parent1.get(j).equals("{"))
+						aC2+=Integer.parseInt(parent1.get(j+1).toString());
 				}
 				for(int j=idxMpT2-2; j>=3; j-=3){
 					o1.addAll(parent2.subList(j, j+3));
-					idxEC1+=Integer.parseInt(parent2.get(j+1).toString());
+					if(!parent2.get(j).equals("{"))
+						idxEC1+=Integer.parseInt(parent2.get(j+1).toString());
 				}
 			}
 			else{
 				for(int j=idxMpT2-2; j>=3; j-=3){
 					o2.addAll(0,parent2.subList(j, j+3));
-					aC2+=Integer.parseInt(parent2.get(j+1).toString());
+					if(!parent2.get(j).equals("{"))
+						aC2+=Integer.parseInt(parent2.get(j+1).toString());
 				}
 				for(int j=idxMpT1-2; j<parent1.size(); j+=3){
 					o1.addAll(parent1.subList(j, j+3));
-					idxEC1+=Integer.parseInt(parent1.get(j+1).toString());
+					if(!parent1.get(j).equals("{"))
+						idxEC1+=Integer.parseInt(parent1.get(j+1).toString());
 				}
 			}
 			//idxEC2+=Integer.parseInt(o2.get(o2.size()-2).toString());
@@ -205,7 +222,9 @@ public class CrossoverComplexNPoint<G extends DynamicListGenotype<?>> implements
 				int restToDelete=Math.abs(idxSC2);
 				int newNucleo=0;
 				while(restToDelete>0){
-					int lastNucleo=Integer.parseInt(o2.get(1).toString());
+					int lastNucleo=0;
+					if(!o2.get(0).equals("{"))
+						lastNucleo=Integer.parseInt(o2.get(1).toString());
 					newNucleo=lastNucleo-restToDelete;
 					if(newNucleo<=0){
 						o2.subList(0,3).clear();
@@ -220,7 +239,7 @@ public class CrossoverComplexNPoint<G extends DynamicListGenotype<?>> implements
 					restToDelete-=lastNucleo;
 				}
 			}
-			idxEC1+=Integer.parseInt(o1.get(1).toString()) -1;
+			idxEC1+=Integer.parseInt(o1.get(1).toString()) - 1;
 			//aC2=this.idxME-Integer.parseInt(o2.get(o2.size()-2).toString());
 			o1.add(0,0);
 			o1.add(0,idxEC1+this.idxMS);
@@ -248,15 +267,19 @@ public class CrossoverComplexNPoint<G extends DynamicListGenotype<?>> implements
 				if(random.nextBoolean()){
 					o1.addAll(0,parent2.subList(idxMpT2-2, idxMpT2+1));
 					o2.addAll(parent1.subList(idxMpT1-2, idxMpT1+1));
-					aC1+=Integer.parseInt(parent2.get(idxMpT2-1).toString());
-					idxEC2+=Integer.parseInt(parent1.get(idxMpT1-1).toString());
+					if(!parent2.get(idxMpT2-2).equals("{"))
+						aC1+=Integer.parseInt(parent2.get(idxMpT2-1).toString());
+					if(!parent1.get(idxMpT1-2).equals("{"))
+						idxEC2+=Integer.parseInt(parent1.get(idxMpT1-1).toString());
 					
 				}
 				else{
 					o1.addAll(0,parent1.subList(idxMpT1-2, idxMpT1+1));
 					o2.addAll(parent2.subList(idxMpT2-2, idxMpT2+1));
-					aC1+=Integer.parseInt(parent1.get(idxMpT1-1).toString());
-					idxEC2+=Integer.parseInt(parent2.get(idxMpT2-1).toString());
+					if(!parent1.get(idxMpT1-2).equals("{"))
+						aC1+=Integer.parseInt(parent1.get(idxMpT1-1).toString());
+					if(!parent2.get(idxMpT2-2).equals("{"))
+						idxEC2+=Integer.parseInt(parent2.get(idxMpT2-1).toString());
 				}
 				idxMpT1-=3;
 				idxMpT2+=3;
@@ -266,22 +289,26 @@ public class CrossoverComplexNPoint<G extends DynamicListGenotype<?>> implements
 				//Cross end blocks
 				for(int j=idxMpT1-2; j>=3; j-=3){
 					o2.addAll(parent1.subList(j, j+3));
-					idxEC2+=Integer.parseInt(parent1.get(j+1).toString());
+					if(!parent1.get(j).equals("{"))
+						idxEC2+=Integer.parseInt(parent1.get(j+1).toString());
 				}
 				for(int j=idxMpT2-2; j<parent2.size(); j+=3){
 					o1.addAll(0,parent2.subList(j, j+3));
-					aC1+=Integer.parseInt(parent2.get(j+1).toString());
+					if(!parent2.get(j).equals("{"))
+						aC1+=Integer.parseInt(parent2.get(j+1).toString());
 				}
 			}
 			else{
 				//Stay the same way
 				for(int j=idxMpT1-2; j>=3; j-=3){
 					o1.addAll(0,parent1.subList(j, j+3));
-					aC1+=Integer.parseInt(parent1.get(j+1).toString());
+					if(!parent1.get(j).equals("{"))
+						aC1+=Integer.parseInt(parent1.get(j+1).toString());
 				}
 				for(int j=idxMpT2-2; j<parent2.size(); j+=3){
 					o2.addAll(parent2.subList(j, j+3));
-					idxEC2+=Integer.parseInt(parent2.get(j+1).toString());
+					if(!parent2.get(j).equals("{"))
+						idxEC2+=Integer.parseInt(parent2.get(j+1).toString());
 				}
 			}
 			//idxEC1+=Integer.parseInt(o1.get(o1.size()-2).toString());
@@ -292,7 +319,9 @@ public class CrossoverComplexNPoint<G extends DynamicListGenotype<?>> implements
 				int newNucleo=0;
 				int j=1;
 				while(restToDelete>0){
-					int lastNucleo=Integer.parseInt(o1.get(1).toString());
+					int lastNucleo=0;
+					if(!o1.get(0).equals("{"))
+						lastNucleo=Integer.parseInt(o1.get(1).toString());
 					newNucleo=lastNucleo-restToDelete;
 					if(newNucleo<=0){
 						o1.subList(0,3).clear();
@@ -341,15 +370,18 @@ public class CrossoverComplexNPoint<G extends DynamicListGenotype<?>> implements
 				if(random.nextBoolean()){
 					o1.addAll(0,parent2.subList(idxMpT2-2, idxMpT2+1));
 					o2.addAll(0,parent1.subList(idxMpT1-2, idxMpT1+1));
-					aC1+=Integer.parseInt(parent2.get(idxMpT2-1).toString());
-					aC2+=Integer.parseInt(parent1.get(idxMpT1-1).toString());
-					
+					if(!parent2.get(idxMpT2-2).equals("{"))
+						aC1+=Integer.parseInt(parent2.get(idxMpT2-1).toString());
+					if(!parent1.get(idxMpT1-2).equals("{"))
+						aC2+=Integer.parseInt(parent1.get(idxMpT1-1).toString());
 				}
 				else{
 					o1.addAll(0,parent1.subList(idxMpT1-2, idxMpT1+1));
 					o2.addAll(0,parent2.subList(idxMpT2-2, idxMpT2+1));
-					aC1+=Integer.parseInt(parent1.get(idxMpT1-1).toString());
-					aC2+=Integer.parseInt(parent2.get(idxMpT2-1).toString());
+					if(!parent1.get(idxMpT1-2).equals("{"))
+						aC1+=Integer.parseInt(parent1.get(idxMpT1-1).toString());
+					if(!parent2.get(idxMpT2-2).equals("{"))
+						aC2+=Integer.parseInt(parent2.get(idxMpT2-1).toString());
 				}
 				idxMpT1-=3;
 				idxMpT2-=3;
@@ -359,21 +391,25 @@ public class CrossoverComplexNPoint<G extends DynamicListGenotype<?>> implements
 				//Cross initiators blocks
 				for(int j=idxMpT1-2; j>=3; j-=3){
 					o2.addAll(0,parent1.subList(j, j+3));
-					aC2+=Integer.parseInt(parent1.get(j+1).toString());
+					if(!parent1.get(j).equals("{"))
+						aC2+=Integer.parseInt(parent1.get(j+1).toString());
 				}
 				for(int j=idxMpT2-2; j>=3; j-=3){
 					o1.addAll(0,parent2.subList(j,j+3));
-					aC1+=Integer.parseInt(parent2.get(j+1).toString());
+					if(!parent2.get(j).equals("{"))
+						aC1+=Integer.parseInt(parent2.get(j+1).toString());
 				}
 			}
 			else{
 				for(int j=idxMpT1-2; j>=3; j-=3){
 					o1.addAll(0,parent1.subList(j, j+3));
-					aC1+=Integer.parseInt(parent1.get(j+1).toString());
+					if(!parent1.get(j).equals("{"))
+						aC1+=Integer.parseInt(parent1.get(j+1).toString());
 				}
 				for(int j=idxMpT2-2; j>=3; j-=3){
 					o2.addAll(0,parent2.subList(j, j+3));
-					aC2+=Integer.parseInt(parent2.get(j+1).toString());
+					if(!parent2.get(j).equals("{"))
+						aC2+=Integer.parseInt(parent2.get(j+1).toString());
 				}
 			}
 			//idxEC1+=aC1+Integer.parseInt(o1.get(o1.size()-2).toString());
@@ -385,7 +421,9 @@ public class CrossoverComplexNPoint<G extends DynamicListGenotype<?>> implements
 				int newNucleo=0;
 				int j=1;
 				while(restToDelete>0){
-					int lastNucleo=Integer.parseInt(o1.get(j).toString());
+					int lastNucleo=0;
+					if(!o1.get(j-1).equals("{"))
+						lastNucleo=Integer.parseInt(o1.get(j).toString());
 					newNucleo=lastNucleo-restToDelete;
 					if(newNucleo<=0){
 						o1.subList(j-1,j+2).clear();
@@ -407,7 +445,9 @@ public class CrossoverComplexNPoint<G extends DynamicListGenotype<?>> implements
 				int newNucleo=0;
 				int j=1;
 				while(restToDelete>0){
-					int lastNucleo=Integer.parseInt(o2.get(j).toString());
+					int lastNucleo=0;
+					if(!o2.get(j-1).equals("{"))
+						lastNucleo=Integer.parseInt(o2.get(j).toString());
 					newNucleo=lastNucleo-restToDelete;
 					if(newNucleo<=0){
 						o2.subList(j-1,j+2).clear();
@@ -443,15 +483,19 @@ public class CrossoverComplexNPoint<G extends DynamicListGenotype<?>> implements
 				if(random.nextBoolean()){
 					o1.addAll(parent2.subList(idxMpT2-2, idxMpT2+1));
 					o2.addAll(parent1.subList(idxMpT1-2, idxMpT1+1));
-					idxEC1+=Integer.parseInt(parent2.get(idxMpT2-1).toString());
-					idxEC2+=Integer.parseInt(parent1.get(idxMpT1-1).toString());
+					if(!parent2.get(idxMpT2-2).equals("{"))
+						idxEC1+=Integer.parseInt(parent2.get(idxMpT2-1).toString());
+					if(!parent1.get(idxMpT1-2).equals("{"))
+						idxEC2+=Integer.parseInt(parent1.get(idxMpT1-1).toString());
 					
 				}
 				else{
 					o1.addAll(parent1.subList(idxMpT1-2, idxMpT1+1));
 					o2.addAll(parent2.subList(idxMpT2-2, idxMpT2+1));
-					idxEC1+=Integer.parseInt(parent1.get(idxMpT1-1).toString());
-					idxEC2+=Integer.parseInt(parent2.get(idxMpT2-1).toString());
+					if(!parent1.get(idxMpT1-2).equals("{"))
+						idxEC1+=Integer.parseInt(parent1.get(idxMpT1-1).toString());
+					if(!parent2.get(idxMpT2-2).equals("{"))
+						idxEC2+=Integer.parseInt(parent2.get(idxMpT2-1).toString());
 				}
 				idxMpT1+=3;
 				idxMpT2+=3;
@@ -475,12 +519,14 @@ public class CrossoverComplexNPoint<G extends DynamicListGenotype<?>> implements
 				if(random.nextBoolean()){
 					o1.addAll(o1.size()-3,parent2.subList(idxMpT2-2, parent2.size()-3));
 					for(int j=parent2.size()-5; j>idxMpT2-3; j-=3)
-						idxEC1+=Integer.parseInt(parent2.get(j).toString());					
+						if(!parent2.get(j-1).equals("{"))
+							idxEC1+=Integer.parseInt(parent2.get(j).toString());					
 				}
 				else{
 					o2.addAll(o2.size()-3,parent2.subList(idxMpT2-2,parent2.size()-3));
 					for(int j=parent2.size()-5; j>idxMpT2-3; j-=3)
-						idxEC2+=Integer.parseInt(parent2.get(j).toString());		
+						if(!parent2.get(j-1).equals("{"))
+							idxEC2+=Integer.parseInt(parent2.get(j).toString());		
 				}
 			}
 			if((idxMpT1-parent1.size())<(idxMpT2-parent2.size())){
@@ -488,18 +534,22 @@ public class CrossoverComplexNPoint<G extends DynamicListGenotype<?>> implements
 				if(random.nextBoolean()){
 					o2.addAll(o2.size()-3,parent1.subList(idxMpT1-2, parent1.size()-3));
 					for(int j=parent1.size()-5; j>idxMpT1-3; j-=3)
-						idxEC2+=Integer.parseInt(parent1.get(j).toString());	
+						if(!parent1.get(j-1).equals("{"))
+							idxEC2+=Integer.parseInt(parent1.get(j).toString());	
 				}
 				else{
 					o1.addAll(o1.size()-3,parent1.subList(idxMpT1-2, parent1.size()-3));
 					for(int j=parent1.size()-5; j>idxMpT1-3; j-=3)
-						idxEC1+=Integer.parseInt(parent1.get(j).toString());	
+						if(!parent1.get(j-1).equals("{"))
+							idxEC1+=Integer.parseInt(parent1.get(j).toString());	
 				}
 			}
 			for(int j=idxMp2-5; j>=3; j-=3){
 				o2.addAll(0, parent2.subList(j,j+3));
-				idxEC2+=Integer.parseInt(parent2.get(j+1).toString());
-				aC2+=Integer.parseInt(parent2.get(j+1).toString());
+				if(!parent2.get(j).equals("{")){
+					idxEC2+=Integer.parseInt(parent2.get(j+1).toString());
+					aC2+=Integer.parseInt(parent2.get(j+1).toString());
+				}
 			}
 			idxEC1+=Integer.parseInt(o1.get(1).toString()) - 1;
 			idxEC2+=Integer.parseInt(parent2.get(idxMp2-1).toString()) - 1;
@@ -524,15 +574,19 @@ public class CrossoverComplexNPoint<G extends DynamicListGenotype<?>> implements
 				if(random.nextBoolean()){
 					o1.addAll(parent2.subList(idxMpT2-2, idxMpT2+1));
 					o2.addAll(parent1.subList(idxMpT1-2, idxMpT1+1));
-					idxEC1+=Integer.parseInt(parent2.get(idxMpT2-1).toString());
-					idxEC2+=Integer.parseInt(parent1.get(idxMpT1-1).toString());
+					if(!parent2.get(idxMpT2-2).equals("{"))
+						idxEC1+=Integer.parseInt(parent2.get(idxMpT2-1).toString());
+					if(!parent1.get(idxMpT1-2).equals("{"))
+						idxEC2+=Integer.parseInt(parent1.get(idxMpT1-1).toString());
 					
 				}
 				else{
 					o1.addAll(parent1.subList(idxMpT1-2, idxMpT1+1));
 					o2.addAll(parent2.subList(idxMpT2-2, idxMpT2+1));
-					idxEC1+=Integer.parseInt(parent1.get(idxMpT1-1).toString());
-					idxEC2+=Integer.parseInt(parent2.get(idxMpT2-1).toString());
+					if(!parent1.get(idxMpT1-2).equals("{"))
+						idxEC1+=Integer.parseInt(parent1.get(idxMpT1-1).toString());
+					if(!parent2.get(idxMpT2-2).equals("{"))
+						idxEC2+=Integer.parseInt(parent2.get(idxMpT2-1).toString());
 				}
 				idxMpT1+=3;
 				idxMpT2+=3;
@@ -557,12 +611,14 @@ public class CrossoverComplexNPoint<G extends DynamicListGenotype<?>> implements
 				if(random.nextBoolean()){
 					o1.addAll(o1.size()-3,parent2.subList(idxMpT2-2, parent2.size()-3));
 					for(int j=parent2.size()-5; j>idxMpT2-3; j-=3)
-						idxEC1+=Integer.parseInt(parent2.get(j).toString());					
+						if(!parent2.get(j-1).equals("{"))
+							idxEC1+=Integer.parseInt(parent2.get(j).toString());					
 				}
 				else{
 					o2.addAll(o2.size()-3,parent2.subList(idxMpT2-2,parent2.size()-3));
 					for(int j=parent2.size()-5; j>idxMpT2-3; j-=3)
-						idxEC2+=Integer.parseInt(parent2.get(j).toString());		
+						if(!parent2.get(j-1).equals("{"))
+							idxEC2+=Integer.parseInt(parent2.get(j).toString());		
 				}
 			}
 			if((idxMpT1-parent1.size())<(idxMpT2-parent2.size())){
@@ -570,19 +626,22 @@ public class CrossoverComplexNPoint<G extends DynamicListGenotype<?>> implements
 				if(random.nextBoolean()){
 					o2.addAll(o2.size()-3,parent1.subList(idxMpT1-2, parent1.size()-3));
 					for(int j=parent1.size()-5; j>idxMpT1-3; j-=3)
-						idxEC2+=Integer.parseInt(parent1.get(j).toString());	
+						if(!parent1.get(j-1).equals("{"))
+							idxEC2+=Integer.parseInt(parent1.get(j).toString());	
 				}
 				else{
 					o1.addAll(o1.size()-3,parent1.subList(idxMpT1-2, parent1.size()-3));
 					for(int j=parent1.size()-5; j>idxMpT1-3; j-=3)
-						idxEC1+=Integer.parseInt(parent1.get(j).toString());	
+						if(!parent1.get(j-1).equals("{"))
+							idxEC1+=Integer.parseInt(parent1.get(j).toString());	
 				}
 			}
-			//TODO: ADD the rest of configuration to child 1
 			for(int j=idxMp1-5; j>=3; j-=3){
 				o1.addAll(0, parent1.subList(j,j+3));
-				idxEC1+=Integer.parseInt(parent1.get(j+1).toString());
-				aC1+=Integer.parseInt(parent1.get(j+1).toString());
+				if(!parent1.get(j).equals("{")){
+					idxEC1+=Integer.parseInt(parent1.get(j+1).toString());
+					aC1+=Integer.parseInt(parent1.get(j+1).toString());
+				}
 			}
 			idxEC2+=Integer.parseInt(o2.get(1).toString()) - 1;
 			idxEC1+=Integer.parseInt(parent1.get(idxMp1-1).toString()) - 1;
@@ -609,15 +668,19 @@ public class CrossoverComplexNPoint<G extends DynamicListGenotype<?>> implements
 				if(random.nextBoolean()){
 					o1.addAll(0,parent2.subList(idxMpT2-2, idxMpT2+1));
 					o2.addAll(0,parent1.subList(idxMpT1-2, idxMpT1+1));
-					aC1+=Integer.parseInt(parent2.get(idxMpT2-1).toString());
-					aC2+=Integer.parseInt(parent1.get(idxMpT1-1).toString());
+					if(!parent2.get(idxMpT2-2).equals("{"))
+						aC1+=Integer.parseInt(parent2.get(idxMpT2-1).toString());
+					if(!parent1.get(idxMpT1-2).equals("{"))
+						aC2+=Integer.parseInt(parent1.get(idxMpT1-1).toString());
 					
 				}
 				else{
 					o1.addAll(0,parent1.subList(idxMpT1-2, idxMpT1+1));
 					o2.addAll(0,parent2.subList(idxMpT2-2, idxMpT2+1));
-					aC1+=Integer.parseInt(parent1.get(idxMpT1-1).toString());
-					aC2+=Integer.parseInt(parent2.get(idxMpT2-1).toString());
+					if(!parent1.get(idxMpT1-2).equals("{"))
+						aC1+=Integer.parseInt(parent1.get(idxMpT1-1).toString());
+					if(!parent2.get(idxMpT2-2).equals("{"))
+						aC2+=Integer.parseInt(parent2.get(idxMpT2-1).toString());
 				}
 				idxMpT1-=3;
 				idxMpT2-=3;
@@ -627,27 +690,32 @@ public class CrossoverComplexNPoint<G extends DynamicListGenotype<?>> implements
 				//CrossOver terminals Blocks
 				for(int j=idxMpT1-2; j>=3; j-=3){
 					o2.addAll(0,parent1.subList(j, j+3));
-					aC2+=Integer.parseInt(parent1.get(j+1).toString());
+					if(!parent1.get(j).equals("{"))
+						aC2+=Integer.parseInt(parent1.get(j+1).toString());
 				}
 				for(int j=idxMpT2-2; j>=3; j-=3){
 					o1.addAll(0,parent2.subList(j,j+3));
-					aC1+=Integer.parseInt(parent2.get(j+1).toString());
+					if(!parent2.get(j).equals("{"))
+						aC1+=Integer.parseInt(parent2.get(j+1).toString());
 				}
 			}
 			else{
 				for(int j=idxMpT1-2; j>=3; j-=3){
 					o1.addAll(0,parent1.subList(j, j+3));
-					aC1+=Integer.parseInt(parent1.get(j+1).toString());
+					if(!parent1.get(j).equals("{"))
+						aC1+=Integer.parseInt(parent1.get(j+1).toString());
 				}
 				for(int j=idxMpT2-2; j>=3; j-=3){
 					o2.addAll(0,parent2.subList(j, j+3));
-					aC2+=Integer.parseInt(parent2.get(j+1).toString());
+					if(!parent2.get(j).equals("{"))
+						aC2+=Integer.parseInt(parent2.get(j+1).toString());
 				}
 			}
 			//Add to child 2 the rest rigth configuration of parent 2
 			for(int j=idxMp2+1; j<parent2.size(); j+=3){
 				o2.addAll(parent2.subList(j, j+3));
-				idxEC2+=Integer.parseInt(parent2.get(j+1).toString());
+				if(!parent2.get(j).equals("{"))
+					idxEC2+=Integer.parseInt(parent2.get(j+1).toString());
 			}
 			idxEC1+=aC1+Integer.parseInt(o1.get(o1.size()-2).toString());
 			idxEC2+=aC2+Integer.parseInt(parent2.get(idxMp2-1).toString()) - 1;
@@ -658,9 +726,10 @@ public class CrossoverComplexNPoint<G extends DynamicListGenotype<?>> implements
 				int newNucleo=0;
 				int j=1;
 				while(restToDelete>0){
-					int lastNucleo=Integer.parseInt(o1.get(j).toString());
+					int lastNucleo = 0;
+					if(!o1.get(j-1).equals("{"))
+						lastNucleo=Integer.parseInt(o1.get(j).toString());
 					newNucleo=lastNucleo-restToDelete;
-					
 					if(newNucleo<=0){
 						o1.subList(j-1,j+2).clear();
 						aC1-=Math.abs(lastNucleo);
@@ -681,7 +750,9 @@ public class CrossoverComplexNPoint<G extends DynamicListGenotype<?>> implements
 				int newNucleo=0;
 				int j=1;
 				while(restToDelete>0){
-					int lastNucleo=Integer.parseInt(o2.get(j).toString());
+					int lastNucleo = 0;
+					if(!o2.get(j-1).equals("{"))
+						lastNucleo=Integer.parseInt(o2.get(j).toString());
 					newNucleo=lastNucleo-restToDelete;
 					if(newNucleo<=0){
 						o2.subList(j-1,j+2).clear();
@@ -720,15 +791,19 @@ public class CrossoverComplexNPoint<G extends DynamicListGenotype<?>> implements
 				if(random.nextBoolean()){
 					o1.addAll(0,parent2.subList(idxMpT2-2, idxMpT2+1));
 					o2.addAll(0,parent1.subList(idxMpT1-2, idxMpT1+1));
-					aC1+=Integer.parseInt(parent2.get(idxMpT2-1).toString());
-					aC2+=Integer.parseInt(parent1.get(idxMpT1-1).toString());
+					if(!parent2.get(idxMpT2-2).equals("{"))
+						aC1+=Integer.parseInt(parent2.get(idxMpT2-1).toString());
+					if(!parent1.get(idxMpT1-2).equals("{"))
+						aC2+=Integer.parseInt(parent1.get(idxMpT1-1).toString());
 					
 				}
 				else{
 					o1.addAll(0,parent1.subList(idxMpT1-2, idxMpT1+1));
 					o2.addAll(0,parent2.subList(idxMpT2-2, idxMpT2+1));
-					aC1+=Integer.parseInt(parent1.get(idxMpT1-1).toString());
-					aC2+=Integer.parseInt(parent2.get(idxMpT2-1).toString());
+					if(!parent1.get(idxMpT1-2).equals("{"))
+						aC1+=Integer.parseInt(parent1.get(idxMpT1-1).toString());
+					if(!parent2.get(idxMpT2-2).equals("{"))
+						aC2+=Integer.parseInt(parent2.get(idxMpT2-1).toString());
 				}
 				idxMpT1-=3;
 				idxMpT2-=3;
@@ -738,27 +813,32 @@ public class CrossoverComplexNPoint<G extends DynamicListGenotype<?>> implements
 				//Cross terminals blocks
 				for(int j=idxMpT1-2; j>=3; j-=3){
 					o2.addAll(0,parent1.subList(j, j+3));
-					aC2+=Integer.parseInt(parent1.get(j+1).toString());
+					if(!parent1.get(j).equals("{"))
+						aC2+=Integer.parseInt(parent1.get(j+1).toString());
 				}
 				for(int j=idxMpT2-2; j>=3; j-=3){
 					o1.addAll(0,parent2.subList(j,j+3));
-					aC1+=Integer.parseInt(parent2.get(j+1).toString());
+					if(!parent2.get(j).equals("{"))
+						aC1+=Integer.parseInt(parent2.get(j+1).toString());
 				}
 			}
 			else{
 				for(int j=idxMpT1-2; j>=3; j-=3){
 					o1.addAll(0,parent1.subList(j, j+3));
-					aC1+=Integer.parseInt(parent1.get(j+1).toString());
+					if(!parent1.get(j).equals("{"))
+						aC1+=Integer.parseInt(parent1.get(j+1).toString());
 				}
 				for(int j=idxMpT2-2; j>=3; j-=3){
 					o2.addAll(0,parent2.subList(j, j+3));
-					aC2+=Integer.parseInt(parent2.get(j+1).toString());
+					if(!parent2.get(j).equals("{"))
+						aC2+=Integer.parseInt(parent2.get(j+1).toString());
 				}
 			}
 			//Add to child 1 the rest right configuration of parent 2
 			for(int j=idxMp1+1; j<parent1.size(); j+=3){
 				o1.addAll(parent1.subList(j, j+3));
-				idxEC1+=Integer.parseInt(parent1.get(j+1).toString());
+				if(!parent1.get(j).equals("{"))
+					idxEC1+=Integer.parseInt(parent1.get(j+1).toString());
 			}
 			idxEC1+=aC1+Integer.parseInt(parent1.get(idxMp1-1).toString()) - 1;
 			//idxEC2+=aC2+Integer.parseInt(o2.get(o2.size()-2).toString());
@@ -769,7 +849,9 @@ public class CrossoverComplexNPoint<G extends DynamicListGenotype<?>> implements
 				int newNucleo=0;
 				int j=1;
 				while(restToDelete>0){
-					int lastNucleo=Integer.parseInt(o1.get(j).toString());
+					int lastNucleo=0;
+					if(!o1.get(j-1).equals("{"))
+						lastNucleo=Integer.parseInt(o1.get(j).toString());
 					newNucleo=lastNucleo-restToDelete;
 					if(newNucleo<=0){
 						aC1-=Math.abs(lastNucleo);
@@ -791,7 +873,9 @@ public class CrossoverComplexNPoint<G extends DynamicListGenotype<?>> implements
 				int newNucleo=0;
 				int j=1;
 				while(restToDelete>0){
-					int lastNucleo=Integer.parseInt(o2.get(j).toString());
+					int lastNucleo = 0;
+					if(!o2.get(j-1).equals("{"))
+						lastNucleo=Integer.parseInt(o2.get(j).toString());
 					newNucleo=lastNucleo-restToDelete;
 					
 					if(newNucleo<=0){
@@ -843,15 +927,19 @@ public class CrossoverComplexNPoint<G extends DynamicListGenotype<?>> implements
 				if(random.nextBoolean()){
 					o1.addAll(0,parent2.subList(idxMp2-2, idxMp2+1));
 					o2.addAll(0,parent1.subList(idxMp1-2, idxMp1+1));
-					aC1+=Integer.parseInt(parent2.get(idxMp2-1).toString());
-					aC2+=Integer.parseInt(parent1.get(idxMp1-1).toString());
+					if(!parent2.get(idxMp2-2).equals("{"))
+						aC1+=Integer.parseInt(parent2.get(idxMp2-1).toString());
+					if(!parent1.get(idxMp1-2).equals("{"))
+						aC2+=Integer.parseInt(parent1.get(idxMp1-1).toString());
 					
 				}
 				else{
 					o1.addAll(0,parent1.subList(idxMp1-2, idxMp1+1));
 					o2.addAll(0,parent2.subList(idxMp2-2, idxMp2+1));
-					aC1+=Integer.parseInt(parent1.get(idxMp1-1).toString());
-					aC2+=Integer.parseInt(parent2.get(idxMp2-1).toString());
+					if(!parent1.get(idxMp1-2).equals("{"))
+						aC1+=Integer.parseInt(parent1.get(idxMp1-1).toString());
+					if(!parent2.get(idxMp2-2).equals("{"))
+						aC2+=Integer.parseInt(parent2.get(idxMp2-1).toString());
 				}
 				idxMp1-=3;
 				idxMp2-=3;
@@ -878,14 +966,16 @@ public class CrossoverComplexNPoint<G extends DynamicListGenotype<?>> implements
 				if(random.nextBoolean()){
 					o1.addAll(3,parent2.subList(6, idxMp2+1));
 					for(int j=7;j<idxMp2;j+=3){
-						aC1+=Integer.parseInt(parent2.get(j).toString());
+						if(!parent2.get(j-1).equals("{"))
+							aC1+=Integer.parseInt(parent2.get(j).toString());
 						idxMc1+=3;
 					}
 				}
 				else{
 					o2.addAll(3,parent2.subList(6, idxMp2+1));
 					for(int j=7;j<idxMp2;j+=3){
-						aC2+=Integer.parseInt(parent2.get(j).toString());
+						if(!parent2.get(j-1).equals("{"))
+							aC2+=Integer.parseInt(parent2.get(j).toString());
 						idxMc2+=3;
 					}
 				}
@@ -895,14 +985,16 @@ public class CrossoverComplexNPoint<G extends DynamicListGenotype<?>> implements
 				if(random.nextBoolean()){
 					o2.addAll(3,parent1.subList(6, idxMp1+1));
 					for(int j=7;j<idxMp1;j+=3){
-						aC2+=Integer.parseInt(parent1.get(j).toString());
+						if(!parent1.get(j-1).equals("{"))
+							aC2+=Integer.parseInt(parent1.get(j).toString());
 						idxMc2+=3;
 					}
 				}
 				else{
 					o1.addAll(3,parent1.subList(6, idxMp1+1));
 					for(int j=7;j<idxMp1;j+=3){
-						aC1+=Integer.parseInt(parent1.get(j).toString());
+						if(!parent1.get(j-1).equals("{"))
+							aC1+=Integer.parseInt(parent1.get(j).toString());
 						idxMc1+=3;
 					}
 				}
@@ -914,15 +1006,19 @@ public class CrossoverComplexNPoint<G extends DynamicListGenotype<?>> implements
 				if(random.nextBoolean()){
 					o1.addAll(parent2.subList(idxMpT2-2, idxMpT2+1));
 					o2.addAll(parent1.subList(idxMpT1-2, idxMpT1+1));
-					idxEC1+=Integer.parseInt(parent2.get(idxMpT2-1).toString());
-					idxEC2+=Integer.parseInt(parent1.get(idxMpT1-1).toString());
+					if(!parent2.get(idxMpT2-2).equals("{"))
+						idxEC1+=Integer.parseInt(parent2.get(idxMpT2-1).toString());
+					if(!parent1.get(idxMpT1-2).equals("{"))
+						idxEC2+=Integer.parseInt(parent1.get(idxMpT1-1).toString());
 					
 				}
 				else{
 					o1.addAll(parent1.subList(idxMpT1-2, idxMpT1+1));
 					o2.addAll(parent2.subList(idxMpT2-2, idxMpT2+1));
-					idxEC1+=Integer.parseInt(parent1.get(idxMpT1-1).toString());
-					idxEC2+=Integer.parseInt(parent2.get(idxMpT2-1).toString());
+					if(!parent1.get(idxMpT1-2).equals("{"))
+						idxEC1+=Integer.parseInt(parent1.get(idxMpT1-1).toString());
+					if(!parent2.get(idxMpT2-2).equals("{"))
+						idxEC2+=Integer.parseInt(parent2.get(idxMpT2-1).toString());
 				}
 				idxMpT1+=3;
 				idxMpT2+=3;
@@ -945,12 +1041,14 @@ public class CrossoverComplexNPoint<G extends DynamicListGenotype<?>> implements
 				if(random.nextBoolean()){
 					o1.addAll(o1.size()-3,parent2.subList(idxMpT2-2, parent2.size()-3));
 					for(int j=parent2.size()-5; j>idxMpT2-3; j-=3)
-						idxEC1+=Integer.parseInt(parent2.get(j).toString());					
+						if(!parent2.get(j-1).equals("{"))
+							idxEC1+=Integer.parseInt(parent2.get(j).toString());					
 				}
 				else{
 					o2.addAll(o2.size()-3,parent2.subList(idxMpT2-2,parent2.size()-3));
 					for(int j=parent2.size()-5; j>idxMpT2-3; j-=3)
-						idxEC2+=Integer.parseInt(parent2.get(j).toString());		
+						if(!parent2.get(j-1).equals("{"))
+							idxEC2+=Integer.parseInt(parent2.get(j).toString());		
 				}
 			}
 			if((idxMpT1-parent1.size())<(idxMpT2-parent2.size())){
@@ -958,12 +1056,14 @@ public class CrossoverComplexNPoint<G extends DynamicListGenotype<?>> implements
 				if(random.nextBoolean()){
 					o2.addAll(o2.size()-3,parent1.subList(idxMpT1-2, parent1.size()-3));
 					for(int j=parent1.size()-5; j>idxMpT1-3; j-=3)
-						idxEC2+=Integer.parseInt(parent1.get(j).toString());	
+						if(!parent1.get(j-1).equals("{"))
+							idxEC2+=Integer.parseInt(parent1.get(j).toString());	
 				}
 				else{
 					o1.addAll(o1.size()-3,parent1.subList(idxMpT1-2, parent1.size()-3));
 					for(int j=parent1.size()-5; j>idxMpT1-3; j-=3)
-						idxEC1+=Integer.parseInt(parent1.get(j).toString());	
+						if(!parent1.get(j-1).equals("{"))
+							idxEC1+=Integer.parseInt(parent1.get(j).toString());	
 				}
 			}
 			//Recalculate Initial and End Indexes
@@ -975,7 +1075,9 @@ public class CrossoverComplexNPoint<G extends DynamicListGenotype<?>> implements
 				int newNucleo=0;
 				int j=1;
 				while(restToDelete>0){
-					int lastNucleo=Integer.parseInt(o1.get(j).toString());
+					int lastNucleo=0;
+					if(!o1.get(j-1).equals("{"))
+						lastNucleo=Integer.parseInt(o1.get(j).toString());
 					newNucleo=lastNucleo-restToDelete;
 					if(newNucleo<=0){
 						aC1-=Math.abs(lastNucleo);
@@ -998,7 +1100,9 @@ public class CrossoverComplexNPoint<G extends DynamicListGenotype<?>> implements
 				int newNucleo=0;
 				int j=1;
 				while(restToDelete>0){
-					int lastNucleo=Integer.parseInt(o2.get(j).toString());
+					int lastNucleo=0;
+					if(!o2.get(j-1).equals("{"))
+						lastNucleo=Integer.parseInt(o2.get(j).toString());
 					newNucleo=lastNucleo-restToDelete;
 					idxSC2+=Math.abs(newNucleo);
 					if(newNucleo<=0){
@@ -1027,7 +1131,11 @@ public class CrossoverComplexNPoint<G extends DynamicListGenotype<?>> implements
 			//System.out.println("OP9");
 			//TODO: OP9 DONE!
 		}
-		
+		else{
+			System.out.println("Something goes wrong...");
+			System.out.println(parent1.toString());
+			System.out.println(parent2.toString());
+		}
 		Pair<G> offspring = new Pair<G>((G) o1, (G) o2);
 		return offspring;
 	}
@@ -1109,20 +1217,25 @@ public class CrossoverComplexNPoint<G extends DynamicListGenotype<?>> implements
 			c.set(3,":");
 			c.set(5, ":");
 		}
-		if(!c.get(3).equals("[") && !c.get(3).equals("[") && 
+		if(c.get(3).equals("{") ){
+			c.subList(3,6).clear();
+		}
+		if(!c.get(3).equals("[") && 
 				Integer.parseInt(c.get(2).toString()) != 0){
 			c.set(3,"[");
 			c.set(5, "]");
 		}
-		if(!c.get(6).equals("[") && c.get(3).equals(":") && 
-				Integer.parseInt(c.get(2).toString()) == 0){
-			c.set(6,"[");
-			c.set(8, "]");
-		}
-		if(c.get(6).equals("[") && c.get(3).equals("[")){
-			int tempNuc=Integer.parseInt(c.get(4).toString());
-			c.set(7, (Integer.parseInt(c.get(7).toString())+tempNuc));
-			c.subList(3,6).clear();
+		if(c.size() > 6){
+			if(!c.get(6).equals("[") && c.get(3).equals(":") && 
+					Integer.parseInt(c.get(2).toString()) == 0){
+				c.set(6,"[");
+				c.set(8, "]");
+			}
+			if(c.get(6).equals("[") && c.get(3).equals("[")){
+				int tempNuc=Integer.parseInt(c.get(4).toString());
+				c.set(7, (Integer.parseInt(c.get(7).toString())+tempNuc));
+				c.subList(3,6).clear();
+			}
 		}
 		if(c.get(c.size()-1).equals(":") ){
 			c.set(c.size()-3,";");

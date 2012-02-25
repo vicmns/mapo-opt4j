@@ -16,12 +16,14 @@ public class ComplexProblem {
 	  public ComplexProblem()
 	  {
 		//TODO: Delete path from readFromFile to let it choose
-	    String gene = readFromFile("/home/vicmns/Sequence/CFTR-cDNA-1399-2004");
-		//String gene = readFromFile();
+	    //String gene = readFromFile("/home/vicmns/Sequence/CFTR-cDNA-1399-2004");
+		//String gene = readFromFile(System.getProperty("user.home") + "\\Documents\\CFTR-cDNA-1399-2004");
+		String gene = readFromFile();
 	    if (gene == "")
 	      return;
-	    String ab = readFromFile("/home/vicmns/Sequence/CFTR-cDNA-1399-2004-dF508(c.1521_1523delCTT)");
-	    //String ab = readFromFile();
+	    //String ab = readFromFile("/home/vicmns/Sequence/CFTR-cDNA-1399-2004-dF508(c.1521_1523delCTT)");
+	    String ab = readFromFile();
+	    //String ab = readFromFile(System.getProperty("user.home") + "\\Documents\\CFTR-cDNA-1399-2004-dF508(c.1521_1523delCTT)");
 	    if (ab == "")
 	      return;
 	    this.Gene = gene;

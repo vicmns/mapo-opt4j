@@ -38,6 +38,8 @@ public class CrossoverComplexNPoint<G extends DynamicListGenotype<?>> implements
 		 * [0,1,2,3,4,...]
 		 */
 		int sumNuc=0;
+		System.out.println("Parents");
+		System.out.println(parent1.toString());
 		//Find the index where mutations start on parents
 		while(Integer.parseInt(parent1.get(2).toString())!=sumNuc){
 			if(!parent1.get(i-1).equals("{"))
@@ -58,6 +60,7 @@ public class CrossoverComplexNPoint<G extends DynamicListGenotype<?>> implements
 		 */
 		i=4;
 		sumNuc=0;
+		System.out.println(parent2.toString());
 		while(Integer.parseInt(parent2.get(2).toString())!=sumNuc){
 			if(!parent2.get(i-1).equals("{"))
 				sumNuc+=Integer.parseInt(parent2.get(i).toString());
@@ -69,7 +72,7 @@ public class CrossoverComplexNPoint<G extends DynamicListGenotype<?>> implements
 		 * Crossover on different cases of representation
 		 */
 		if(parent1.get(idxMp1).equals(":") && parent2.get(idxMp2).equals(":")){
-			//System.out.println("OP1");
+			System.out.println("OP1");
 			if(random.nextBoolean()){
 				o1.addAll(0,parent2.subList(idxMp2-2, idxMp2+1));
 				o2.addAll(0,parent1.subList(idxMp1-2, idxMp1+1));
@@ -154,8 +157,8 @@ public class CrossoverComplexNPoint<G extends DynamicListGenotype<?>> implements
 			o2.add(0,idxEC2+this.idxMS);
 			o2.add(0,this.idxMS);
 			//Repair the genotype
-			repairGenotypeWithIndexes(o1);
-			repairGenotypeWithIndexes(o2);
+			repairGenotypeWithIndexes(o1, false);
+			repairGenotypeWithIndexes(o2, false);
 			//TODO: OP1 DONE!
 		}
 		else if(parent1.get(idxMp1).equals(":") && parent2.get(idxMp2).equals(";")){
@@ -163,7 +166,7 @@ public class CrossoverComplexNPoint<G extends DynamicListGenotype<?>> implements
 			 * [i,j,a,:,#,:*[,#,],(,#,),...]
 			 * [i,j,a,:#,:[,#,],(,#,),...,;,#,;*]
 			 */
-			//System.out.println("OP2");
+			System.out.println("OP2");
 			o1.addAll(0,parent1.subList(idxMp1-2, idxMp1+1));
 			o2.addAll(0,parent2.subList(idxMp2-2, idxMp2+1));
 			idxMp2-=3;
@@ -248,8 +251,8 @@ public class CrossoverComplexNPoint<G extends DynamicListGenotype<?>> implements
 			o2.add(0,this.idxME);
 			o2.add(0,idxSC2);
 			//Repair Genotypes
-			repairGenotypeWithIndexes(o1);
-			repairGenotypeWithIndexes(o2);
+			repairGenotypeWithIndexes(o1, false);
+			repairGenotypeWithIndexes(o2, true);
 			//TODO: OP2 DONE!
 		}
 		else if(parent1.get(idxMp1).equals(";") && parent2.get(idxMp2).equals(":")){
@@ -257,7 +260,7 @@ public class CrossoverComplexNPoint<G extends DynamicListGenotype<?>> implements
 			 * [i,j,a,:,#,:*[,#,],(,#,),...]
 			 * [i,j,a,:#,:[,#,],(,#,),...,;,#,;*]
 			 */
-			//System.out.println("OP3");
+			System.out.println("OP3");
 			o1.addAll(0,parent1.subList(idxMp1-2, idxMp1+1));
 			o2.addAll(0,parent2.subList(idxMp2-2, idxMp2+1));
 			idxMp1-=3;
@@ -344,12 +347,12 @@ public class CrossoverComplexNPoint<G extends DynamicListGenotype<?>> implements
 			o2.add(0,idxEC2+this.idxMS);
 			o2.add(0,this.idxMS);
 			//Repair Genotypes
-			repairGenotypeWithIndexes(o1);
-			repairGenotypeWithIndexes(o2);
+			repairGenotypeWithIndexes(o1, true);
+			repairGenotypeWithIndexes(o2, false);
 			//TODO: OP3 Done!
 		}
 		else if(parent1.get(idxMp1).equals(";") && parent2.get(idxMp2).equals(";")){
-			//System.out.println("OP4");
+			System.out.println("OP4");
 			idxMpT1-=3;
 			idxMpT2-=3;
 			if(random.nextBoolean()){
@@ -470,12 +473,12 @@ public class CrossoverComplexNPoint<G extends DynamicListGenotype<?>> implements
 			o2.add(0,this.idxME);
 			o2.add(0,idxSC2);
 			//Repair the genotypes
-			repairGenotypeWithIndexes(o1);
-			repairGenotypeWithIndexes(o2);
+			repairGenotypeWithIndexes(o1, true);
+			repairGenotypeWithIndexes(o2, true);
 			//TODO: OP4 DONE!
 		}
 		else if(parent1.get(idxMp1).equals(":") && parent2.get(idxMp2).equals(")")){
-			//System.out.println("OP5");
+			System.out.println("OP5");
 			o1.addAll(0,parent1.subList(idxMp1-2, idxMp1+1));
 			o2.addAll(0,parent2.subList(idxMp2-2, idxMp2+1));
 			//Crossover on the right side
@@ -561,12 +564,12 @@ public class CrossoverComplexNPoint<G extends DynamicListGenotype<?>> implements
 			o2.add(0,(idxEC2+Integer.parseInt(parent2.get(0).toString())));
 			o2.add(0,Integer.parseInt(parent2.get(0).toString()));
 			//Repair the genotypes
-			repairGenotypeWithIndexes(o1);
-			repairGenotypeWithIndexes(o2);
+			repairGenotypeWithIndexes(o1, false);
+			repairGenotypeWithIndexes(o2, false);
 			//TODO: OP5 DONE!
 		}
 		else if(parent1.get(idxMp1).equals(")") && parent2.get(idxMp2).equals(":")){
-			//System.out.println("OP6");
+			System.out.println("OP6");
 			o1.addAll(0,parent1.subList(idxMp1-2, idxMp1+1));
 			o2.addAll(0,parent2.subList(idxMp2-2, idxMp2+1));
 			//Crossover on the right side
@@ -653,12 +656,12 @@ public class CrossoverComplexNPoint<G extends DynamicListGenotype<?>> implements
 			o2.add(0,idxEC2+this.idxMS);
 			o2.add(0,this.idxMS);
 			//Repair the genotypes
-			repairGenotypeWithIndexes(o1);
-			repairGenotypeWithIndexes(o2);
+			repairGenotypeWithIndexes(o1, false);
+			repairGenotypeWithIndexes(o2, false);
 			//TODO: OP6 OK!
 		}
 		else if(parent1.get(idxMp1).equals(";") && parent2.get(idxMp2).equals(")")){
-			//System.out.println("OP7");
+			System.out.println("OP7");
 			o1.addAll(0,parent1.subList(idxMp1-2, idxMp1+1));
 			o2.addAll(0,parent2.subList(idxMp2-2, idxMp2+1));
 			idxMpT1-=6;
@@ -776,12 +779,12 @@ public class CrossoverComplexNPoint<G extends DynamicListGenotype<?>> implements
 			o2.add(0,idxEC2+idxSC2);
 			o2.add(0,idxSC2);
 			//Repair the genotypes
-			repairGenotypeWithIndexes(o1);
-			repairGenotypeWithIndexes(o2);
+			repairGenotypeWithIndexes(o1, true);
+			repairGenotypeWithIndexes(o2, false);
 			//TODO: OP7 DONE!
 		}
 		else if(parent1.get(idxMp1).equals(")") && parent2.get(idxMp2).equals(";")){
-			//System.out.println("OP8");
+			System.out.println("OP8");
 			o1.addAll(0,parent1.subList(idxMp1-2, idxMp1+1));
 			o2.addAll(0,parent2.subList(idxMp2-2, idxMp2+1));
 			idxMpT1-=6;
@@ -900,8 +903,8 @@ public class CrossoverComplexNPoint<G extends DynamicListGenotype<?>> implements
 			o2.add(0,this.idxME);
 			o2.add(0,idxSC2);
 			//Repair genotypes
-			repairGenotypeWithIndexes(o1);
-			repairGenotypeWithIndexes(o2);
+			repairGenotypeWithIndexes(o1, false);
+			repairGenotypeWithIndexes(o2, true);
 			//TODO: OP8 DONE!
 		}
 		else if(parent1.get(idxMp1).equals(")") && parent2.get(idxMp2).equals(")")){
@@ -1126,9 +1129,9 @@ public class CrossoverComplexNPoint<G extends DynamicListGenotype<?>> implements
 			o2.add(0,aC2);
 			o2.add(0,idxEC2);
 			o2.add(0,idxSC2);
-			repairGenotypeWithIndexes(o1);
-			repairGenotypeWithIndexes(o2);
-			//System.out.println("OP9");
+			repairGenotypeWithIndexes(o1, false);
+			repairGenotypeWithIndexes(o2, false);
+			System.out.println("OP9");
 			//TODO: OP9 DONE!
 		}
 		else{
@@ -1136,6 +1139,9 @@ public class CrossoverComplexNPoint<G extends DynamicListGenotype<?>> implements
 			System.out.println(parent1.toString());
 			System.out.println(parent2.toString());
 		}
+		System.out.println("Offspring");
+		System.out.println(o1.toString());
+		System.out.println(o2.toString());
 		Pair<G> offspring = new Pair<G>((G) o1, (G) o2);
 		return offspring;
 	}
@@ -1212,7 +1218,7 @@ public class CrossoverComplexNPoint<G extends DynamicListGenotype<?>> implements
 		}
 	}
 	
-	private void repairGenotypeWithIndexes(ArrayList<Object> c){
+	private void repairGenotypeWithIndexes(ArrayList<Object> c, boolean isLeftOverhang){
 		if(c.get(3).equals(";")){
 			c.set(3,":");
 			c.set(5, ":");
@@ -1242,12 +1248,12 @@ public class CrossoverComplexNPoint<G extends DynamicListGenotype<?>> implements
 			c.set(c.size()-1, ";");
 		}
 		if(!c.get(c.size()-4).equals("]") && !c.get(c.size()-1).equals("]") &&
-				Integer.parseInt(c.get(1).toString()) != this.idxME){
+				!isLeftOverhang){
 			c.set(c.size()-3,"[");
 			c.set(c.size()-1, "]");
 		}
 		if(!c.get(c.size()-4).equals("]") && c.get(c.size()-1).equals(";") &&
-				Integer.parseInt(c.get(1).toString()) == this.idxME){
+				isLeftOverhang){
 			c.set(c.size()-6,"[");
 			c.set(c.size()-4, "]");
 		}

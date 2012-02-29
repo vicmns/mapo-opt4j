@@ -44,7 +44,20 @@ public class ComplexEvaluator implements Evaluator<ComplexPhenotype> {
 	}
 		
 	public Objectives evaluate(ComplexPhenotype phenotype) {
+		int idxInd = 0;
+		int i=4;
+		int sumNuc=0;
 		this.complex=phenotype;
+		while(Integer.parseInt(phenotype.get(2).toString())!=sumNuc){
+			if(!phenotype.get(i-1).equals("{"))
+				sumNuc+=Integer.parseInt(phenotype.get(i).toString());
+			i+=3;
+		}
+		idxInd=i+1;
+		if(!phenotype.get(idxInd).equals(";") && !phenotype.get(idxInd).equals(":") && !phenotype.get(idxInd).equals(")")){
+			System.out.println("HAHA! theres a problem!");
+			System.out.println(phenotype.toString());
+		}
 		Objectives obj = new Objectives();
 		this.len = Integer.parseInt(complex.get(1).toString()) - Integer.parseInt(complex.get(0).toString()) + 1;
 		if(Integer.parseInt(complex.get(1).toString()) + 1 > mGeneLen || Integer.parseInt(complex.get(0).toString()) < 0){

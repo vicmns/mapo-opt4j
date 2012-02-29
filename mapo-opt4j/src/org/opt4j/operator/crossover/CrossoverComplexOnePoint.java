@@ -63,6 +63,7 @@ public class CrossoverComplexOnePoint<G extends DynamicListGenotype<?>> implemen
 			o2.add(0,c2EndIdx);
 			o1.add(0,Integer.parseInt(parent2.get(0).toString()));
 			o2.add(0,Integer.parseInt(parent1.get(0).toString()));
+			System.out.println("OP1");
 		}
 		else if(parent1.get(idxMparent1).equals(":") && parent2.get(idxMparent2).equals(";")){
 			int newSIdx=0, newEIdx=0, newAlpha=0;
@@ -77,7 +78,7 @@ public class CrossoverComplexOnePoint<G extends DynamicListGenotype<?>> implemen
 			o1.add(0,0);
 			o1.add(0,newEIdx);
 			o1.add(0,parent1.get(0));
-			repairGenotypeWithIndexes(o1);
+			repairGenotypeWithIndexes(o1,false);
 			//Child2
 			o2.addAll(parent2.subList(idxMparent2-2, idxMparent2+1));
 			for(int j=idxMparent1+1;j<parent1.size();j+=3){
@@ -113,8 +114,8 @@ public class CrossoverComplexOnePoint<G extends DynamicListGenotype<?>> implemen
 			o2.add(0,newAlpha);
 			o2.add(0,parent2.get(1));
 			o2.add(0,newSIdx);
-			repairGenotypeWithIndexes(o2);
-			//System.out.println("OP2");
+			repairGenotypeWithIndexes(o2,true);
+			System.out.println("OP2");
 			//TODO: OP2 DONE!
 		}
 		else if(parent1.get(idxMparent1).equals(";") && parent2.get(idxMparent2).equals(":")){
@@ -153,7 +154,7 @@ public class CrossoverComplexOnePoint<G extends DynamicListGenotype<?>> implemen
 			o1.add(0,newAlpha);
 			o1.add(0,parent1.get(1));
 			o1.add(0,newSIdx);
-			repairGenotypeWithIndexes(o1);
+			repairGenotypeWithIndexes(o1,true);
 			//CHILD 2
 			o2.addAll(parent2.subList(idxMparent2-2, idxMparent2+1));
 			newEIdx=0;
@@ -167,8 +168,8 @@ public class CrossoverComplexOnePoint<G extends DynamicListGenotype<?>> implemen
 			o2.add(0,0);
 			o2.add(0,newEIdx);
 			o2.add(0,parent2.get(0));
-			repairGenotypeWithIndexes(o2);
-			//System.out.println("OP3");
+			repairGenotypeWithIndexes(o2,false);
+			System.out.println("OP3");
 			//TODO: OP3 DONE!
 		}
 		else if(parent1.get(idxMparent1).equals(";") && parent2.get(idxMparent2).equals(";")){
@@ -236,9 +237,9 @@ public class CrossoverComplexOnePoint<G extends DynamicListGenotype<?>> implemen
 			o2.set(2, newAlpha);
 			o2.set(1, newEIdx);
 			o2.set(0, newSIdx);
-			repairGenotypeWithIndexes(o1);
-			repairGenotypeWithIndexes(o2);
-			//System.out.println("OP4");
+			repairGenotypeWithIndexes(o1,true);
+			repairGenotypeWithIndexes(o2,true);
+			System.out.println("OP4");
 			//TODO: OP4 DONE!
 		}
 		else if(parent1.get(idxMparent1).equals(":") && parent2.get(idxMparent2).equals(")")){
@@ -260,8 +261,8 @@ public class CrossoverComplexOnePoint<G extends DynamicListGenotype<?>> implemen
 			}
 			idxEC2+=Integer.parseInt(o2.get(0).toString()) - 1;
 			o2.set(1, idxEC2);
-			repairGenotypeWithIndexes(o1);
-			repairGenotypeWithIndexes(o2);
+			repairGenotypeWithIndexes(o1,false);
+			repairGenotypeWithIndexes(o2,false);
 			//System.out.println("OP5");
 			//OP5 DONE!
 		}
@@ -284,9 +285,9 @@ public class CrossoverComplexOnePoint<G extends DynamicListGenotype<?>> implemen
 			}
 			idxEC2+=Integer.parseInt(o2.get(0).toString()) - 1;
 			o2.set(1, idxEC2);
-			repairGenotypeWithIndexes(o1);
-			repairGenotypeWithIndexes(o2);
-			//System.out.println("OP6");
+			repairGenotypeWithIndexes(o1,false);
+			repairGenotypeWithIndexes(o2,false);
+			System.out.println("OP6");
 			//TODO: OP6 DONE!
 		}
 		else if(parent1.get(idxMparent1).equals(";") && parent2.get(idxMparent2).equals(")")){
@@ -360,9 +361,9 @@ public class CrossoverComplexOnePoint<G extends DynamicListGenotype<?>> implemen
 			o2.set(2,aC2);
 			o2.set(1,idxEC2 + idxSC2 - 1);
 			o2.set(0,idxSC2);		
-			repairGenotypeWithIndexes(o1);
-			repairGenotypeWithIndexes(o2);
-			//System.out.println("OP7");
+			repairGenotypeWithIndexes(o1,true);
+			repairGenotypeWithIndexes(o2,false);
+			System.out.println("OP7");
 			//TODO: OP7 DONE!
 		}
 		else if(parent1.get(idxMparent1).equals(")") && parent2.get(idxMparent2).equals(";")){
@@ -435,9 +436,9 @@ public class CrossoverComplexOnePoint<G extends DynamicListGenotype<?>> implemen
 			o2.set(2,aC2);
 			o2.set(1,idxEC2);
 			o2.set(0,idxSC2);
-			repairGenotypeWithIndexes(o1);
-			repairGenotypeWithIndexes(o2);
-			//System.out.println("OP8");
+			repairGenotypeWithIndexes(o1,false);
+			repairGenotypeWithIndexes(o2,true);
+			System.out.println("OP8");
 			//TODO: OP8 DONE! (NOPE CHUCK TESTA!)
 		}		
 		else if(parent1.get(idxMparent1).equals(")") && parent2.get(idxMparent2).equals(")")){
@@ -491,8 +492,14 @@ public class CrossoverComplexOnePoint<G extends DynamicListGenotype<?>> implemen
 			}
 		}
 		else{
-			//System.out.println("Something has gone wrong :<");
+			System.out.println("Something goes wrong...");
+			System.out.println(parent1.toString());
+			System.out.println(parent2.toString());
 		}
+		//TODO: delete after debug!
+		System.out.println("Offspring");
+		System.out.println(o1.toString());
+		System.out.println(o2.toString());
 		Pair<G> offspring = new Pair<G>((G) o1, (G) o2);
 		return offspring;
 	}
@@ -527,7 +534,7 @@ public class CrossoverComplexOnePoint<G extends DynamicListGenotype<?>> implemen
 		}
 	}
 	
-	private void repairGenotypeWithIndexes(ArrayList<Object> c){
+	private void repairGenotypeWithIndexes(ArrayList<Object> c, boolean isLeftOverhang){
 		if(c.get(3).equals(";")){
 			c.set(3,":");
 			c.set(5, ":");
@@ -557,12 +564,12 @@ public class CrossoverComplexOnePoint<G extends DynamicListGenotype<?>> implemen
 			c.set(c.size()-1, ";");
 		}
 		if(!c.get(c.size()-4).equals("]") && !c.get(c.size()-1).equals("]") &&
-				Integer.parseInt(c.get(1).toString()) != this.idxME){
+				!isLeftOverhang){
 			c.set(c.size()-3,"[");
 			c.set(c.size()-1, "]");
 		}
 		if(!c.get(c.size()-4).equals("]") && c.get(c.size()-1).equals(";") &&
-				Integer.parseInt(c.get(1).toString()) == this.idxME){
+				isLeftOverhang){
 			c.set(c.size()-6,"[");
 			c.set(c.size()-4, "]");
 		}

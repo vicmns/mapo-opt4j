@@ -156,12 +156,12 @@ public class ComplexEvaluator implements Evaluator<ComplexPhenotype> {
 		return pEnergy;
 	}
 	
-	private double[] cDuplexRNAEnergy(String complex, boolean isInitial, boolean isTerminal){
+	private double[] cDuplexRNAEnergy(String mRNA, boolean isInitial, boolean isTerminal){
 		double dH=0,dS=0,dG=0;
 		if(isInitial){
 			dH+=1.9; dS+=-3.9; dG+=3.1; 
 		}
-		for(int i=0; i<complex.length()-1;i++){
+		for(int i=0; i<mRNA.length()-1;i++){
 			if((mRNA.charAt(i)=='A' && mRNA.charAt(i+1)=='A')){
 				dH+=-7.8; dS+=-21.9; dG+=-1.0; 
 			}

@@ -11,6 +11,7 @@ public class ComplexProblem {
 	  protected String AB;
 	  protected int mGeneLen;
 	  protected String mRNA;
+	  protected String h_mRNA;
 
 	  @Inject
 	  public ComplexProblem()
@@ -30,9 +31,14 @@ public class ComplexProblem {
 	    this.AB = ab;
 	    this.mGeneLen = ab.length();
 	    this.mRNA = cDNAToRNA(this.AB);
+	    this.h_mRNA = cDNAToRNA(this.Gene);
 	    int[] idx = findMutation(this.Gene, this.AB);
 	    this.idxS = idx[0];
 	    this.idxE = idx[1];
+	  }
+	  
+	  public String getHmRNA() {
+		  return this.h_mRNA;
 	  }
 
 	  public int getMGeneLen() {

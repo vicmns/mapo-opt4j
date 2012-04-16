@@ -72,8 +72,8 @@ public class ComplexCreator implements Creator<DynamicListGenotype<Object>>{
 		int alpha=0;
 		int length=problem.getABLength();
 		int numOverhangs = 0;
-		int numInfBulgue = 0;
-		int numSupBulgue = 0;
+		//int numInfBulgue = 0;
+		//int numSupBulgue = 0;
 		boolean hasInfBulgue = false;
 		//First tuple {i,j,alpha} of individual representing the substring
 		do{
@@ -147,20 +147,22 @@ public class ComplexCreator implements Creator<DynamicListGenotype<Object>>{
 					do{
 						nNucleo = rand.nextInt(nNucAvLeft+1);
 					}while(nNucleo<1);
-					numSupBulgue += nNucleo;
+					//numSupBulgue += nNucleo;
 					break;
 				case '{':
 					do{
 						nNucleo = rand.nextInt(nNucAvLeft+1);
 					}while(nNucleo<1);
-					numInfBulgue+=nNucleo;
+					//numInfBulgue+=nNucleo;
 					hasInfBulgue = true;
 					break;
 				}
 				tempList.add(0,getCloseChar(op));
 				tempList.add(0,nNucleo);
 				tempList.add(0,""+op);
-				nNucAvLeft-=nNucleo;
+				if(!hasInfBulgue)
+					nNucAvLeft-=nNucleo;
+				hasInfBulgue = false;
 			}
 		}
 		/*
@@ -171,10 +173,10 @@ public class ComplexCreator implements Creator<DynamicListGenotype<Object>>{
 			if(!tempList.get(lastElement).equals(":") && !tempList.get(lastElement).equals("[")){
 				int lastNuc=Integer.parseInt(tempList.get(lastElement+1).toString());
 				if(tempList.get(lastElement).equals("{")){
-					numInfBulgue -= lastNuc;
+					//numInfBulgue -= lastNuc;
 				}
 				if(tempList.get(lastElement).equals("<")){
-					numSupBulgue -= lastNuc;
+					//numSupBulgue -= lastNuc;
 				}
 				tempList.remove(lastElement);
 				tempList.remove(lastElement);
@@ -202,14 +204,15 @@ public class ComplexCreator implements Creator<DynamicListGenotype<Object>>{
 				}
 			}
 		}
-		nNucAvLeft = 0;
-		if(numInfBulgue > 0){
+		//nNucAvLeft = 0;
+		/*if(numInfBulgue > 0){
 			nNucAvLeft = numInfBulgue;
 		}
 		else
-			nNucAvLeft = 0;
+			nNucAvLeft = 0*/
 		alpha=lastNNucAvL - nNucAvLeft;
 		complex.add(alpha);
+		complex.set(0, idxS + nNucAvLeft );
 		complex.addAll(tempList);
 		tempList=new ArrayList<Object>();
 		/*Interior representation filled
@@ -262,20 +265,22 @@ public class ComplexCreator implements Creator<DynamicListGenotype<Object>>{
 					do{
 						nNucleo = rand.nextInt(nNucAvRigth+1);
 					}while(nNucleo<1);
-					numSupBulgue += nNucleo;
+					//numSupBulgue += nNucleo;
 					break;
 				case '{':
 					do{
 						nNucleo = rand.nextInt(nNucAvRigth+1);
 					}while(nNucleo<1);
-					numInfBulgue+=nNucleo;
+					//numInfBulgue+=nNucleo;
 					hasInfBulgue = true;
 					break;
 				}
 				tempList.add(""+op);
 				tempList.add(nNucleo);
 				tempList.add(getCloseChar(op));
-				nNucAvRigth-=nNucleo;
+				if(!hasInfBulgue)
+					nNucAvRigth-=nNucleo;
+				hasInfBulgue = false;
 			}
 		}
 		/*
@@ -286,10 +291,10 @@ public class ComplexCreator implements Creator<DynamicListGenotype<Object>>{
 			if(!tempList.get(lastElement).equals(";") && !tempList.get(lastElement).equals("]")){
 				int lastNuc=Integer.parseInt(tempList.get(lastElement-1).toString());
 				if(tempList.get(lastElement).equals("}")){
-					numInfBulgue -= lastNuc;
+					//numInfBulgue -= lastNuc;
 				}
 				if(tempList.get(lastElement).equals(">")){
-					numSupBulgue -= lastNuc;
+					//numSupBulgue -= lastNuc;
 				}
 				tempList.subList(lastElement-2,lastElement+1).clear();
 				//Select randomly the next correct configuration
@@ -316,7 +321,7 @@ public class ComplexCreator implements Creator<DynamicListGenotype<Object>>{
 			}
 		}
 		nNucAvRigth=0;
-		if(numInfBulgue > 0 && ( (numOverhangs + numSupBulgue) > numInfBulgue)){
+		/*if(numInfBulgue > 0 && ( (numOverhangs + numSupBulgue) > numInfBulgue)){
 			//nNucAvRigth +=  numInfBulgue;
 			complex.set(1, Integer.parseInt(complex.get(1).toString()) - numInfBulgue);
 		}
@@ -324,7 +329,7 @@ public class ComplexCreator implements Creator<DynamicListGenotype<Object>>{
 			nNucAvRigth = numInfBulgue - (numOverhangs + numSupBulgue);
 			//complex.set(1, Integer.parseInt(complex.get(1).toString()) - numInfBulgue - numSupBulgue + nNucAvRigth);
 			complex.set(1, Integer.parseInt(complex.get(1).toString()) - numInfBulgue);
-		}		
+		}*/		
 		complex.add("(");
 		complex.add(centerNuc);
 		complex.add(")");
@@ -412,6 +417,7 @@ public class ComplexCreator implements Creator<DynamicListGenotype<Object>>{
 					}while(nNucleo<1);
 					numInfBulgue+=nNucleo;
 					hasInfBulgue = true;
+					//nNucleo=0;
 					break;
 				}
 				tempList.add(""+op);
@@ -546,6 +552,7 @@ public class ComplexCreator implements Creator<DynamicListGenotype<Object>>{
 					}while(nNucleo<1);
 					numInfBulgue+=nNucleo;
 					hasInfBulgue=true;
+					//nNucleo=0;
 					break;
 				}
 				tempList.add(0,getCloseChar(op));

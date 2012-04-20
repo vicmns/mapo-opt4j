@@ -108,8 +108,8 @@ public class ComplexEvaluator implements Evaluator<ComplexPhenotype> {
 				obj.add(RNAKf,rnaEnergy[4]);
 				obj.add(RNAKr,rnaEnergy[5]);
 				obj.add(hRNAFreeEnergy,hRnaEnergy[2]);
-				obj.add(hRNAKf,hRnaEnergy[5]);
-				obj.add(hRNAKr,hRnaEnergy[4]);
+				obj.add(hRNAKf,hRnaEnergy[4]);
+				obj.add(hRNAKr,hRnaEnergy[5]);
 				obj.add(length, len);
 			}
 		}

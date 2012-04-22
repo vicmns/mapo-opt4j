@@ -261,7 +261,7 @@ public class ComplexEvaluator implements Evaluator<ComplexPhenotype> {
 		else if(loopSize==30)
 			dG=6.6;
 		else if(loopSize>30){
-			dG=6.6+2.44*R*310.15*Math.log(loopSize/30);
+			dG=6.6+2.44*R*310.15*Math.log((double)loopSize/30.0);
 		}
 		return dG;
 	}
@@ -317,7 +317,7 @@ public class ComplexEvaluator implements Evaluator<ComplexPhenotype> {
             dG = 8.4;
         }
         else if (loopSize > 30) {
-            dG = 8.4 + 2.44 * R * 310.15 * Math.log(loopSize / 30);
+            dG = 8.4 + 2.44 * R * 310.15 * Math.log((double)loopSize / 30.0);
         }
         return dG;
     }
@@ -868,7 +868,7 @@ public class ComplexEvaluator implements Evaluator<ComplexPhenotype> {
 		else if(loopSize==30)
 			dG=5.9;
 		else if(loopSize>30)
-			dG=5.9+2.44*R*310.15*Math.log(loopSize/30);
+			dG=5.9+2.44*R*310.15*Math.log((double)loopSize/30.0);
 		return dG;
 	}
 	

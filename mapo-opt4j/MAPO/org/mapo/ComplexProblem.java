@@ -3,8 +3,8 @@ package org.mapo;
 
 import com.google.inject.Inject;
 
-public class ComplexProblem {
 
+public class ComplexProblem {
 	protected int idxS;
 	  protected int idxE;
 	  protected String Gene;
@@ -12,7 +12,13 @@ public class ComplexProblem {
 	  protected int mGeneLen;
 	  protected String mRNA;
 	  protected String h_mRNA;
-
+	  protected int tMutation;
+	  protected int lenMutation;
+	  
+	  private enum typeMutation{
+		  CODONDELETION, DELETION, SINGLEMISS
+	  }
+	  
 	  @Inject
 	  public ComplexProblem()
 	  {
@@ -36,6 +42,7 @@ public class ComplexProblem {
 	    this.idxS = idx[0];
 	    this.idxE = idx[1];
 	  }
+	  
 	  
 	  public String getHmRNA() {
 		  return this.h_mRNA;
@@ -72,6 +79,10 @@ public class ComplexProblem {
 	  public String getMRNA() {
 	    return this.mRNA;
 	  }
+	  
+	  public int getlenMutation(){
+		  return this.lenMutation;
+	  }
 
 	  private String readFromFile() {
 	    FileManager fileMan = new FileManager();
@@ -83,7 +94,10 @@ public class ComplexProblem {
 	  }
 
 	  private int[] findMutation(String a, String b) {
-	    int firstPos = 0;
+	    /*Mutation indexes has been set to codon deletion
+	     * TODO: Index calculation for different mutation is on to do list
+	     */
+		int firstPos = 0;
 	    int[] idx = { -1, -1 };
 	    int len = 0;
 	    boolean hasMutation = true;
@@ -104,6 +118,18 @@ public class ComplexProblem {
 	      i++;
 	    }
 	    idx[1] = (idx[0] + firstPos - 1);
+	    this.lenMutation = Math.abs(a.length() - b.length());
+	    if(this.lenMutation%3==0){
+	    	this.tMutation=0;
+	    	idx[0] = idx[0] - 1;
+	    	idx[1] = idx[1] + 1;
+	    }
+	    if(this.lenMutation%3>0){
+	    	this.tMutation=1;
+	    }
+	    if(this.lenMutation==0){
+	    	this.tMutation=2;
+	    }
 	    return idx;
 	  }
 

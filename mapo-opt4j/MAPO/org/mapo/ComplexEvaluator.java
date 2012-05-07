@@ -27,6 +27,9 @@ public class ComplexEvaluator implements Evaluator<ComplexPhenotype> {
 	private int numPairBases;
 	private int totalOverHang;
 	private int len;
+	private int idxS;
+	private int idxE;
+	private int mutLen;
 	//private double dG=0.0, dH=0.0, dS=0.0;
 	Objective DNAFreeEnergy = new Objective("DNAFreeEnergy", MIN);
 	Objective RNAFreeEnergy = new Objective("RNAFreeEnergy", MIN);
@@ -46,6 +49,9 @@ public class ComplexEvaluator implements Evaluator<ComplexPhenotype> {
 		this.mRNA=problem.getMRNA();
 		this.Gene=problem.getGene();
 		this.h_mRNA=problem.getHmRNA();
+		this.idxS = problem.getIdxS();
+		this.idxE = problem.getIdxE();
+		this.mutLen = problem.getlenMutation();
 	}
 		
 	public Objectives evaluate(ComplexPhenotype phenotype) {
@@ -1174,9 +1180,14 @@ public class ComplexEvaluator implements Evaluator<ComplexPhenotype> {
         int nDisContBase = 0;
         boolean isInitial = true;
         boolean isTerminal = true;
+        boolean isBulgue = false;
+        int j = Integer.parseInt(this.complex.get(0).toString()); 
         for(int i = Integer.parseInt(this.complex.get(0).toString()); 
                 i <= Integer.parseInt(this.complex.get(1).toString()); i++){
-            if(isRNA_DNAComplementary(this.mGene.charAt(i),
+            if(i == this.idxS && isInitial){
+                i+=mutLen;
+            }
+             if(isRNA_DNAComplementary(this.mGene.charAt(j),
                     this.h_mRNA.charAt(i))){
                 nContBase++;
                 if (nDisContBase > 0){
@@ -1184,19 +1195,20 @@ public class ComplexEvaluator implements Evaluator<ComplexPhenotype> {
                         complexConfig.add(":");
                         complexConfig.add(nDisContBase);
                         complexConfig.add(":");
-                        isInitial = false;
                     }
                     else{
-                        complexConfig.add("(");
+                        complexConfig.add("{");
                         complexConfig.add(nDisContBase);
-                        complexConfig.add(")");
+                        complexConfig.add("}");
+                        j-=nDisContBase;
                     }
                 }
                 nDisContBase = 0;
-                isTerminal = false;
+                isInitial = false;
+                //isTerminal = false;
             }
-            else{
-                if(nContBase > 0){
+             else{
+                 if(nContBase > 0){
                     complexConfig.add("[");
                     complexConfig.add(nContBase);
                     complexConfig.add("]");
@@ -1204,18 +1216,42 @@ public class ComplexEvaluator implements Evaluator<ComplexPhenotype> {
                 }
                 nDisContBase++;
                 nContBase = 0;
-                isTerminal = true;
-            }
+                //isTerminal = true;
+             }
+             j++;
         }
-        if(isTerminal){
+        if(nDisContBase > 0){
             complexConfig.add(";");
             complexConfig.add(nDisContBase);
             complexConfig.add(";");
         }
+        if(nContBase > 0){
+            complexConfig.add("[");
+            complexConfig.add(nContBase);
+            complexConfig.add("]");
+        }
+        if(complexConfig.size() > 6)
+        {
+            if (complexConfig.get(complexConfig.size() - 4).equals("}")
+                    && complexConfig.get(complexConfig.size() - 1).equals(";")) {
+                int tempNuc = Integer.parseInt(complexConfig.get(
+                        complexConfig.size() - 5).toString());
+                complexConfig.set(complexConfig.size() - 2, (Integer.parseInt(
+                        complexConfig.get(complexConfig.size() - 2).toString())
+                        + tempNuc));
+                complexConfig.subList(complexConfig.size() - 6,
+                        complexConfig.size() - 3).clear();
+            }
+            else if (complexConfig.get(complexConfig.size() - 4).equals("]")
+                    && !complexConfig.get(complexConfig.size() - 1).equals(";"))
+            {
+            complexConfig.set(complexConfig.size() - 3, ";");
+            complexConfig.set(complexConfig.size() - 1, ";");
+        }
+        }
         complexConfig.add(0, this.complex.get(0));
         complexConfig.add(1, this.complex.get(1));
         complexConfig.add(2, this.complex.get(2));
-        //System.out.println(complexConfig.toString());
         return complexConfig;
     }
     

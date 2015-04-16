@@ -1,0 +1,1 @@
+The objective of this project it's to design Probe complexes in DNA/RNA whom will be used in a Molecular Automata Model named Computational Genes. This project it's powered by OPT4j (http://opt4j.sourceforge.net/) an excelent framework for optimization problems.
